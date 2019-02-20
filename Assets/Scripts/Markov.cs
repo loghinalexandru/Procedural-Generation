@@ -12,6 +12,7 @@ public class Markov : MonoBehaviour
     public TextAsset emissionFile;
     private List<List<double>> transitionProbabilities;
     private List<List<double>> emissionProbabilities;
+    private int currentStateIndex = 0;
 
     public Markov()
     {
@@ -24,13 +25,12 @@ public class Markov : MonoBehaviour
     {
         this.SetTransitionProbabilities();
         this.SetEmissionProbabilities();
-        this.GenerateStates(10);
     }
 
 
     public void Update()
     {
-
+        this.Next();
     }
 
     private void SetTransitionProbabilities()
@@ -63,10 +63,8 @@ public class Markov : MonoBehaviour
         }
     }
 
-    public List<GameObject> GenerateStates(int size)
+    private void SetInitialState()
     {
-        List<GameObject> output = new List<GameObject>();
-        int currentStateIndex = 0;
         double start = 0.0f;
         double end = 0.0f;
         float randomValue = Random.value;
@@ -76,32 +74,50 @@ public class Markov : MonoBehaviour
             end += startProbabilities[i];
             if (start <= randomValue && randomValue <= end)
             {
-                currentStateIndex = i;
-                output.Add(this.states[i]);
+                this.currentStateIndex = i;
                 break;
             }
         }
-        Debug.Log(currentStateIndex);
+    }
 
-        for (int i = 0; i < size - 1; ++i)
+    private int MakeTransition(int state)
+    {
+        int index = 0;
+        double start = 0.0f;
+        double end = 0.0f;
+        float randomValue = Random.value;
+        for (int j = 0; j < this.transitionProbabilities[state].Count; ++j)
         {
-            Debug.Log(currentStateIndex);
-            start = 0.0f;
-            end = 0.0f;
-            randomValue = Random.value;
-            for (int j = 0; j < this.transitionProbabilities[currentStateIndex].Count; ++j)
+            start = end;
+            end += this.transitionProbabilities[state][j];
+            if (start < randomValue && randomValue < end)
             {
-                start = end;
-                end += this.transitionProbabilities[currentStateIndex][j];
-                if (start < randomValue && randomValue < end)
-                {
-                    output.Add(this.states[j]);
-                    currentStateIndex = j;
-                    break;
-                }
+                index = j;
+                break;
             }
+        }
+        return index;
+    }
 
+    public List<GameObject> GenerateStates(int size)
+    {
+        List<GameObject> output = new List<GameObject>();
+        int stateIndex = this.currentStateIndex;
+
+        for (int i = 0; i < size; ++i)
+        {
+            Debug.Log(stateIndex);
+            output.Add(this.states[stateIndex]);
+            stateIndex = this.MakeTransition(stateIndex);
         }
         return output;
+    }
+
+    public GameObject Next()
+    {
+        Debug.Log(this.currentStateIndex);
+        int oldState = this.currentStateIndex;
+        this.currentStateIndex = MakeTransition(currentStateIndex);
+        return this.states[oldState];
     }
 }
