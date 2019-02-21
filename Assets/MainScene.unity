@@ -5535,24 +5535,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 794320817}
   m_Mesh: {fileID: 4300020, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
---- !u!1 &914458555 stripped
+--- !u!1 &835160001 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1366813587417772, guid: 0ad2a6209d76b5d4ba9925e86ee5faff,
+  m_CorrespondingSourceObject: {fileID: 1011597646829680, guid: 0ad2a6209d76b5d4ba9925e86ee5faff,
     type: 3}
   m_PrefabInstance: {fileID: 1007647494}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &914458558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 914458555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25aa9baba0eb35940a3dce3f8d9974d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &914667860
 GameObject:
   m_ObjectHideFlags: 0
@@ -11497,8 +11485,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1820739776}
-  speed: 10
-  rotationSpeed: 20
+  speed: 7
+  rotationSpeed: 5.5
   directionSpeed: 2
   _rightWheel: {fileID: 1086804647}
   _leftWheel: {fileID: 1825462552}
@@ -11856,6 +11844,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1037962d2acf9ee42946f459313e6595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platformSize: 22
+  currentPlatform: {fileID: 835160001}
+  risingSpeed: 40
+  fallingSpeed: 1
 --- !u!1 &2040181898
 GameObject:
   m_ObjectHideFlags: 0

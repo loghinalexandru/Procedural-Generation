@@ -20,18 +20,12 @@ public class Markov : MonoBehaviour
         this.emissionProbabilities = new List<List<double>>();
     }
 
-
     public void Start()
     {
         this.SetTransitionProbabilities();
         this.SetEmissionProbabilities();
     }
 
-
-    public void Update()
-    {
-        this.Next();
-    }
 
     private void SetTransitionProbabilities()
     {
@@ -106,7 +100,6 @@ public class Markov : MonoBehaviour
 
         for (int i = 0; i < size; ++i)
         {
-            Debug.Log(stateIndex);
             output.Add(this.states[stateIndex]);
             stateIndex = this.MakeTransition(stateIndex);
         }
@@ -115,7 +108,6 @@ public class Markov : MonoBehaviour
 
     public GameObject Next()
     {
-        Debug.Log(this.currentStateIndex);
         int oldState = this.currentStateIndex;
         this.currentStateIndex = MakeTransition(currentStateIndex);
         return this.states[oldState];
