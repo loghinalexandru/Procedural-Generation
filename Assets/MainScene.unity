@@ -11701,6 +11701,7 @@ GameObject:
   - component: {fileID: 1898368586}
   - component: {fileID: 1898368587}
   - component: {fileID: 1898368588}
+  - component: {fileID: 1898368589}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -11800,7 +11801,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898368581}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 848c6bd89a30fef408ce77318b3c9111, type: 3}
   m_Name: 
@@ -11833,16 +11834,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 1011597646829680, guid: 0ad2a6209d76b5d4ba9925e86ee5faff, type: 3}
-  - {fileID: 1487804837674840, guid: 964fac023a293ac48902bbaa91c588f7, type: 3}
-  - {fileID: 1605584312417678, guid: eedd5131e60a33d4c976ddbf51f04904, type: 3}
+  - {fileID: 1011597646829680, guid: 27d3040ef5b651143aff5d8d970c4117, type: 3}
+  - {fileID: 1605584312417678, guid: 92cd88d9c8e4d5f4db482ee363f53cf5, type: 3}
+  - {fileID: 1487804837674840, guid: 5a03fa9e4b4b2774bb065c5244a2b1af, type: 3}
   emissions: []
   startProbabilities:
-  - 1
-  - 0
-  - 0
+  - 0.33
+  - 0.33
+  - 0.33
   transitionFile: {fileID: 4900000, guid: 4be4f70ba5f08784ab84ab86a14008ee, type: 3}
   emissionFile: {fileID: 4900000, guid: 2d9e31d450a3e654381883f0504159c0, type: 3}
+--- !u!114 &1898368589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898368581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1037962d2acf9ee42946f459313e6595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2040181898
 GameObject:
   m_ObjectHideFlags: 0

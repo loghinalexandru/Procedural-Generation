@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlatformGeneration : MonoBehaviour
 {
-
-
     public List<GameObject> straightRoad;
     public List<GameObject> rightTurnRoad;
     public List<GameObject> leftTurnRoad;
@@ -22,8 +20,8 @@ public class PlatformGeneration : MonoBehaviour
     public static float angle;
     public static bool generate = false;
     public float _time = 0;
-
     public static float platformSize;
+
     void Start()
     {
         _prefabPlatforms.Add(straightRoad);

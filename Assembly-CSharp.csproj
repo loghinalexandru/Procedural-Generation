@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\GeneratePlatform.cs" />
      <Compile Include="Assets\Scripts\Markov.cs" />
      <Compile Include="Assets\Scripts\PlatformGeneration.cs" />
      <Compile Include="Assets\Scripts\PlatfromTrigger.cs" />
