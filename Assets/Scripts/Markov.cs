@@ -26,7 +26,6 @@ public class Markov : MonoBehaviour
         this.SetEmissionProbabilities();
     }
 
-
     private void SetTransitionProbabilities()
     {
         string[] text = this.transitionFile.text.Split('\n');
@@ -93,6 +92,25 @@ public class Markov : MonoBehaviour
         return index;
     }
 
+    private int MakeEmission(int state)
+    {
+        int index = 0;
+        double start = 0.0f;
+        double end = 0.0f;
+        float randomValue = Random.value;
+        for (int j = 0; j < this.emissionProbabilities[state].Count; ++j)
+        {
+            start = end;
+            end += this.emissionProbabilities[state][j];
+            if (start < randomValue && randomValue < end)
+            {
+                index = j;
+                break;
+            }
+        }
+        return index;
+    }
+
     public List<GameObject> GenerateStates(int size)
     {
         List<GameObject> output = new List<GameObject>();
@@ -111,5 +129,16 @@ public class Markov : MonoBehaviour
         int oldState = this.currentStateIndex;
         this.currentStateIndex = MakeTransition(currentStateIndex);
         return this.states[oldState];
+    }
+
+    public List<GameObject> GenerateEmissions(GameObject state, int numberOfEmissions)
+    {
+        List<GameObject> props = new List<GameObject>();
+        int stateIndex = this.states.IndexOf(state);
+        for (int i = 0; i < numberOfEmissions; ++i)
+        {
+            props.Add(this.emissions[MakeEmission(stateIndex)]);
+        }
+        return props;
     }
 }
