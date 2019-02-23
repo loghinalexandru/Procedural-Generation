@@ -58,7 +58,6 @@
      <Compile Include="Assets\Scripts\Markov.cs" />
      <Compile Include="Assets\Scripts\PlatfromTrigger.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
-     <Compile Include="Assets\Sound\CarSound.cs" />
      <None Include="Assets\Probabilities\emission.txt" />
      <None Include="Assets\Probabilities\transition.txt" />
      <None Include="Assets\Shaders\Pearlescent.shader" />
