@@ -1,22 +1,60 @@
 Base path: F:/Unity/Editor/Data
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
-  api=4 insize=2134 outsize=349 ok=1
+  api=4 insize=2059 outsize=349 ok=1
 Cmd: compileComputeKernel
-  api=4 insize=1226 outsize=781 ok=1
+  api=4 insize=1176 outsize=781 ok=1
 Cmd: compileComputeKernel
-  api=4 insize=11176 outsize=9693 ok=1
+  api=4 insize=3070 outsize=48145 ok=1
 Cmd: compileComputeKernel
-  api=4 insize=5022 outsize=4101 ok=1
+  api=4 insize=10881 outsize=9693 ok=1
 Cmd: compileComputeKernel
-  api=4 insize=1435 outsize=585 ok=1
+  api=4 insize=4855 outsize=5437 ok=1
 Cmd: compileComputeKernel
-  api=4 insize=3273 outsize=593 ok=1
+  api=4 insize=18299 outsize=8781 ok=1
 Cmd: compileComputeKernel
-  api=4 insize=18731 outsize=8693 ok=1
+  api=4 insize=18299 outsize=8553 ok=1
 Cmd: compileComputeKernel
-  api=4 insize=18731 outsize=8925 ok=1
+  api=4 insize=18299 outsize=10769 ok=1
 Cmd: compileComputeKernel
-  api=4 insize=18731 outsize=10549 ok=1
+  api=4 insize=3072 outsize=1329 ok=1
 Cmd: compileComputeKernel
-  api=4 insize=2120 outsize=1037 ok=1
+  api=4 insize=1806 outsize=553 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=1454 outsize=1461 ok=1
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
