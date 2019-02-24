@@ -95,7 +95,7 @@ public class GeneratePlatform : MonoBehaviour
             int propRotation = 0;
             if (side < 0)
                 propRotation = 180;
-            props[i] = Instantiate(props[i], new Vector3(nextPlatform.transform.position.x + side, nextPlatform.transform.position.y, nextPlatform.transform.position.z - this.platformSize / 3 + 2 * nextObjectDistance), Quaternion.Euler(0, propRotation, 0));
+            props[i] = Instantiate(props[i], new Vector3(nextPlatform.transform.position.x + side, nextPlatform.transform.position.y, nextPlatform.transform.position.z - this.platformSize / 2 + 2 * nextObjectDistance), Quaternion.Euler(0, propRotation, 0));
             nextObjectDistance += props[i].transform.localScale.z + this.distanceBetweenProps;
             props[i].transform.SetParent(nextPlatform.transform);
         }
