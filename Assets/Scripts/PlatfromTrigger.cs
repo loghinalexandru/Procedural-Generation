@@ -13,12 +13,26 @@ public class PlatfromTrigger : MonoBehaviour
         callbackObject = GameObject.Find("Camera");
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerEnter(Collider collidingObject)
     {
-        if (!triggered)
+
+        if (this.name == "NextPlatformTrigger")
         {
-            this.callbackObject.GetComponent<GeneratePlatform>().InstantiatePlatform();
-            this.triggered = true;
+            if (!this.triggered)
+            {
+                this.callbackObject.GetComponent<GeneratePlatform>().InstantiatePlatform();
+                this.triggered = true;
+            }
+        }
+        else
+        {
+            collidingObject.GetComponent<SkidMarks>().StopEmission();
+            collidingObject.GetComponent<SkidMarks>().enabled = false;
+            Rigidbody rb = collidingObject.GetComponent<Rigidbody>();
+            rb.useGravity = true;
+            rb.mass *= 5;
+            rb.constraints = RigidbodyConstraints.None;
+            collidingObject.GetComponent<SkidMarks>().StopEmission();
         }
 
     }

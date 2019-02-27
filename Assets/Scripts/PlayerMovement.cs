@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     public GameObject player;
     public float speed = 2f;
     public float rotationSpeed = 20f;
@@ -26,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         _body = player.GetComponent<Rigidbody>();
-        // _body.freezeRotation = true;
     }
 
     private void WheelSpinAnimation()
@@ -43,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Transform rightFrontParent = rightFrontWheel.transform.parent.transform;
         Transform leftFrontParent = leftFrontWheel.transform.parent.transform;
+
         if (Mathf.Abs(this.currentAngle + this.steeringAngle * Time.deltaTime * this.rotationSpeed) < this.maxSteeringAngle)
         {
             this.currentAngle += this.steeringAngle * Time.deltaTime * this.rotationSpeed;
@@ -60,8 +59,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        this.steeringAngle = 0.0f;
-
         if (Input.GetKey(KeyCode.RightArrow))
         {
             _body.AddRelativeTorque(Vector3.up * rotationSpeed);
@@ -72,13 +69,12 @@ public class PlayerMovement : MonoBehaviour
             _body.AddRelativeTorque(Vector3.down * rotationSpeed);
             this.steeringAngle = -this.maxSteeringAngle;
         }
-        _body.AddRelativeForce(Vector3.back * speed);
+        if (player.transform.position.y > 0)
+            _body.AddRelativeForce(Vector3.back * speed);
     }
-
 
     public void OnCollisionEnter(Collision collision)
     {
-
         if (collision.gameObject.name == "Box")
         {
             collision.gameObject.transform.parent = null;
@@ -86,5 +82,4 @@ public class PlayerMovement : MonoBehaviour
             Destroy(collision.gameObject, 2);
         }
     }
-
 }

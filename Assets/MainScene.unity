@@ -11242,7 +11242,6 @@ GameObject:
   - component: {fileID: 1820739779}
   - component: {fileID: 1820739782}
   - component: {fileID: 1820739778}
-  - component: {fileID: 1820739780}
   - component: {fileID: 1820739781}
   m_Layer: 0
   m_Name: Player
@@ -11260,7 +11259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820739776}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.54, z: -1.84}
+  m_LocalPosition: {x: 0, y: 0.54, z: -5.29}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 287935214}
@@ -11296,7 +11295,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 84
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &1820739779
 MonoBehaviour:
@@ -11313,32 +11312,13 @@ MonoBehaviour:
   player: {fileID: 1820739776}
   speed: 10
   rotationSpeed: 5.5
-  directionSpeed: 2
+  directionSpeed: 3
   rightFrontWheel: {fileID: 1086804647}
   leftFrontWheel: {fileID: 1825462552}
   rightBackWheel: {fileID: 25568999}
   leftBackWheel: {fileID: 1754728742}
   maxSteeringAngle: 45
   wheelsRPM: 200
---- !u!95 &1820739780
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820739776}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 50bb8a4de28f2aa4d9a8501f8546f70c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &1820739781
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11539,7 +11519,7 @@ GameObject:
   - component: {fileID: 1898368590}
   m_Layer: 8
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11736,7 +11716,7 @@ MonoBehaviour:
   currentPlatform: {fileID: 835160001}
   platformSize: 22
   propsPerPlatform: 4
-  risingSpeed: 40
+  risingSpeed: 45
   fallingSpeed: 1
   centerDistance: 13.3
   distanceBetweenProps: 3.3
@@ -12115,6 +12095,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431852438786298592, guid: 0ad2a6209d76b5d4ba9925e86ee5faff,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431852438786298592, guid: 0ad2a6209d76b5d4ba9925e86ee5faff,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431852438786298592, guid: 0ad2a6209d76b5d4ba9925e86ee5faff,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431852438786298593, guid: 0ad2a6209d76b5d4ba9925e86ee5faff,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431852439416233387, guid: 0ad2a6209d76b5d4ba9925e86ee5faff,
+        type: 3}
+      propertyPath: m_Name
+      value: NextPlatformTrigger
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ad2a6209d76b5d4ba9925e86ee5faff, type: 3}

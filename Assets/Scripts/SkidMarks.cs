@@ -12,7 +12,7 @@ public class SkidMarks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.transform.eulerAngles.y % 90 >= minSkew && player.transform.eulerAngles.y % 90 <= 90 - minSkew)
+        if (player.transform.localEulerAngles.y % 90 >= minSkew && player.transform.localEulerAngles.y % 90 <= 90 - minSkew)
         {
             skidMarkL.emitting = true;
             skidMarkR.emitting = true;
@@ -23,4 +23,18 @@ public class SkidMarks : MonoBehaviour
             skidMarkR.emitting = false;
         }
     }
+
+
+    public void StopEmission()
+    {
+        skidMarkL.emitting = false;
+        skidMarkR.emitting = false;
+    }
+
+    public void StartEmission()
+    {
+        skidMarkL.emitting = true;
+        skidMarkR.emitting = true;
+    }
+
 }
