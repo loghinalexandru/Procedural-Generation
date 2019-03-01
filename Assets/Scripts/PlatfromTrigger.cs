@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlatfromTrigger : MonoBehaviour
 {
-
     private GameObject callbackObject;
     private bool triggered = false;
 
@@ -30,10 +29,7 @@ public class PlatfromTrigger : MonoBehaviour
             collidingObject.GetComponent<SkidMarks>().enabled = false;
             Rigidbody rb = collidingObject.GetComponent<Rigidbody>();
             rb.useGravity = true;
-            rb.mass *= 5;
-            rb.constraints = RigidbodyConstraints.None;
-            collidingObject.GetComponent<SkidMarks>().StopEmission();
+            rb.mass *= 10;
         }
-
     }
 }

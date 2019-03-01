@@ -53,6 +53,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\HHMM\HHMM.cs" />
+     <Compile Include="Assets\HHMM\Node.cs" />
+     <Compile Include="Assets\HHMM\ProductionNode.cs" />
+     <Compile Include="Assets\HHMM\StateNode.cs" />
+     <Compile Include="Assets\HHMM\TerminalNode.cs" />
      <Compile Include="Assets\Scripts\Follow.cs" />
      <Compile Include="Assets\Scripts\GeneratePlatform.cs" />
      <Compile Include="Assets\Scripts\Markov.cs" />
@@ -61,6 +66,7 @@
      <Compile Include="Assets\Scripts\SkidMarks.cs" />
      <None Include="Assets\Probabilities\emission.txt" />
      <None Include="Assets\Probabilities\transition.txt" />
+     <None Include="Assets\Probabilities\emission_alternative.txt" />
      <None Include="Assets\Shaders\Pearlescent.shader" />
  <Reference Include="Unity.RenderPipelines.Core.Editor">
  <HintPath>C:/Users/Mr.Robot/Documents/Procedural-Generation/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
