@@ -13,7 +13,6 @@ public class HHMM : MonoBehaviour
     public void Start()
     {
         this.Init();
-
     }
 
     public void Init()
@@ -67,7 +66,7 @@ public class HHMM : MonoBehaviour
     public GameObject NextEmission()
     {
         GameObject output;
-        while (this.currentState.type != NodeType.productionNode)
+        while (this.currentState.GetType() != typeof(ProductionNode))
         {
             this.currentState = this.currentState.Next();
         }

@@ -7,7 +7,6 @@ public class ProductionNode : MonoBehaviour, INode
 {
     public List<GameObject> emissions;
     public List<float> emissionsProbabilities;
-    public NodeType type { get; set; } = NodeType.productionNode;
     public INode parent { get; set; }
     public Direction direction { get; set; } = Direction.vertical;
 
@@ -45,7 +44,6 @@ public class ProductionNode : MonoBehaviour, INode
 
     void Start()
     {
-        this.type = NodeType.productionNode;
         if (this.emissionsProbabilities.Count == 0)
         {
             throw new System.Exception("No emission probabilities!");

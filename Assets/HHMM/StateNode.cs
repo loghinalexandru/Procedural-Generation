@@ -8,7 +8,6 @@ public class StateNode : INode
     private List<INode> neighbours { get; set; }
     private List<float> descendentsProbabilities { get; set; }
     private List<float> neighboursProbabilities { get; set; }
-    public NodeType type { get; set; } = NodeType.stateNode;
     public INode parent { get; set; }
     public Direction direction { get; set; } = Direction.vertical;
 
@@ -33,7 +32,6 @@ public class StateNode : INode
         this.neighbours.Add(neighbour);
         this.neighboursProbabilities.Add(probability);
     }
-
 
     private INode GetNextVerticalNode()
     {
