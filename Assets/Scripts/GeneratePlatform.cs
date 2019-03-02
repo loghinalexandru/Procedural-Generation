@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class GeneratePlatform : MonoBehaviour
 {
     private Markov generator;
+    private HHMM platformGenerator;
     public GameObject currentPlatform;
     public float platformSize = 20;
     public int propsPerPlatform = 2;
@@ -20,6 +23,7 @@ public class GeneratePlatform : MonoBehaviour
     void Start()
     {
         this.generator = this.GetComponent<Markov>();
+        this.platformGenerator = GameObject.FindGameObjectWithTag("Generator").GetComponent<HHMM>();
         this.zOffset = generator.states[0].transform.localScale.z;
         this.platformSize = this.zOffset;
     }
@@ -105,7 +109,7 @@ public class GeneratePlatform : MonoBehaviour
 
     public void InstantiatePlatform()
     {
-        GameObject nextPlatform = BuildPlatform(this.generator.Next());
+        GameObject nextPlatform = BuildPlatform(platformGenerator.NextEmission());
         switch (nextPlatform.name)
         {
             case "Right(Clone)":

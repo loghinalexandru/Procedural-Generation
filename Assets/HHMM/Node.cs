@@ -1,20 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public enum NodeType { stateNode, productionNode, terminalNode };
+public enum Direction { vertical, horizontal };
 
-
-public abstract class Node : MonoBehaviour
+public interface INode
 {
-    protected NodeType type { get; set; }
-    protected Node parent { get; set; }
-
-    public Node(NodeType type)
-    {
-        this.type = type;
-    }
-
-    public abstract Node Next();
-
+    NodeType type { get; set; }
+    INode parent { get; set; }
+    Direction direction { get; set; }
+    INode Next();
 }

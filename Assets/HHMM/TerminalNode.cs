@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-[System.Serializable]
-public class TerminalNode : Node
+public class TerminalNode : INode
 {
-    public TerminalNode(Node parent) : base(NodeType.terminalNode)
+    public NodeType type { get; set; } = NodeType.terminalNode;
+    public INode parent { get; set; }
+    public Direction direction { get; set; } = Direction.vertical;
+
+    public TerminalNode(INode parent)
     {
         this.parent = parent;
+        this.type = NodeType.terminalNode;
     }
 
-    public override Node Next()
+    public INode Next()
     {
+        this.parent.direction = Direction.horizontal;
         return this.parent;
     }
 }
