@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\HMM\EM.cs" />
      <Compile Include="Assets\HMM\HMM.cs" />
      <Compile Include="Assets\Scripts\Follow.cs" />
      <Compile Include="Assets\Scripts\GeneratePlatform.cs" />
@@ -61,8 +62,10 @@
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\SkidMarks.cs" />
      <None Include="Assets\Probabilities\emission.txt" />
+     <None Include="Assets\Packages\MathNet.Numerics.4.7.0\lib\net461\MathNet.Numerics.xml" />
      <None Include="Assets\Probabilities\HHMM.txt" />
      <None Include="Assets\Probabilities\transition.txt" />
+     <None Include="Assets\NuGet\LICENSE.txt" />
      <None Include="Assets\Probabilities\emission_alternative.txt" />
      <None Include="Assets\Shaders\Pearlescent.shader" />
  <Reference Include="Unity.RenderPipelines.Core.Editor">
@@ -304,6 +307,9 @@
  </Reference>
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>F:/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+ </Reference>
+ <Reference Include="MathNet.Numerics">
+ <HintPath>C:/Users/Mr.Robot/Documents/Procedural-Generation/Assets/Packages/MathNet.Numerics.4.7.0/lib/net461/MathNet.Numerics.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
  <HintPath>C:/Users/Mr.Robot/Documents/Procedural-Generation/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class HMM : MonoBehaviour
 {
-    private List<List<float>> transitionProbabilities;
-    private List<List<float>> emissionProbabilities;
+    private float[,] transitionProbabilities;
+    private float[,] emissionProbabilities;
     private int currentStateIndex = 0;
+    private int stateCount;
+    private int emissionCount;
+    private EM estimator;
     public List<float> startProbabilities;
     public List<GameObject> emissions;
     public TextAsset transitionFile;
@@ -14,11 +17,14 @@ public class HMM : MonoBehaviour
 
     private void Init()
     {
-        this.emissionProbabilities = new List<List<float>>();
-        this.transitionProbabilities = new List<List<float>>();
+        this.stateCount = this.startProbabilities.Count;
+        this.emissionCount = this.emissions.Count;
+        this.emissionProbabilities = new float[this.stateCount, this.emissionCount];
+        this.transitionProbabilities = new float[this.stateCount, this.stateCount];
         this.SetTransitionProbabilities();
         this.SetEmissionProbabilities();
         this.SetInitialState();
+        this.estimator = new EM(this.stateCount, this.emissionCount);
     }
 
     private void SetTransitionProbabilities()
@@ -26,13 +32,11 @@ public class HMM : MonoBehaviour
         string[] text = this.transitionFile.text.Split('\n');
         for (int i = 0; i < text.Length; ++i)
         {
-            List<float> line = new List<float>();
             string[] probabilities = text[i].Split(' ');
             for (int j = 0; j < probabilities.Length; ++j)
             {
-                line.Add(float.Parse(probabilities[j]));
+                this.transitionProbabilities[i, j] = float.Parse(probabilities[j]);
             }
-            this.transitionProbabilities.Add(line);
         }
     }
 
@@ -41,16 +45,13 @@ public class HMM : MonoBehaviour
         string[] text = this.emissionFile.text.Split('\n');
         for (int i = 0; i < text.Length; ++i)
         {
-            List<float> line = new List<float>();
             string[] probabilities = text[i].Split(' ');
             for (int j = 0; j < probabilities.Length; ++j)
             {
-                line.Add(float.Parse(probabilities[j]));
+                this.emissionProbabilities[i, j] = float.Parse(probabilities[j]);
             }
-            this.emissionProbabilities.Add(line);
         }
     }
-
 
     private void SetInitialState()
     {
@@ -75,10 +76,10 @@ public class HMM : MonoBehaviour
         double start = 0.0f;
         double end = 0.0f;
         float randomValue = Random.value;
-        for (int j = 0; j < this.transitionProbabilities[state].Count; ++j)
+        for (int j = 0; j < this.stateCount; ++j)
         {
             start = end;
-            end += this.transitionProbabilities[state][j];
+            end += this.transitionProbabilities[state, j];
             if (start < randomValue && randomValue < end)
             {
                 index = j;
@@ -94,10 +95,10 @@ public class HMM : MonoBehaviour
         double start = 0.0f;
         double end = 0.0f;
         float randomValue = Random.value;
-        for (int j = 0; j < this.emissionProbabilities[state].Count; ++j)
+        for (int j = 0; j < this.emissionCount; ++j)
         {
             start = end;
-            end += this.emissionProbabilities[state][j];
+            end += this.emissionProbabilities[state, j];
             if (start < randomValue && randomValue < end)
             {
                 index = j;
@@ -122,5 +123,12 @@ public class HMM : MonoBehaviour
     void Start()
     {
         Init();
+        this.ParameterInference(null);
+    }
+
+    public void ParameterInference(List<GameObject> observations)
+    {
+        estimator.train(new List<int> { 0, 1, 2, 3, 4, 2, 1, 0, 2, 0, 1, 2, 3, 4, 2, 1, 0, 2, 0, 1, 2, 3, 4, 2, 1, 0, 2, 0, 1, 2, 3, 4, 2, 1, 0, 2 });
+        Debug.Log(estimator.GetTransitionMatrix()[0, 0]);
     }
 }
