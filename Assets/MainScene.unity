@@ -11005,9 +11005,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1378403951}
-  - component: {fileID: 1378403950}
-  - component: {fileID: 1378403949}
-  - component: {fileID: 1378403948}
   - component: {fileID: 1378403947}
   m_Layer: 0
   m_Name: Generator
@@ -11025,58 +11022,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 1378403946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f700e3596638640b3bd6aacc7caac5, type: 3}
+  m_Script: {fileID: 11500000, guid: 53d84f548defabb42ade5de62ddb53a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emissions:
-  - {fileID: 1011597646829680, guid: 27d3040ef5b651143aff5d8d970c4117, type: 3}
-  emissionsProbabilities:
-  - 1
---- !u!114 &1378403948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1378403946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f700e3596638640b3bd6aacc7caac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emissions:
-  - {fileID: 1487804837674840, guid: 5a03fa9e4b4b2774bb065c5244a2b1af, type: 3}
-  emissionsProbabilities:
-  - 1
---- !u!114 &1378403949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1378403946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f700e3596638640b3bd6aacc7caac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  startProbabilities:
+  - 0.33
+  - 0.33
+  - 0.33
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   emissions:
   - {fileID: 1605584312417678, guid: 92cd88d9c8e4d5f4db482ee363f53cf5, type: 3}
-  emissionsProbabilities:
-  - 1
---- !u!114 &1378403950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1378403946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1987b8978d0fe4c4da1c12d342549267, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  probabilitiesFile: {fileID: 0}
+  - {fileID: 1487804837674840, guid: 5a03fa9e4b4b2774bb065c5244a2b1af, type: 3}
+  - {fileID: 1011597646829680, guid: 27d3040ef5b651143aff5d8d970c4117, type: 3}
+  - {fileID: 1605584312417678, guid: 5ca4e31ae920e214fa37ee9b3b6a42d2, type: 3}
+  - {fileID: 1487804837674840, guid: dfadf3bd14f45eb43959b0360c081237, type: 3}
+  - {fileID: 1011597646829680, guid: 1372cf763915d2e459470d169079ed88, type: 3}
+  - {fileID: 1605584312417678, guid: 2f2c19dd18823ad4c9e9d4b42d1ed2c0, type: 3}
+  - {fileID: 1487804837674840, guid: 98120629a3254c349869ab09612b48c0, type: 3}
+  - {fileID: 1011597646829680, guid: 9b3077e5cef5b9c4bae636ff71e8ea85, type: 3}
+  transitionFile: {fileID: 4900000, guid: 4be4f70ba5f08784ab84ab86a14008ee, type: 3}
+  emissionFile: {fileID: 4900000, guid: 2d9e31d450a3e654381883f0504159c0, type: 3}
 --- !u!4 &1378403951
 Transform:
   m_ObjectHideFlags: 0
@@ -11608,7 +11581,6 @@ GameObject:
   - component: {fileID: 1898368583}
   - component: {fileID: 1898368582}
   - component: {fileID: 1898368586}
-  - component: {fileID: 1898368588}
   - component: {fileID: 1898368589}
   - component: {fileID: 1898368587}
   - component: {fileID: 1898368590}
@@ -11768,34 +11740,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!114 &1898368588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1898368581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8a0a169da50b014baf16eb96e8561e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  states:
-  - {fileID: 1011597646829680, guid: 27d3040ef5b651143aff5d8d970c4117, type: 3}
-  - {fileID: 1605584312417678, guid: 92cd88d9c8e4d5f4db482ee363f53cf5, type: 3}
-  - {fileID: 1487804837674840, guid: 5a03fa9e4b4b2774bb065c5244a2b1af, type: 3}
-  emissions:
-  - {fileID: 6405409903151369621, guid: 82a5c5ecb13edf440a452f46f66f3997, type: 3}
-  - {fileID: 8283707744411260975, guid: d7ef9666a31fb1240a2318a4366b6c8c, type: 3}
-  - {fileID: 2864393350246912540, guid: 61c43ca7f59ce2945aea7062d3ff8e47, type: 3}
-  - {fileID: 2561228854564863694, guid: a95e9e5df23fc5d4fb037cfbd172f467, type: 3}
-  - {fileID: 2597704389239759599, guid: 0d517ce2411cbe449966058f5e721afa, type: 3}
-  startProbabilities:
-  - 0.33
-  - 0.33
-  - 0.33
-  transitionFile: {fileID: 4900000, guid: 4be4f70ba5f08784ab84ab86a14008ee, type: 3}
-  emissionFile: {fileID: 4900000, guid: 2d9e31d450a3e654381883f0504159c0, type: 3}
 --- !u!114 &1898368589
 MonoBehaviour:
   m_ObjectHideFlags: 0
