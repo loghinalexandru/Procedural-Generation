@@ -5,8 +5,8 @@ using MathNet.Numerics.LinearAlgebra;
 
 public class HMM : MonoBehaviour
 {
-    private float[,] transitionProbabilities;
-    private float[,] emissionProbabilities;
+    private double[,] transitionProbabilities;
+    private double[,] emissionProbabilities;
     private int currentStateIndex = 0;
     private int stateCount;
     private int emissionCount;
@@ -20,8 +20,8 @@ public class HMM : MonoBehaviour
     {
         this.stateCount = this.startProbabilities.Count;
         this.emissionCount = this.emissions.Count;
-        this.emissionProbabilities = new float[this.stateCount, this.emissionCount];
-        this.transitionProbabilities = new float[this.stateCount, this.stateCount];
+        this.emissionProbabilities = new double[this.stateCount, this.emissionCount];
+        this.transitionProbabilities = new double[this.stateCount, this.stateCount];
         this.SetTransitionProbabilities();
         this.SetEmissionProbabilities();
         this.SetInitialState();
@@ -36,7 +36,7 @@ public class HMM : MonoBehaviour
             string[] probabilities = text[i].Split(' ');
             for (int j = 0; j < probabilities.Length; ++j)
             {
-                this.transitionProbabilities[i, j] = float.Parse(probabilities[j]);
+                this.transitionProbabilities[i, j] = double.Parse(probabilities[j]);
             }
         }
     }
@@ -49,7 +49,7 @@ public class HMM : MonoBehaviour
             string[] probabilities = text[i].Split(' ');
             for (int j = 0; j < probabilities.Length; ++j)
             {
-                this.emissionProbabilities[i, j] = float.Parse(probabilities[j]);
+                this.emissionProbabilities[i, j] = double.Parse(probabilities[j]);
             }
         }
     }
@@ -130,7 +130,6 @@ public class HMM : MonoBehaviour
 
     public void ParameterInference(List<GameObject> observations)
     {
-        //estimator.SetNullNodes();
         estimator.train(new List<int> {
             0,1,2,1,0,2,1,0,2,2,1,2,1,0,3,5,4,3,4,5,5,5,4,3,4,5,3,5,3,5,8,8,8,8,6,8,7,8,6,7,8,6,8,8,0,1,2,1,2,2,2,0,1,0,2,1,0
             ,4,5,5,3,4,5,4,5,5,5,7,6,7,8,8,8,6,7,6,7,8,8,6,8,0,1,2,1,0,2,1,0,2,2,1,2,1,0,3,5,4,3,4,5,5,5
