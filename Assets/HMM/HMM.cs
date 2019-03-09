@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MathNet.Numerics.LinearAlgebra;
 
 public class HMM : MonoBehaviour
 {
@@ -117,6 +118,7 @@ public class HMM : MonoBehaviour
             emissionIndex = MakeEmission(this.currentStateIndex);
         }
         this.currentStateIndex = MakeTransition(currentStateIndex);
+        Debug.Log(emissionIndex);
         return this.emissions[emissionIndex];
     }
 
@@ -128,7 +130,14 @@ public class HMM : MonoBehaviour
 
     public void ParameterInference(List<GameObject> observations)
     {
-        estimator.train(new List<int> { 0, 1, 2, 3, 4, 2, 1, 0, 2, 0, 1, 2, 3, 4, 2, 1, 0, 2, 0, 1, 2, 3, 4, 2, 1, 0, 2, 0, 1, 2, 3, 4, 2, 1, 0, 2 });
-        Debug.Log(estimator.GetTransitionMatrix()[0, 0]);
+        //estimator.SetNullNodes();
+        estimator.train(new List<int> {
+            0,1,2,1,0,2,1,0,2,2,1,2,1,0,3,5,4,3,4,5,5,5,4,3,4,5,3,5,3,5,8,8,8,8,6,8,7,8,6,7,8,6,8,8,0,1,2,1,2,2,2,0,1,0,2,1,0
+            ,4,5,5,3,4,5,4,5,5,5,7,6,7,8,8,8,6,7,6,7,8,8,6,8,0,1,2,1,0,2,1,0,2,2,1,2,1,0,3,5,4,3,4,5,5,5
+        });
+        //estimator.SaveEmissionMatrirx("EM_emission.txt");
+        //estimator.SaveTransitionMatrirx("EM_transition.txt");
+        this.emissionProbabilities = estimator.GetEmissionMatrix();
+        this.transitionProbabilities = estimator.GetTransitionMatrix();
     }
 }
