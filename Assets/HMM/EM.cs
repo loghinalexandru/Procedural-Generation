@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra;
-using UnityEngine;
-using System.IO;
 
-public class EM
+public class EM : IEstimator
 {
     private Matrix<double> transitionMatrix;
     private Matrix<double> emissionMatrix;
     private Vector<double> drawProbabilities;
-    public double epsilon = 0.01f;
-    private int maxIterations = 300;
+    public double epsilon { get; set; } = 0.01f;
+    public int maxIterations { get; set; } = 300;
     private int stateCount = 0;
     private int emissionCount = 0;
 
@@ -19,6 +16,11 @@ public class EM
         this.stateCount = stateCount;
         this.emissionCount = emissionCount;
         Init();
+    }
+
+    private void Init()
+    {
+        this.drawProbabilities = Vector<double>.Build.Dense(this.stateCount, 1.0d / this.stateCount);
     }
 
     public double[,] GetTransitionMatrix()
@@ -39,15 +41,6 @@ public class EM
     public void SetTransitionMatrix(double[,] matrix)
     {
         this.transitionMatrix = Matrix<double>.Build.DenseOfArray(matrix);
-    }
-
-    private void Init()
-    {
-        this.drawProbabilities = Vector<double>.Build.Dense(this.stateCount, 1.0d / this.stateCount);
-        this.emissionMatrix = Matrix<double>.Build.Random(this.stateCount, this.emissionCount, new MathNet.Numerics.Distributions.ContinuousUniform(0, 10));
-        this.transitionMatrix = Matrix<double>.Build.Random(this.stateCount, this.stateCount, new MathNet.Numerics.Distributions.ContinuousUniform(0, 10));
-        this.emissionMatrix = Normalize(emissionMatrix, emissionMatrix.RowSums(), "row");
-        this.transitionMatrix = Normalize(transitionMatrix, transitionMatrix.RowSums(), "row");
     }
 
     private Matrix<double> GetOccurenceMatrix(List<int> observations)
@@ -86,8 +79,10 @@ public class EM
         return target;
     }
 
-    public void train(List<int> observations)
+    public void train(List<int> observations, double[,] transitionProbabilities, double[,] emissionProbabilities, List<double> pi)
     {
+        this.SetEmissionMatrix(emissionProbabilities);
+        this.SetTransitionMatrix(transitionProbabilities);
         Matrix<double> previousJointDistribution = Matrix<double>.Build.Dense(this.emissionCount, this.emissionCount);
         Matrix<double> jointDistribution;
         Matrix<double> emissionDelta;
@@ -98,8 +93,7 @@ public class EM
         for (int i = 0; i < this.maxIterations; ++i)
         {
             jointDistribution = occurenceMatrix.PointwiseDivide(this.emissionMatrix.Multiply(this.transitionMatrix).Multiply(this.emissionMatrix.Transpose()));
-            Debug.Log(jointDistribution.Subtract(previousJointDistribution).L2Norm());
-            if (jointDistribution.Subtract(previousJointDistribution).L2Norm() < this.epsilon)
+            if (jointDistribution.Subtract(previousJointDistribution).L1Norm() < this.epsilon)
                 break;
             transitionDelta = this.transitionMatrix.PointwiseMultiply(this.emissionMatrix.Transpose().Multiply(jointDistribution).Multiply(this.emissionMatrix));
             emissionDelta = this.emissionMatrix.PointwiseMultiply(jointDistribution.Multiply(this.emissionMatrix).Multiply(this.transitionMatrix.Transpose()).Add(jointDistribution.Transpose().Multiply(this.emissionMatrix).Multiply(this.transitionMatrix)));
@@ -109,32 +103,5 @@ public class EM
         }
         this.transitionMatrix = Normalize(this.transitionMatrix, this.transitionMatrix.RowSums(), "row");
         this.emissionMatrix = this.emissionMatrix.Transpose();
-    }
-    public void SaveEmissionMatrirx(string filename)
-    {
-        StreamWriter outputFile = new StreamWriter(Path.Combine(Application.dataPath + "/Probabilities", filename));
-        for (int i = 0; i < this.emissionMatrix.RowCount; ++i)
-        {
-            for (int j = 0; j < this.emissionMatrix.ColumnCount; ++j)
-            {
-                outputFile.Write(this.emissionMatrix[i, j] + " ");
-            }
-            outputFile.WriteLine();
-        }
-        outputFile.Close();
-    }
-
-    public void SaveTransitionMatrirx(string filename)
-    {
-        StreamWriter outputFile = new StreamWriter(Path.Combine(Application.dataPath + "/Probabilities", filename));
-        for (int i = 0; i < this.transitionMatrix.RowCount; ++i)
-        {
-            for (int j = 0; j < this.transitionMatrix.ColumnCount; ++j)
-            {
-                outputFile.Write(this.transitionMatrix[i, j] + " ");
-            }
-            outputFile.WriteLine();
-        }
-        outputFile.Close();
     }
 }

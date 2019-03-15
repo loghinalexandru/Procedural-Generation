@@ -1,34 +1,50 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using MathNet.Numerics.LinearAlgebra;
+using System.IO;
 
-public class HMM : MonoBehaviour
+public abstract class HMM : MonoBehaviour
 {
     private double[,] transitionProbabilities;
     private double[,] emissionProbabilities;
     private int currentStateIndex = 0;
-    private int stateCount;
-    private int emissionCount;
-    private EM estimator;
-    public List<float> startProbabilities;
+    public int stateCount { get; private set; }
+    public int emissionCount { get; private set; }
+    private IEstimator estimator;
+    public List<double> startProbabilities;
     public List<GameObject> emissions;
     public TextAsset transitionFile;
     public TextAsset emissionFile;
 
-    private void Init()
+    //IMPORTANT : Call this from child class in void Start()
+    protected void Init()
     {
         this.stateCount = this.startProbabilities.Count;
         this.emissionCount = this.emissions.Count;
         this.emissionProbabilities = new double[this.stateCount, this.emissionCount];
         this.transitionProbabilities = new double[this.stateCount, this.stateCount];
-        this.SetTransitionProbabilities();
-        this.SetEmissionProbabilities();
+        this.SetProbabilities();
         this.SetInitialState();
-        this.estimator = new EM(this.stateCount, this.emissionCount);
     }
 
-    private void SetTransitionProbabilities()
+    public void SetEstimator(IEstimator estimator)
+    {
+        this.estimator = estimator;
+    }
+
+    private void SetProbabilities()
+    {
+        if (this.emissionFile == null || this.transitionFile == null)
+        {
+            this.SetRandomProbabilities();
+        }
+        else
+        {
+            this.SetFileEmissionProbabilities();
+            this.SetFileTransitionProbabilities();
+        }
+    }
+
+    private void SetFileTransitionProbabilities()
     {
         string[] text = this.transitionFile.text.Split('\n');
         for (int i = 0; i < text.Length; ++i)
@@ -41,7 +57,7 @@ public class HMM : MonoBehaviour
         }
     }
 
-    private void SetEmissionProbabilities()
+    private void SetFileEmissionProbabilities()
     {
         string[] text = this.emissionFile.text.Split('\n');
         for (int i = 0; i < text.Length; ++i)
@@ -52,6 +68,75 @@ public class HMM : MonoBehaviour
                 this.emissionProbabilities[i, j] = double.Parse(probabilities[j]);
             }
         }
+    }
+
+    public void SaveEmissionProbabilities(string filename)
+    {
+        using (StreamWriter outputFile = new StreamWriter(Path.Combine(Application.dataPath + "/Probabilities", filename)))
+        {
+            for (int i = 0; i < this.emissionProbabilities.GetLength(0); ++i)
+            {
+                for (int j = 0; j < this.emissionProbabilities.GetLength(1); ++j)
+                {
+                    outputFile.Write(this.emissionProbabilities[i, j] + " ");
+                }
+                outputFile.WriteLine();
+            }
+        }
+    }
+
+    public void SaveTransitionProbabilities(string filename)
+    {
+        using (StreamWriter outputFile = new StreamWriter(Path.Combine(Application.dataPath + "/Probabilities", filename)))
+        {
+            for (int i = 0; i < this.transitionProbabilities.GetLength(0); ++i)
+            {
+                for (int j = 0; j < this.transitionProbabilities.GetLength(1); ++j)
+                {
+                    outputFile.Write(this.transitionProbabilities[i, j] + " ");
+                }
+                outputFile.WriteLine();
+            }
+        }
+    }
+
+    private void Normalize(double[,] target, List<double> divisors)
+    {
+        for (int i = 0; i < target.GetLength(0); ++i)
+        {
+            for (int j = 0; j < target.GetLength(1); ++j)
+            {
+                target[i, j] /= divisors[i];
+            }
+        }
+    }
+
+    private void SetRandomProbabilities()
+    {
+        List<double> divisors = new List<double>();
+        for (int i = 0; i < this.stateCount; ++i)
+        {
+            double rowMax = 0;
+            for (int j = 0; j < this.stateCount; ++j)
+            {
+                this.transitionProbabilities[i, j] = Random.Range(0.0f, 1.0f);
+                rowMax += this.transitionProbabilities[i, j];
+            }
+            divisors.Add(rowMax);
+        }
+        Normalize(this.transitionProbabilities, divisors);
+        divisors.Clear();
+        for (int i = 0; i < this.stateCount; ++i)
+        {
+            double rowMax = 0;
+            for (int j = 0; j < this.emissionCount; ++j)
+            {
+                this.emissionProbabilities[i, j] = Random.Range(0.0f, 1.0f);
+                rowMax += this.emissionProbabilities[i, j];
+            }
+            divisors.Add(rowMax);
+        }
+        Normalize(this.emissionProbabilities, divisors);
     }
 
     private void SetInitialState()
@@ -112,30 +197,30 @@ public class HMM : MonoBehaviour
     public GameObject NextEmission()
     {
         int emissionIndex = MakeEmission(this.currentStateIndex);
-        while (emissionIndex == -1)
-        {
-            this.currentStateIndex = MakeTransition(currentStateIndex);
-            emissionIndex = MakeEmission(this.currentStateIndex);
-        }
         this.currentStateIndex = MakeTransition(currentStateIndex);
-        Debug.Log(emissionIndex);
         return this.emissions[emissionIndex];
     }
 
-    void Start()
+    public List<int> GameObjectToIndex(List<GameObject> observations)
     {
-        Init();
-        this.ParameterInference(null);
+        List<int> output = new List<int>();
+        for (int i = 0; i < observations.Count; ++i)
+        {
+            output.Add(this.emissions.IndexOf(observations[i]));
+        }
+        return output;
     }
 
     public void ParameterInference(List<GameObject> observations)
     {
-        estimator.train(new List<int> {
-            0,1,2,1,0,2,1,0,2,2,1,2,1,0,3,5,4,3,4,5,5,5,4,3,4,5,3,5,3,5,8,8,8,8,6,8,7,8,6,7,8,6,8,8,0,1,2,1,2,2,2,0,1,0,2,1,0
-            ,4,5,5,3,4,5,4,5,5,5,7,6,7,8,8,8,6,7,6,7,8,8,6,8,0,1,2,1,0,2,1,0,2,2,1,2,1,0,3,5,4,3,4,5,5,5
-        });
-        //estimator.SaveEmissionMatrirx("EM_emission.txt");
-        //estimator.SaveTransitionMatrirx("EM_transition.txt");
+        estimator.train(GameObjectToIndex(observations), this.transitionProbabilities, this.emissionProbabilities, null);
+        this.emissionProbabilities = estimator.GetEmissionMatrix();
+        this.transitionProbabilities = estimator.GetTransitionMatrix();
+    }
+
+    public void ParameterInference(List<int> observations)
+    {
+        estimator.train(observations, this.transitionProbabilities, this.emissionProbabilities, null);
         this.emissionProbabilities = estimator.GetEmissionMatrix();
         this.transitionProbabilities = estimator.GetTransitionMatrix();
     }
