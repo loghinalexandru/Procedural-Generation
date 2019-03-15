@@ -7,10 +7,8 @@ public abstract class HMM : MonoBehaviour
     private double[,] transitionProbabilities;
     private double[,] emissionProbabilities;
     private int currentStateIndex = 0;
-    public int stateCount { get; private set; }
-    public int emissionCount { get; private set; }
     private IEstimator estimator;
-    public List<double> startProbabilities;
+    public List<double> stateStartProbabilities;
     public List<GameObject> emissions;
     public TextAsset transitionFile;
     public TextAsset emissionFile;
@@ -18,12 +16,10 @@ public abstract class HMM : MonoBehaviour
     //IMPORTANT : Call this from child class in void Start()
     protected void Init()
     {
-        this.stateCount = this.startProbabilities.Count;
-        this.emissionCount = this.emissions.Count;
-        this.emissionProbabilities = new double[this.stateCount, this.emissionCount];
-        this.transitionProbabilities = new double[this.stateCount, this.stateCount];
+        this.emissionProbabilities = new double[this.stateStartProbabilities.Count, this.emissions.Count];
+        this.transitionProbabilities = new double[this.stateStartProbabilities.Count, this.stateStartProbabilities.Count];
+        this.currentStateIndex = this.SetInitialState();
         this.SetProbabilities();
-        this.SetInitialState();
     }
 
     public void SetEstimator(IEstimator estimator)
@@ -114,10 +110,10 @@ public abstract class HMM : MonoBehaviour
     private void SetRandomProbabilities()
     {
         List<double> divisors = new List<double>();
-        for (int i = 0; i < this.stateCount; ++i)
+        for (int i = 0; i < this.stateStartProbabilities.Count; ++i)
         {
             double rowMax = 0;
-            for (int j = 0; j < this.stateCount; ++j)
+            for (int j = 0; j < this.stateStartProbabilities.Count; ++j)
             {
                 this.transitionProbabilities[i, j] = Random.Range(0.0f, 1.0f);
                 rowMax += this.transitionProbabilities[i, j];
@@ -126,10 +122,10 @@ public abstract class HMM : MonoBehaviour
         }
         Normalize(this.transitionProbabilities, divisors);
         divisors.Clear();
-        for (int i = 0; i < this.stateCount; ++i)
+        for (int i = 0; i < this.stateStartProbabilities.Count; ++i)
         {
             double rowMax = 0;
-            for (int j = 0; j < this.emissionCount; ++j)
+            for (int j = 0; j < this.emissions.Count; ++j)
             {
                 this.emissionProbabilities[i, j] = Random.Range(0.0f, 1.0f);
                 rowMax += this.emissionProbabilities[i, j];
@@ -139,21 +135,23 @@ public abstract class HMM : MonoBehaviour
         Normalize(this.emissionProbabilities, divisors);
     }
 
-    private void SetInitialState()
+    private int SetInitialState()
     {
+        int index = -1;
         double start = 0.0f;
         double end = 0.0f;
         float randomValue = Random.value;
-        for (int i = 0; i < this.startProbabilities.Count; ++i)
+        for (int i = 0; i < this.stateStartProbabilities.Count; ++i)
         {
             start = end;
-            end += startProbabilities[i];
+            end += stateStartProbabilities[i];
             if (start <= randomValue && randomValue <= end)
             {
-                this.currentStateIndex = i;
+                index = i;
                 break;
             }
         }
+        return index;
     }
 
     private int MakeTransition(int state)
@@ -162,7 +160,7 @@ public abstract class HMM : MonoBehaviour
         double start = 0.0f;
         double end = 0.0f;
         float randomValue = Random.value;
-        for (int j = 0; j < this.stateCount; ++j)
+        for (int j = 0; j < this.stateStartProbabilities.Count; ++j)
         {
             start = end;
             end += this.transitionProbabilities[state, j];
@@ -181,7 +179,7 @@ public abstract class HMM : MonoBehaviour
         double start = 0.0f;
         double end = 0.0f;
         float randomValue = Random.value;
-        for (int j = 0; j < this.emissionCount; ++j)
+        for (int j = 0; j < this.emissions.Count; ++j)
         {
             start = end;
             end += this.emissionProbabilities[state, j];

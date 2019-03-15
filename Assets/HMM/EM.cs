@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra;
 
+//TODO: Warning when iteration spits NaN after training
+
 public class EM : IEstimator
 {
     private Matrix<double> transitionMatrix;

@@ -11025,16 +11025,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1aca4540dd42047b74b155f8ce7440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startProbabilities:
-  - 0.33
-  - 0.33
-  - 0.33
+  stateStartProbabilities:
   - 0
   - 0
+  - 0.3
   - 0
   - 0
+  - 0.3
   - 0
   - 0
+  - 0.3
   - 0
   - 0
   - 0
