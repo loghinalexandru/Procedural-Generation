@@ -15,7 +15,6 @@ public class PlatformBuilder : MonoBehaviour
     private int rotation = 0;
     private float zOffset = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         this.platformGenerator = GameObject.FindGameObjectWithTag("Generator").GetComponent<PlatformGenerator>();
@@ -72,8 +71,22 @@ public class PlatformBuilder : MonoBehaviour
         foreach (Transform child in spawnPoints)
         {
             GameObject prop = cityObjectsGenerator.NextEmission();
-            prop = Instantiate(prop, new Vector3(child.transform.position.x, child.transform.position.y, child.transform.position.z - 3 * prop.transform.localScale.z), child.transform.rotation);
-            prop.transform.SetParent(nextPlatform.transform);
+            float margin = prop.GetComponentInChildren<MeshRenderer>().bounds.extents.x;
+            // Offsetting prop to be contained on the platform
+            if (child.transform.eulerAngles.y == 90)
+            {
+                prop = Instantiate(prop, new Vector3(child.transform.position.x, child.transform.position.y, child.transform.position.z - margin), child.transform.rotation);
+            }
+            if (child.transform.eulerAngles.y == 0)
+            {
+
+                prop = Instantiate(prop, new Vector3(child.transform.position.x + margin, child.transform.position.y, child.transform.position.z), child.transform.rotation);
+            }
+            if (child.transform.eulerAngles.y == 180)
+            {
+                prop = Instantiate(prop, new Vector3(child.transform.position.x - margin, child.transform.position.y, child.transform.position.z), child.transform.rotation);
+            }
+            prop.transform.SetParent(child);
         }
         //nextObjectDistance += props[i].transform.localScale.z + this.distanceBetweenProps;
         nextPlatform.transform.rotation = Quaternion.Euler(0, this.rotation, 0);
