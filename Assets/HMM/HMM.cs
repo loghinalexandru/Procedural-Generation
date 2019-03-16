@@ -45,7 +45,7 @@ public abstract class HMM : MonoBehaviour
         string[] text = this.transitionFile.text.Split('\n');
         for (int i = 0; i < text.Length; ++i)
         {
-            string[] probabilities = text[i].Split(' ');
+            string[] probabilities = text[i].Trim().Split(' ');
             for (int j = 0; j < probabilities.Length; ++j)
             {
                 this.transitionProbabilities[i, j] = double.Parse(probabilities[j]);
@@ -58,7 +58,7 @@ public abstract class HMM : MonoBehaviour
         string[] text = this.emissionFile.text.Split('\n');
         for (int i = 0; i < text.Length; ++i)
         {
-            string[] probabilities = text[i].Split(' ');
+            string[] probabilities = text[i].Trim().Split(' ');
             for (int j = 0; j < probabilities.Length; ++j)
             {
                 this.emissionProbabilities[i, j] = double.Parse(probabilities[j]);
@@ -66,9 +66,9 @@ public abstract class HMM : MonoBehaviour
         }
     }
 
-    public void SaveEmissionProbabilities(string filename)
+    public void SaveEmissionProbabilities(string path)
     {
-        using (StreamWriter outputFile = new StreamWriter(Path.Combine(Application.dataPath + "/Probabilities", filename)))
+        using (StreamWriter outputFile = new StreamWriter(Path.Combine(Application.dataPath + Path.GetDirectoryName(path), Path.GetFileName(path))))
         {
             for (int i = 0; i < this.emissionProbabilities.GetLength(0); ++i)
             {
@@ -76,14 +76,15 @@ public abstract class HMM : MonoBehaviour
                 {
                     outputFile.Write(this.emissionProbabilities[i, j] + " ");
                 }
-                outputFile.WriteLine();
+                if (i != this.transitionProbabilities.GetLength(0) - 1)
+                    outputFile.WriteLine();
             }
         }
     }
 
-    public void SaveTransitionProbabilities(string filename)
+    public void SaveTransitionProbabilities(string path)
     {
-        using (StreamWriter outputFile = new StreamWriter(Path.Combine(Application.dataPath + "/Probabilities", filename)))
+        using (StreamWriter outputFile = new StreamWriter(Path.Combine(Application.dataPath + Path.GetDirectoryName(path), Path.GetFileName(path))))
         {
             for (int i = 0; i < this.transitionProbabilities.GetLength(0); ++i)
             {
@@ -91,7 +92,8 @@ public abstract class HMM : MonoBehaviour
                 {
                     outputFile.Write(this.transitionProbabilities[i, j] + " ");
                 }
-                outputFile.WriteLine();
+                if (i != this.transitionProbabilities.GetLength(0) - 1)
+                    outputFile.WriteLine();
             }
         }
     }

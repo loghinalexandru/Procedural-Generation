@@ -19,7 +19,7 @@ public class PlatfromTrigger : MonoBehaviour
         {
             if (!this.triggered)
             {
-                this.callbackObject.GetComponent<GeneratePlatform>().InstantiatePlatform();
+                this.callbackObject.GetComponent<PlatformBuilder>().InstantiatePlatform();
                 this.triggered = true;
             }
         }

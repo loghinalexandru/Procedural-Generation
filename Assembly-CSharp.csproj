@@ -60,13 +60,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Generators\CityObjectsGenerator.cs" />
     <Compile Include="Assets\Generators\PlatformGenerator.cs" />
     <Compile Include="Assets\HMM\EM.cs" />
     <Compile Include="Assets\HMM\HMM.cs" />
     <Compile Include="Assets\HMM\IEstimator.cs" />
     <Compile Include="Assets\Scripts\Follow.cs" />
-    <Compile Include="Assets\Scripts\GeneratePlatform.cs" />
     <Compile Include="Assets\Scripts\Markov.cs" />
+    <Compile Include="Assets\Scripts\PlatformBuilder.cs" />
     <Compile Include="Assets\Scripts\PlatfromTrigger.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\SkidMarks.cs" />

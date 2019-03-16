@@ -11006,6 +11006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1378403951}
   - component: {fileID: 1378403947}
+  - component: {fileID: 1378403948}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Generator
@@ -11028,13 +11029,13 @@ MonoBehaviour:
   stateStartProbabilities:
   - 0
   - 0
-  - 0.3
+  - 0.333333333333333
   - 0
   - 0
-  - 0.3
+  - 0.333333333333333
   - 0
   - 0
-  - 0.3
+  - 0.333333333333333
   - 0
   - 0
   - 0
@@ -11048,6 +11049,28 @@ MonoBehaviour:
   - {fileID: 1605584312417678, guid: 2f2c19dd18823ad4c9e9d4b42d1ed2c0, type: 3}
   - {fileID: 1487804837674840, guid: 98120629a3254c349869ab09612b48c0, type: 3}
   - {fileID: 1011597646829680, guid: 9b3077e5cef5b9c4bae636ff71e8ea85, type: 3}
+  transitionFile: {fileID: 4900000, guid: 49e42aa262ea8984f8f3e9b1e2e540aa, type: 3}
+  emissionFile: {fileID: 4900000, guid: 81f935bd902d71148b0afde0e7fe752f, type: 3}
+--- !u!114 &1378403948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378403946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87f06dda5791f3e4c9362a940bee64b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateStartProbabilities:
+  - 0.333333333333333
+  - 0.333333333333333
+  - 0.333333333333333
+  emissions:
+  - {fileID: 6405409903151369621, guid: 82a5c5ecb13edf440a452f46f66f3997, type: 3}
+  - {fileID: 2864393350246912540, guid: 61c43ca7f59ce2945aea7062d3ff8e47, type: 3}
+  - {fileID: 8283707744411260975, guid: d7ef9666a31fb1240a2318a4366b6c8c, type: 3}
   transitionFile: {fileID: 0}
   emissionFile: {fileID: 0}
 --- !u!4 &1378403951
@@ -11757,8 +11780,6 @@ MonoBehaviour:
   propsPerPlatform: 4
   risingSpeed: 70
   fallingSpeed: 1
-  centerDistance: 13.3
-  distanceBetweenProps: 3.3
 --- !u!114 &1898368590
 MonoBehaviour:
   m_ObjectHideFlags: 0
