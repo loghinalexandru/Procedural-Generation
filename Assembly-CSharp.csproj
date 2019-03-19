@@ -61,6 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Generators\CityObjectsGenerator.cs" />
+    <Compile Include="Assets\Generators\CountryObjectsGenerator.cs" />
+    <Compile Include="Assets\Generators\IndustrialObjectsGenerator.cs" />
     <Compile Include="Assets\Generators\PlatformGenerator.cs" />
     <Compile Include="Assets\HMM\EM.cs" />
     <Compile Include="Assets\HMM\HMM.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Assets\Scripts\PlatfromTrigger.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\SkidMarks.cs" />
+    <Compile Include="Assets\Scripts\SpawnSettings.cs" />
     <None Include="Assets\Probabilities\EM_transition.txt" />
     <None Include="Assets\Probabilities\emission.txt" />
     <None Include="Assets\Packages\MathNet.Numerics.4.7.0\lib\net461\MathNet.Numerics.xml" />

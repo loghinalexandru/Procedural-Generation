@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [RequireComponent(typeof(Rigidbody))]
-
 public class PlayerMovement : MonoBehaviour
 {
     public GameObject player;
@@ -16,26 +14,24 @@ public class PlayerMovement : MonoBehaviour
     public GameObject rightBackWheel;
     public GameObject leftBackWheel;
     public float maxSteeringAngle = 45.0f;
-    private float steeringAngle = 0.0f;
     public float wheelsRPM = 100.0f;
     private float currentAngle = 0.0f;
-    private Rigidbody _body;
+    private Rigidbody body;
+    private float steeringAngle = 0.0f;
 
-    // Use this for initialization
     void Start()
     {
-        _body = player.GetComponent<Rigidbody>();
+        body = player.GetComponent<Rigidbody>();
     }
 
     private void WheelSpinAnimation()
     {
-        float velocity = Mathf.Abs(_body.velocity.x + _body.velocity.z);
+        float velocity = Mathf.Abs(body.velocity.x + body.velocity.z);
         this.rightFrontWheel.transform.Rotate(velocity * wheelsRPM * Time.deltaTime, 0.0f, 0.0f);
         this.leftFrontWheel.transform.Rotate(velocity * wheelsRPM * Time.deltaTime, 0.0f, 0.0f);
         this.rightBackWheel.transform.Rotate(velocity * wheelsRPM * Time.deltaTime, 0.0f, 0.0f);
         this.leftBackWheel.transform.Rotate(velocity * wheelsRPM * Time.deltaTime, 0.0f, 0.0f);
     }
-
 
     private void WheelRotation()
     {
@@ -56,21 +52,20 @@ public class PlayerMovement : MonoBehaviour
         this.WheelRotation();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            _body.AddRelativeTorque(Vector3.up * rotationSpeed);
+            body.AddRelativeTorque(Vector3.up * rotationSpeed);
             this.steeringAngle = this.maxSteeringAngle;
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            _body.AddRelativeTorque(Vector3.down * rotationSpeed);
+            body.AddRelativeTorque(Vector3.down * rotationSpeed);
             this.steeringAngle = -this.maxSteeringAngle;
         }
         if (player.transform.position.y > 0)
-            _body.AddRelativeForce(Vector3.back * speed);
+            body.AddRelativeForce(Vector3.back * speed);
     }
 
     public void OnCollisionEnter(Collision collision)

@@ -65,28 +65,37 @@ public class PlatformBuilder : MonoBehaviour
 
     public GameObject BuildPlatform(GameObject state)
     {
-        float nextObjectDistance = 0;
         GameObject nextPlatform = Instantiate(state, new Vector3(this.currentPlatform.transform.position.x + this.xOffset, -15, this.currentPlatform.transform.position.z + this.zOffset), Quaternion.Euler(0, 0, 0));
         Transform spawnPoints = nextPlatform.transform.Find("SpawnPoints");
         foreach (Transform child in spawnPoints)
         {
-            GameObject prop = cityObjectsGenerator.NextEmission();
-            float margin = prop.GetComponentInChildren<MeshRenderer>().bounds.extents.x;
-            // Offsetting prop to be contained on the platform
-            if (child.transform.eulerAngles.y == 90)
-            {
-                prop = Instantiate(prop, new Vector3(child.transform.position.x, child.transform.position.y, child.transform.position.z - margin), child.transform.rotation);
-            }
-            if (child.transform.eulerAngles.y == 0)
-            {
+            SpawnSettings spawn = child.GetComponent<SpawnSettings>();
+            if (spawn.isStackable == false && spawn.maxObjectStack > 1)
+                throw new System.Exception("Spawn is not stackable!");
 
-                prop = Instantiate(prop, new Vector3(child.transform.position.x + margin, child.transform.position.y, child.transform.position.z), child.transform.rotation);
-            }
-            if (child.transform.eulerAngles.y == 180)
+            for (int i = 0; i < spawn.maxObjectStack; ++i)
             {
-                prop = Instantiate(prop, new Vector3(child.transform.position.x - margin, child.transform.position.y, child.transform.position.z), child.transform.rotation);
+                GameObject prop = cityObjectsGenerator.NextEmission();
+                MeshRenderer renderer = prop.GetComponentInChildren<MeshRenderer>();
+                float margin = renderer.bounds.extents.x;
+                // Offsetting prop to be contained on the platform and not spawn on top of eachother
+                if (i != 0)
+                    spawn.spawnOffset += renderer.bounds.extents.z;
+                if (child.transform.eulerAngles.y == 90)
+                {
+                    prop = Instantiate(prop, new Vector3(child.transform.position.x - spawn.spawnOffset, child.transform.position.y, child.transform.position.z - margin), child.transform.rotation);
+                }
+                if (child.transform.eulerAngles.y == 0)
+                {
+                    prop = Instantiate(prop, new Vector3(child.transform.position.x + margin, child.transform.position.y, child.transform.position.z + spawn.spawnOffset), child.transform.rotation);
+                }
+                if (child.transform.eulerAngles.y == 180)
+                {
+                    prop = Instantiate(prop, new Vector3(child.transform.position.x - margin, child.transform.position.y, child.transform.position.z + spawn.spawnOffset), child.transform.rotation);
+                }
+                spawn.spawnOffset += renderer.bounds.extents.z;
+                prop.transform.SetParent(child);
             }
-            prop.transform.SetParent(child);
         }
         //nextObjectDistance += props[i].transform.localScale.z + this.distanceBetweenProps;
         nextPlatform.transform.rotation = Quaternion.Euler(0, this.rotation, 0);

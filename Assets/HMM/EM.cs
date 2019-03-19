@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra;
 
-//TODO: Warning when iteration spits NaN after training
+//TODO: Warning when iteration spits NaN after training because of division by zero
 
 public class EM : IEstimator
 {

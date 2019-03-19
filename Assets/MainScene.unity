@@ -5695,7 +5695,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0.2280616, g: 0.3418989, b: 0.38679248, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.5
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -11007,6 +11007,8 @@ GameObject:
   - component: {fileID: 1378403951}
   - component: {fileID: 1378403947}
   - component: {fileID: 1378403948}
+  - component: {fileID: 1378403950}
+  - component: {fileID: 1378403949}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Generator
@@ -11064,13 +11066,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateStartProbabilities:
-  - 0.333333333333333
-  - 0.333333333333333
-  - 0.333333333333333
+  - 0.25
+  - 0.25
+  - 0.25
+  - 0.25
   emissions:
-  - {fileID: 6405409903151369621, guid: 82a5c5ecb13edf440a452f46f66f3997, type: 3}
   - {fileID: 4093343268851660387, guid: bce103d1d3c7f6448b2d92677c845258, type: 3}
   - {fileID: 8283707744411260975, guid: d7ef9666a31fb1240a2318a4366b6c8c, type: 3}
+  - {fileID: 2597704389239759599, guid: 0d517ce2411cbe449966058f5e721afa, type: 3}
+  - {fileID: 6405409903151369621, guid: 82a5c5ecb13edf440a452f46f66f3997, type: 3}
+  transitionFile: {fileID: 0}
+  emissionFile: {fileID: 0}
+--- !u!114 &1378403949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378403946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9663d7866526fc4439b0e72c3b9b81ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateStartProbabilities: []
+  emissions: []
+  transitionFile: {fileID: 0}
+  emissionFile: {fileID: 0}
+--- !u!114 &1378403950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378403946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1a72504fc53724a80d1005dd5b9129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateStartProbabilities: []
+  emissions: []
   transitionFile: {fileID: 0}
   emissionFile: {fileID: 0}
 --- !u!4 &1378403951
