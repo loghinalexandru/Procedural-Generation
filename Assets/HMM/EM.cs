@@ -8,10 +8,10 @@ public class EM : IEstimator
     private Matrix<double> transitionMatrix;
     private Matrix<double> emissionMatrix;
     private Vector<double> drawProbabilities;
-    public double epsilon { get; set; } = 0.01f;
-    public int maxIterations { get; set; } = 300;
     private int stateCount = 0;
     private int emissionCount = 0;
+    public double epsilon { get; set; } = 0.01f;
+    public int maxIterations { get; set; } = 300;
 
     public EM(int stateCount, int emissionCount)
     {

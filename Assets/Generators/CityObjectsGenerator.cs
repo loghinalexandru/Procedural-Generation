@@ -8,6 +8,6 @@ public class CityObjectsGenerator : HMM
     {
         this.Init();
         this.SetEstimator(new EM(this.stateStartProbabilities.Count, this.emissions.Count));
-        this.ParameterInference(new List<int> { 0, 1, 0, 1, 0, 1, 3, 2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 3, 3, 3, 0, 1, 0, 1, 3, 1, 0, 1, 0, 3, 3, 0, 1, 0, 1, 0, 3 });
+        this.ParameterInference(new List<int> { 0, 0, 1, 0, 1, 3, 2, 3, 1, 0, 0, 1, 1, 0, 3, 0, 1, 0, 3, 2, 3, 0, 1, 0, 1, 3, 2, 3, 2, 3, 2, 3, 0, 1 });
     }
 }
