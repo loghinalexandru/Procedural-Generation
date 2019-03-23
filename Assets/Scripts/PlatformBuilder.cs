@@ -11,7 +11,7 @@ public class PlatformBuilder : MonoBehaviour
     private PlatformGenerator platformGenerator;
     private CityObjectsGenerator cityObjectsGenerator;
     private CountryObjectsGenerator countryObjectsGenerator;
-    private IndustrialObjectsGenerator industrialObjectsGenerator;
+    private DesertObjectsGenerator desertObjectsGenerator;
     private float xOffset = 0;
     private int rotation = 0;
     private float zOffset = 0;
@@ -21,7 +21,7 @@ public class PlatformBuilder : MonoBehaviour
         this.platformGenerator = GameObject.FindGameObjectWithTag("Generator").GetComponent<PlatformGenerator>();
         this.cityObjectsGenerator = GameObject.FindGameObjectWithTag("Generator").GetComponent<CityObjectsGenerator>();
         this.countryObjectsGenerator = GameObject.FindGameObjectWithTag("Generator").GetComponent<CountryObjectsGenerator>();
-        this.industrialObjectsGenerator = GameObject.FindGameObjectWithTag("Generator").GetComponent<IndustrialObjectsGenerator>();
+        this.desertObjectsGenerator = GameObject.FindGameObjectWithTag("Generator").GetComponent<DesertObjectsGenerator>();
         this.zOffset = platformGenerator.emissions[0].transform.localScale.z;
         this.platformSize = this.zOffset;
     }
@@ -68,9 +68,9 @@ public class PlatformBuilder : MonoBehaviour
 
     private HMM ChoosePropGenerator(string sectionName)
     {
-        if (sectionName.Contains("Industrial"))
+        if (sectionName.Contains("Desert"))
         {
-            return this.industrialObjectsGenerator;
+            return this.desertObjectsGenerator;
         }
         if (sectionName.Contains("Country"))
         {

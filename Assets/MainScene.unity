@@ -11035,6 +11035,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0.2
   - 0
   - 0
   - 0
@@ -11043,6 +11044,14 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0.2
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0.2
   - 0
   - 0
   - 0
@@ -11050,6 +11059,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0.2
   - 0
   - 0
   - 0
@@ -11057,17 +11067,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 0.2
   - 0
   - 0
   - 0
@@ -11134,6 +11134,26 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   emissions:
   - {fileID: 4093343268851660387, guid: bce103d1d3c7f6448b2d92677c845258, type: 3}
   - {fileID: 8283707744411260975, guid: d7ef9666a31fb1240a2318a4366b6c8c, type: 3}
@@ -11156,7 +11176,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateStartProbabilities:
   - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   emissions:
+  - {fileID: 5192562672335697683, guid: 224be9fb5602d1f46aff255f88ba70cf, type: 3}
+  - {fileID: 3292841765490584807, guid: ab82165c6e26e44429f32b9b9d779b14, type: 3}
+  - {fileID: 4400906800633342362, guid: 34506e186c0848c4f9d9847d234c9e58, type: 3}
+  - {fileID: 5084567689232303443, guid: 24a40c3c18d540545afd62b22a57ea87, type: 3}
   - {fileID: 6879881098356113014, guid: 06ec3d5eefcd9e44d9305b9b0535ecd0, type: 3}
   transitionFile: {fileID: 0}
   emissionFile: {fileID: 0}
@@ -11174,6 +11247,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateStartProbabilities:
   - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   - 0
   - 0
   - 0
