@@ -75,6 +75,8 @@
     <Compile Include="Assets\Scripts\SkidMarks.cs" />
     <Compile Include="Assets\Scripts\SpawnSettings.cs" />
     <None Include="Assets\Probabilities\EM_transition.txt" />
+    <None Include="Assets\Probabilities\EM_cityPropsEmission.txt" />
+    <None Include="Assets\Probabilities\EM_cityPropsTransition.txt" />
     <None Include="Assets\Probabilities\emission.txt" />
     <None Include="Assets\Packages\MathNet.Numerics.4.7.0\lib\net461\MathNet.Numerics.xml" />
     <None Include="Assets\Probabilities\HHMM.txt" />

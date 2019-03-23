@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlatformBuilder : MonoBehaviour
 {
@@ -62,7 +60,7 @@ public class PlatformBuilder : MonoBehaviour
             }
         }
     }
-
+    //TODO: Call destroy after a buffer of platforms spawned instead of time passed
     private void DestroyCurrentPlatform()
     {
         Destroy(this.currentPlatform, this.destroyDelay);
@@ -89,12 +87,13 @@ public class PlatformBuilder : MonoBehaviour
         // Offsetting prop to be contained on the platform and not spawn on top of eachother
         if (objectCount != 0)
             spawn.spawnOffset += renderer.bounds.extents.z;
-        //Disable spawning but taking space into account
+        //Disable spawning but take space into account
         if (prop.name == "Epsilon")
         {
             spawn.spawnOffset += renderer.bounds.extents.z;
             return;
         }
+        //Clockwise spawning from eulerAngle of 0 deg
         switch (spawnPosition.transform.eulerAngles.y)
         {
             case 90:
@@ -114,6 +113,7 @@ public class PlatformBuilder : MonoBehaviour
     }
 
     //TODO: Refactor this function
+    //TODO: Make a transition platform with road sign info panel
     public GameObject BuildPlatform(GameObject state)
     {
         GameObject nextPlatform = Instantiate(state, new Vector3(this.currentPlatform.transform.position.x + this.xOffset, -15, this.currentPlatform.transform.position.z + this.zOffset), Quaternion.Euler(0, 0, 0));

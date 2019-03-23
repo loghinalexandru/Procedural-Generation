@@ -7,7 +7,7 @@ public abstract class HMM : MonoBehaviour
     private double[,] transitionProbabilities;
     private double[,] emissionProbabilities;
     private int currentStateIndex = 0;
-    private IEstimator estimator;
+    public IEstimator estimator { get; set; }
     public List<double> stateStartProbabilities;
     public List<GameObject> emissions;
     public TextAsset transitionFile;
@@ -20,11 +20,6 @@ public abstract class HMM : MonoBehaviour
         this.transitionProbabilities = new double[this.stateStartProbabilities.Count, this.stateStartProbabilities.Count];
         this.currentStateIndex = this.SetInitialState();
         this.SetProbabilities();
-    }
-
-    public void SetEstimator(IEstimator estimator)
-    {
-        this.estimator = estimator;
     }
 
     private void SetProbabilities()

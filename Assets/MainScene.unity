@@ -11031,15 +11031,45 @@ MonoBehaviour:
   stateStartProbabilities:
   - 0
   - 0
-  - 0.333333333333333
-  - 0
-  - 0
-  - 0.333333333333333
+  - 1
   - 0
   - 0
   - 0
   - 0
-  - 0.333333333333333
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   - 0
   - 0
   - 0
@@ -11050,17 +11080,17 @@ MonoBehaviour:
   - 0
   - 0
   emissions:
+  - {fileID: 1605584312417678, guid: 92cd88d9c8e4d5f4db482ee363f53cf5, type: 3}
+  - {fileID: 1487804837674840, guid: 5a03fa9e4b4b2774bb065c5244a2b1af, type: 3}
+  - {fileID: 1011597646829680, guid: 27d3040ef5b651143aff5d8d970c4117, type: 3}
   - {fileID: 1605584312417678, guid: 5ca4e31ae920e214fa37ee9b3b6a42d2, type: 3}
   - {fileID: 1487804837674840, guid: dfadf3bd14f45eb43959b0360c081237, type: 3}
   - {fileID: 1011597646829680, guid: 1372cf763915d2e459470d169079ed88, type: 3}
-  - {fileID: 1605584312417678, guid: 5ca4e31ae920e214fa37ee9b3b6a42d2, type: 3}
-  - {fileID: 1487804837674840, guid: dfadf3bd14f45eb43959b0360c081237, type: 3}
-  - {fileID: 1011597646829680, guid: 1372cf763915d2e459470d169079ed88, type: 3}
-  - {fileID: 1605584312417678, guid: 5ca4e31ae920e214fa37ee9b3b6a42d2, type: 3}
-  - {fileID: 1487804837674840, guid: dfadf3bd14f45eb43959b0360c081237, type: 3}
-  - {fileID: 1011597646829680, guid: 1372cf763915d2e459470d169079ed88, type: 3}
-  transitionFile: {fileID: 4900000, guid: 49e42aa262ea8984f8f3e9b1e2e540aa, type: 3}
-  emissionFile: {fileID: 4900000, guid: 81f935bd902d71148b0afde0e7fe752f, type: 3}
+  - {fileID: 1605584312417678, guid: 2f2c19dd18823ad4c9e9d4b42d1ed2c0, type: 3}
+  - {fileID: 1487804837674840, guid: 98120629a3254c349869ab09612b48c0, type: 3}
+  - {fileID: 1011597646829680, guid: 9b3077e5cef5b9c4bae636ff71e8ea85, type: 3}
+  transitionFile: {fileID: 0}
+  emissionFile: {fileID: 0}
 --- !u!114 &1378403948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11074,18 +11104,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateStartProbabilities:
-  - 0.25
-  - 0.25
-  - 0.25
-  - 0.25
-  - 0.25
-  - 0.25
-  - 0.25
-  - 0.25
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   emissions:
   - {fileID: 4093343268851660387, guid: bce103d1d3c7f6448b2d92677c845258, type: 3}
   - {fileID: 8283707744411260975, guid: d7ef9666a31fb1240a2318a4366b6c8c, type: 3}
   - {fileID: 6405409903151369621, guid: 82a5c5ecb13edf440a452f46f66f3997, type: 3}
+  - {fileID: 373363523187363, guid: ede14b2fdf3369c4c9af0c95a5dbe219, type: 3}
   - {fileID: 6879881098356113014, guid: 06ec3d5eefcd9e44d9305b9b0535ecd0, type: 3}
   transitionFile: {fileID: 0}
   emissionFile: {fileID: 0}
@@ -11140,13 +11193,23 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   emissions:
   - {fileID: 608492280718445264, guid: 80bd1634765bb1f4f9dc797599bc95c1, type: 3}
   - {fileID: 9013228419555923832, guid: 4e40b678081291542a391a8d5a9da8df, type: 3}
   - {fileID: 8774174752399178478, guid: b61d0d491e383c940a1f8adce6d2507e, type: 3}
   - {fileID: 8111240234658649263, guid: d679be14c263c8046ac476cbdb270d07, type: 3}
-  - {fileID: 1282893667891879346, guid: 3271b00333e67b843aff5293c2f03d7c, type: 3}
-  - {fileID: 1492391765030970757, guid: 857ec5fa7a2e51b42b782565b222f6a7, type: 3}
+  - {fileID: 3571551706106456594, guid: a94ced82b76ee414a83687da31d567d2, type: 3}
+  - {fileID: 167627556409608756, guid: 7a89b935c4dc7e54696a5d6a52f04714, type: 3}
   - {fileID: 6879881098356113014, guid: 06ec3d5eefcd9e44d9305b9b0535ecd0, type: 3}
   transitionFile: {fileID: 0}
   emissionFile: {fileID: 0}
