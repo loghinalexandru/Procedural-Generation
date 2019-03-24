@@ -10,19 +10,13 @@ public class EM : IEstimator
     private Vector<double> drawProbabilities;
     private int stateCount = 0;
     private int emissionCount = 0;
-    public double epsilon { get; set; } = 0.01f;
-    public int maxIterations { get; set; } = 300;
+    public double epsilon { get; set; } = 1.0f;
+    public int maxIterations { get; set; } = 100;
 
     public EM(int stateCount, int emissionCount)
     {
         this.stateCount = stateCount;
         this.emissionCount = emissionCount;
-        Init();
-    }
-
-    private void Init()
-    {
-        this.drawProbabilities = Vector<double>.Build.Dense(this.stateCount, 1.0d / this.stateCount);
     }
 
     public double[,] GetTransitionMatrix()
@@ -43,6 +37,11 @@ public class EM : IEstimator
     public void SetTransitionMatrix(double[,] matrix)
     {
         this.transitionMatrix = Matrix<double>.Build.DenseOfArray(matrix);
+    }
+
+    public void SetDrawProbabilities(List<double> probabilities)
+    {
+        this.drawProbabilities = Vector<double>.Build.DenseOfArray(probabilities.ToArray());
     }
 
     private Matrix<double> GetOccurenceMatrix(List<int> observations)
@@ -80,11 +79,12 @@ public class EM : IEstimator
         }
         return target;
     }
-
+    //TODO: Do something with pi
     public void train(List<int> observations, double[,] transitionProbabilities, double[,] emissionProbabilities, List<double> pi)
     {
         this.SetEmissionMatrix(emissionProbabilities);
         this.SetTransitionMatrix(transitionProbabilities);
+        this.SetDrawProbabilities(pi);
         Matrix<double> previousJointDistribution = Matrix<double>.Build.Dense(this.emissionCount, this.emissionCount);
         Matrix<double> jointDistribution;
         Matrix<double> emissionDelta;
@@ -95,7 +95,7 @@ public class EM : IEstimator
         for (int i = 0; i < this.maxIterations; ++i)
         {
             jointDistribution = occurenceMatrix.PointwiseDivide(this.emissionMatrix.Multiply(this.transitionMatrix).Multiply(this.emissionMatrix.Transpose()));
-            if (jointDistribution.Subtract(previousJointDistribution).L1Norm() < this.epsilon)
+            if (jointDistribution.Subtract(previousJointDistribution).L2Norm() < this.epsilon)
                 break;
             transitionDelta = this.transitionMatrix.PointwiseMultiply(this.emissionMatrix.Transpose().Multiply(jointDistribution).Multiply(this.emissionMatrix));
             emissionDelta = this.emissionMatrix.PointwiseMultiply(jointDistribution.Multiply(this.emissionMatrix).Multiply(this.transitionMatrix.Transpose()).Add(jointDistribution.Transpose().Multiply(this.emissionMatrix).Multiply(this.transitionMatrix)));

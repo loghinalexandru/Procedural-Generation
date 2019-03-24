@@ -217,14 +217,14 @@ public abstract class HMM : MonoBehaviour
 
     public void ParameterInference(List<GameObject> observations)
     {
-        estimator.train(GameObjectToIndex(observations), this.transitionProbabilities, this.emissionProbabilities, null);
+        estimator.train(GameObjectToIndex(observations), this.transitionProbabilities, this.emissionProbabilities, this.stateStartProbabilities);
         this.emissionProbabilities = estimator.GetEmissionMatrix();
         this.transitionProbabilities = estimator.GetTransitionMatrix();
     }
 
     public void ParameterInference(List<int> observations)
     {
-        estimator.train(observations, this.transitionProbabilities, this.emissionProbabilities, null);
+        estimator.train(observations, this.transitionProbabilities, this.emissionProbabilities, this.stateStartProbabilities);
         this.emissionProbabilities = estimator.GetEmissionMatrix();
         this.transitionProbabilities = estimator.GetTransitionMatrix();
     }
