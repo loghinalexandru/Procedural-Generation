@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using System.IO;
 
 public abstract class HMM : MonoBehaviour
@@ -103,13 +104,14 @@ public abstract class HMM : MonoBehaviour
             }
         }
     }
-
+    //TODO: Refactor this function
     private void SetRandomProbabilities()
     {
+        double rowMax = 0;
         List<double> divisors = new List<double>();
         for (int i = 0; i < this.stateStartProbabilities.Count; ++i)
         {
-            double rowMax = 0;
+            rowMax = 0;
             for (int j = 0; j < this.stateStartProbabilities.Count; ++j)
             {
                 this.transitionProbabilities[i, j] = Random.Range(0.0f, 1.0f);
@@ -121,7 +123,7 @@ public abstract class HMM : MonoBehaviour
         divisors.Clear();
         for (int i = 0; i < this.stateStartProbabilities.Count; ++i)
         {
-            double rowMax = 0;
+            rowMax = 0;
             for (int j = 0; j < this.emissions.Count; ++j)
             {
                 this.emissionProbabilities[i, j] = Random.Range(0.0f, 1.0f);
@@ -130,6 +132,13 @@ public abstract class HMM : MonoBehaviour
             divisors.Add(rowMax);
         }
         Normalize(this.emissionProbabilities, divisors);
+        rowMax = 0;
+        for (int i = 0; i < this.stateStartProbabilities.Count; ++i)
+        {
+            this.stateStartProbabilities[i] = Random.Range(0.0f, 1.0f);
+            rowMax += this.stateStartProbabilities[i];
+        }
+        stateStartProbabilities = stateStartProbabilities.Select(entry => entry = entry / rowMax).ToList();
     }
 
     private int SetInitialState()
@@ -137,7 +146,7 @@ public abstract class HMM : MonoBehaviour
         int index = -1;
         double start = 0.0f;
         double end = 0.0f;
-        float randomValue = Random.value;
+        double randomValue = Random.value;
         for (int i = 0; i < this.stateStartProbabilities.Count; ++i)
         {
             start = end;
@@ -156,7 +165,7 @@ public abstract class HMM : MonoBehaviour
         int index = -1;
         double start = 0.0f;
         double end = 0.0f;
-        float randomValue = Random.value;
+        double randomValue = Random.value;
         for (int j = 0; j < this.stateStartProbabilities.Count; ++j)
         {
             start = end;
@@ -175,7 +184,7 @@ public abstract class HMM : MonoBehaviour
         int index = -1;
         double start = 0.0f;
         double end = 0.0f;
-        float randomValue = Random.value;
+        double randomValue = Random.value;
         for (int j = 0; j < this.emissions.Count; ++j)
         {
             start = end;

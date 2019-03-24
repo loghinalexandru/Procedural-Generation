@@ -5700,10 +5700,10 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: 3
     m_CustomResolution: -1
-    m_Strength: 0.4
+    m_Strength: 0.7
     m_Bias: 0
     m_NormalBias: 0
     m_NearPlane: 0.1
@@ -11029,56 +11029,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateStartProbabilities:
-  - 0
-  - 0
-  - 1
-  - 0
-  - 0
-  - 0
-  - 0.2
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0.2
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0.2
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0.2
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0.2
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
   emissions:
   - {fileID: 1605584312417678, guid: 92cd88d9c8e4d5f4db482ee363f53cf5, type: 3}
   - {fileID: 1487804837674840, guid: 5a03fa9e4b4b2774bb065c5244a2b1af, type: 3}
@@ -11124,39 +11094,12 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
   emissions:
-  - {fileID: 4093343268851660387, guid: bce103d1d3c7f6448b2d92677c845258, type: 3}
   - {fileID: 8283707744411260975, guid: d7ef9666a31fb1240a2318a4366b6c8c, type: 3}
+  - {fileID: 4093343268851660387, guid: bce103d1d3c7f6448b2d92677c845258, type: 3}
+  - {fileID: 8520740684088446410, guid: 666e2a72033d98f4283ee6e907869ef6, type: 3}
+  - {fileID: 3032934190842237782, guid: 9a3a0173bb0b0c948989d62fae2bfda9, type: 3}
+  - {fileID: 2561228854564863694, guid: a95e9e5df23fc5d4fb037cfbd172f467, type: 3}
   - {fileID: 6405409903151369621, guid: 82a5c5ecb13edf440a452f46f66f3997, type: 3}
   - {fileID: 373363523187363, guid: ede14b2fdf3369c4c9af0c95a5dbe219, type: 3}
   - {fileID: 6879881098356113014, guid: 06ec3d5eefcd9e44d9305b9b0535ecd0, type: 3}
@@ -11176,36 +11119,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateStartProbabilities:
   - 1
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
   - 0
   - 0
   - 0
@@ -11247,36 +11160,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateStartProbabilities:
   - 1
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
   - 0
   - 0
   - 0
