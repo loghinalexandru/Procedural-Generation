@@ -143,7 +143,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2.5
+  m_Intensity: 3
   m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -291,7 +291,7 @@ PrefabInstance:
     - target: {fileID: 871952889155414017, guid: a38007fba30208d46b7ba6e7281248a1,
         type: 3}
       propertyPath: m_Intensity
-      value: 2.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 871952889155414017, guid: a38007fba30208d46b7ba6e7281248a1,
         type: 3}

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra;
+using UnityEngine;
 
 //TODO: Warning when iteration spits NaN after training because of division by zero
 
@@ -10,8 +11,8 @@ public class EM : IEstimator
     private Vector<double> drawProbabilities;
     private int stateCount = 0;
     private int emissionCount = 0;
-    public double epsilon { get; set; } = 1.0f;
-    public int maxIterations { get; set; } = 100;
+    public double epsilon { get; set; } = 1e-4;
+    public int maxIterations { get; set; } = 200;
 
     public EM(int stateCount, int emissionCount)
     {
@@ -67,43 +68,64 @@ public class EM : IEstimator
 
     private Matrix<double> Normalize(Matrix<double> target, Vector<double> divisors, string mode)
     {
+        Matrix<double> output = Matrix<double>.Build.DenseOfMatrix(target);
         for (int i = 0; i < target.RowCount; ++i)
         {
             for (int j = 0; j < target.ColumnCount; ++j)
             {
                 if (mode == "row")
-                    target[i, j] /= divisors[i];
+                    output[i, j] /= divisors[i];
                 if (mode == "column")
-                    target[i, j] /= divisors[j];
+                    output[i, j] /= divisors[j];
             }
         }
-        return target;
+        return output;
     }
-    //TODO: Do something with pi
-    public void train(List<int> observations, double[,] transitionProbabilities, double[,] emissionProbabilities, List<double> pi)
+    //TODO: Solve floating point precision lost
+    public double GetLikelihood(List<int> observations, Matrix<double> transitionMatrix, Matrix<double> emissionMatrix)
+    {
+        if (observations.Count < 0)
+            throw new System.Exception("Empty observations list!");
+        Vector<double> previousValues = Vector<double>.Build.Dense(this.stateCount);
+        Vector<double> currentValues = Vector<double>.Build.Dense(this.stateCount);
+        currentValues = this.drawProbabilities.PointwiseMultiply(emissionMatrix.Column(observations[0]));
+        for (int i = 1; i < observations.Count; ++i)
+        {
+            currentValues.CopyTo(previousValues);
+            for (int j = 0; j < this.stateCount; ++j)
+                currentValues[j] = previousValues.PointwiseMultiply(transitionMatrix.Column(j)).Sum() * emissionMatrix[j, observations[i]];
+        }
+        return System.Math.Log(currentValues.Sum());
+    }
+    //TODO: Refactor this and add Matlab conditions for convergence
+    public double train(List<int> observations, double[,] transitionProbabilities, double[,] emissionProbabilities, List<double> pi)
     {
         this.SetEmissionMatrix(emissionProbabilities);
         this.SetTransitionMatrix(transitionProbabilities);
         this.SetDrawProbabilities(pi);
-        Matrix<double> previousJointDistribution = Matrix<double>.Build.Dense(this.emissionCount, this.emissionCount);
+        Matrix<double> previousEmission = Matrix<double>.Build.Dense(this.stateCount, this.emissionCount);
+        Matrix<double> previousTransition = Matrix<double>.Build.Dense(this.stateCount, this.stateCount);
         Matrix<double> jointDistribution;
         Matrix<double> emissionDelta;
         Matrix<double> transitionDelta;
         Matrix<double> occurenceMatrix = this.GetOccurenceMatrix(observations);
         this.SetMatrixBar();
         this.emissionMatrix = this.emissionMatrix.Transpose();
+        previousEmission = previousEmission.Transpose();
         for (int i = 0; i < this.maxIterations; ++i)
         {
             jointDistribution = occurenceMatrix.PointwiseDivide(this.emissionMatrix.Multiply(this.transitionMatrix).Multiply(this.emissionMatrix.Transpose()));
-            if (jointDistribution.Subtract(previousJointDistribution).L2Norm() < this.epsilon)
-                break;
             transitionDelta = this.transitionMatrix.PointwiseMultiply(this.emissionMatrix.Transpose().Multiply(jointDistribution).Multiply(this.emissionMatrix));
             emissionDelta = this.emissionMatrix.PointwiseMultiply(jointDistribution.Multiply(this.emissionMatrix).Multiply(this.transitionMatrix.Transpose()).Add(jointDistribution.Transpose().Multiply(this.emissionMatrix).Multiply(this.transitionMatrix)));
             this.transitionMatrix = transitionDelta.Divide(transitionDelta.RowSums().Sum());
             this.emissionMatrix = Normalize(emissionDelta, emissionDelta.ColumnSums(), "column");
-            previousJointDistribution = jointDistribution;
+            if (this.transitionMatrix.Subtract(previousTransition).L2Norm() < this.epsilon && this.emissionMatrix.Subtract(previousEmission).L2Norm() < this.epsilon)
+                break;
+            previousEmission = emissionMatrix;
+            previousTransition = transitionMatrix;
         }
         this.transitionMatrix = Normalize(this.transitionMatrix, this.transitionMatrix.RowSums(), "row");
         this.emissionMatrix = this.emissionMatrix.Transpose();
+        return GetLikelihood(observations, this.transitionMatrix, this.emissionMatrix);
     }
 }

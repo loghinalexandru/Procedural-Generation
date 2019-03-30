@@ -8,6 +8,7 @@ public abstract class HMM : MonoBehaviour
     private double[,] transitionProbabilities;
     private double[,] emissionProbabilities;
     private int currentStateIndex = 0;
+    public int maxParalelModels = 10;
     public IEstimator estimator { get; set; }
     public List<double> stateStartProbabilities;
     public List<GameObject> emissions;
@@ -105,7 +106,7 @@ public abstract class HMM : MonoBehaviour
         }
     }
     //TODO: Refactor this function
-    private void SetRandomProbabilities()
+    public void SetRandomProbabilities()
     {
         double rowMax = 0;
         List<double> divisors = new List<double>();
@@ -114,7 +115,7 @@ public abstract class HMM : MonoBehaviour
             rowMax = 0;
             for (int j = 0; j < this.stateStartProbabilities.Count; ++j)
             {
-                this.transitionProbabilities[i, j] = Random.Range(0.0f, 1.0f);
+                this.transitionProbabilities[i, j] = Random.Range(0.0f, 10.0f);
                 rowMax += this.transitionProbabilities[i, j];
             }
             divisors.Add(rowMax);
@@ -126,7 +127,7 @@ public abstract class HMM : MonoBehaviour
             rowMax = 0;
             for (int j = 0; j < this.emissions.Count; ++j)
             {
-                this.emissionProbabilities[i, j] = Random.Range(0.0f, 1.0f);
+                this.emissionProbabilities[i, j] = Random.Range(0.0f, 10.0f);
                 rowMax += this.emissionProbabilities[i, j];
             }
             divisors.Add(rowMax);
@@ -135,7 +136,7 @@ public abstract class HMM : MonoBehaviour
         rowMax = 0;
         for (int i = 0; i < this.stateStartProbabilities.Count; ++i)
         {
-            this.stateStartProbabilities[i] = Random.Range(0.0f, 1.0f);
+            this.stateStartProbabilities[i] = Random.Range(0.0f, 10.0f);
             rowMax += this.stateStartProbabilities[i];
         }
         stateStartProbabilities = stateStartProbabilities.Select(entry => entry = entry / rowMax).ToList();
@@ -224,8 +225,25 @@ public abstract class HMM : MonoBehaviour
 
     public void ParameterInference(List<int> observations)
     {
-        estimator.train(observations, this.transitionProbabilities, this.emissionProbabilities, this.stateStartProbabilities);
-        this.emissionProbabilities = estimator.GetEmissionMatrix();
-        this.transitionProbabilities = estimator.GetTransitionMatrix();
+        double[,] bestEmission = this.emissionProbabilities;
+        double[,] bestTransition = this.transitionProbabilities;
+        double[] startProbabilites = this.stateStartProbabilities.ToArray();
+        double maxLoglikelihood = double.MinValue;
+        for (int i = 0; i < this.maxParalelModels; ++i)
+        {
+            double likelihood = estimator.train(observations, this.transitionProbabilities, this.emissionProbabilities, this.stateStartProbabilities);
+            if (maxLoglikelihood < likelihood)
+            {
+                maxLoglikelihood = likelihood;
+                bestEmission = estimator.GetEmissionMatrix();
+                bestTransition = estimator.GetTransitionMatrix();
+                startProbabilites = this.stateStartProbabilities.ToArray();
+            }
+            this.SetRandomProbabilities();
+        }
+        this.emissionProbabilities = bestEmission;
+        this.transitionProbabilities = bestTransition;
+        this.stateStartProbabilities = new List<double>(startProbabilites);
+        Debug.Log(maxLoglikelihood);
     }
 }
