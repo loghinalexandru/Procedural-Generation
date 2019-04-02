@@ -5695,7 +5695,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0.2280616, g: 0.3418989, b: 0.38679248, a: 1}
-  m_Intensity: 1
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -11028,7 +11028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1aca4540dd42047b74b155f8ce7440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxParalelModels: 20
+  maxParalelModels: 10
   stateStartProbabilities:
   - 0.07215051356905317
   - 0.04636608532900686
@@ -11074,7 +11074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f06dda5791f3e4c9362a940bee64b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxParalelModels: 20
+  maxParalelModels: 10
   stateStartProbabilities:
   - 1
   - 1

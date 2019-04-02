@@ -11,7 +11,7 @@ public class EM : IEstimator
     private Vector<double> drawProbabilities;
     private int stateCount = 0;
     private int emissionCount = 0;
-    public double epsilon { get; set; } = 1e-4;
+    public double epsilon { get; set; } = 1e-6;
     public int maxIterations { get; set; } = 200;
 
     public EM(int stateCount, int emissionCount)
@@ -81,6 +81,7 @@ public class EM : IEstimator
         }
         return output;
     }
+
     //TODO: Solve floating point precision lost
     public double GetLikelihood(List<int> observations, Matrix<double> transitionMatrix, Matrix<double> emissionMatrix)
     {
@@ -97,12 +98,38 @@ public class EM : IEstimator
         }
         return System.Math.Log(currentValues.Sum());
     }
+    //TODO: SOLVE RANDOM NAN IN LIKELIHOOD , IT'S FROM System.Math.Log();
+    public double GetLikelihoodV2(Matrix<double> occurence, Matrix<double> transition, Matrix<double> emission, Matrix<double> cBar)
+    {
+        double likelihood = 0;
+        for (int i = 0; i < this.emissionCount; ++i)
+        {
+            for (int j = 0; j < this.emissionCount; ++j)
+            {
+                double innerSum = 0;
+                for (int k = 0; k < this.stateCount; ++k)
+                {
+                    for (int l = 0; l < this.stateCount; ++l)
+                    {
+                        double result = ((emission[k, i] * transition[k, l] * emission[l, j]) * (System.Math.Log(emission[k, i]) + System.Math.Log(transition[k, l]) + System.Math.Log(emission[l, j]))) / cBar[i, j];
+                        if (!double.IsNaN(result))
+                            innerSum += result;
+                    }
+                }
+                likelihood += occurence[i, j] * innerSum;
+            }
+        }
+        return likelihood;
+    }
+
+
     //TODO: Refactor this and add Matlab conditions for convergence
     public double train(List<int> observations, double[,] transitionProbabilities, double[,] emissionProbabilities, List<double> pi)
     {
         this.SetEmissionMatrix(emissionProbabilities);
         this.SetTransitionMatrix(transitionProbabilities);
         this.SetDrawProbabilities(pi);
+        Matrix<double> previousJoinDistribution = Matrix<double>.Build.Dense(this.emissionCount, this.emissionCount);
         Matrix<double> previousEmission = Matrix<double>.Build.Dense(this.stateCount, this.emissionCount);
         Matrix<double> previousTransition = Matrix<double>.Build.Dense(this.stateCount, this.stateCount);
         Matrix<double> jointDistribution;
@@ -112,6 +139,7 @@ public class EM : IEstimator
         this.SetMatrixBar();
         this.emissionMatrix = this.emissionMatrix.Transpose();
         previousEmission = previousEmission.Transpose();
+        double likelihood = 0.0f;
         for (int i = 0; i < this.maxIterations; ++i)
         {
             jointDistribution = occurenceMatrix.PointwiseDivide(this.emissionMatrix.Multiply(this.transitionMatrix).Multiply(this.emissionMatrix.Transpose()));
@@ -119,13 +147,15 @@ public class EM : IEstimator
             emissionDelta = this.emissionMatrix.PointwiseMultiply(jointDistribution.Multiply(this.emissionMatrix).Multiply(this.transitionMatrix.Transpose()).Add(jointDistribution.Transpose().Multiply(this.emissionMatrix).Multiply(this.transitionMatrix)));
             this.transitionMatrix = transitionDelta.Divide(transitionDelta.RowSums().Sum());
             this.emissionMatrix = Normalize(emissionDelta, emissionDelta.ColumnSums(), "column");
-            if (this.transitionMatrix.Subtract(previousTransition).L2Norm() < this.epsilon && this.emissionMatrix.Subtract(previousEmission).L2Norm() < this.epsilon)
+            if (this.transitionMatrix.Subtract(previousTransition).L2Norm() < this.epsilon && this.emissionMatrix.Subtract(previousEmission).L2Norm() < this.epsilon && jointDistribution.Subtract(previousJoinDistribution).L2Norm() < this.epsilon)
                 break;
             previousEmission = emissionMatrix;
             previousTransition = transitionMatrix;
+            previousJoinDistribution = jointDistribution;
         }
+        likelihood = GetLikelihoodV2(occurenceMatrix, this.transitionMatrix, this.emissionMatrix.Transpose(), this.emissionMatrix.Multiply(this.transitionMatrix).Multiply(this.emissionMatrix.Transpose()));
         this.transitionMatrix = Normalize(this.transitionMatrix, this.transitionMatrix.RowSums(), "row");
         this.emissionMatrix = this.emissionMatrix.Transpose();
-        return GetLikelihood(observations, this.transitionMatrix, this.emissionMatrix);
+        return likelihood;
     }
 }
