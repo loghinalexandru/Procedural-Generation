@@ -152,6 +152,7 @@ public class EM : IEstimator
             previousEmission = emissionMatrix;
             previousTransition = transitionMatrix;
             previousJoinDistribution = jointDistribution;
+            //Debug.Log(GetLikelihoodV2(occurenceMatrix, this.transitionMatrix, this.emissionMatrix.Transpose(), this.emissionMatrix.Multiply(this.transitionMatrix).Multiply(this.emissionMatrix.Transpose())));
         }
         likelihood = GetLikelihoodV2(occurenceMatrix, this.transitionMatrix, this.emissionMatrix.Transpose(), this.emissionMatrix.Multiply(this.transitionMatrix).Multiply(this.emissionMatrix.Transpose()));
         this.transitionMatrix = Normalize(this.transitionMatrix, this.transitionMatrix.RowSums(), "row");
