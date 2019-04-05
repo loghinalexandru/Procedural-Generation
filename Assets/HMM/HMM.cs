@@ -171,7 +171,7 @@ public abstract class HMM : MonoBehaviour
         {
             start = end;
             end += this.transitionProbabilities[state, j];
-            if (start < randomValue && randomValue < end)
+            if (start <= randomValue && randomValue <= end)
             {
                 index = j;
                 break;
@@ -190,7 +190,7 @@ public abstract class HMM : MonoBehaviour
         {
             start = end;
             end += this.emissionProbabilities[state, j];
-            if (start < randomValue && randomValue < end)
+            if (start <= randomValue && randomValue <= end)
             {
                 index = j;
                 break;
@@ -244,6 +244,7 @@ public abstract class HMM : MonoBehaviour
         this.emissionProbabilities = bestEmission;
         this.transitionProbabilities = bestTransition;
         this.stateStartProbabilities = new List<double>(startProbabilites);
+        this.currentStateIndex = this.SetInitialState();
         Debug.Log(maxLoglikelihood);
     }
 }
