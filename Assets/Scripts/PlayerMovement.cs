@@ -8,12 +8,12 @@ public class PlayerMovement : MonoBehaviour
     public GameObject player;
     public float speed = 2f;
     public float rotationSpeed = 20f;
-    public float directionSpeed = 2f;
     public GameObject rightFrontWheel;
     public GameObject leftFrontWheel;
     public GameObject rightBackWheel;
     public GameObject leftBackWheel;
     public float maxSteeringAngle = 45.0f;
+    public float maxVelocity = 20.0f;
     public float wheelsRPM = 100.0f;
     private float currentAngle = 0.0f;
     private Rigidbody body;
@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         body = player.GetComponent<Rigidbody>();
+        body.maxAngularVelocity = 2.0f;
     }
 
     private void WheelSpinAnimation()
@@ -64,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
             body.AddRelativeTorque(Vector3.down * rotationSpeed);
             this.steeringAngle = -this.maxSteeringAngle;
         }
-        if (player.transform.position.y > 0)
+        if (player.transform.position.y > 0 && body.velocity.magnitude < maxVelocity)
             body.AddRelativeForce(Vector3.back * speed);
     }
 

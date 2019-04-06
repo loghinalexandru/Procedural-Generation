@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 0
+    x: 1920
     y: 43
     width: 1920
     height: 997
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 498}
   m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 763
+  controlID: 35221
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 764
+  controlID: 35222
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 224}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 765
+  controlID: 35223
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -376,7 +376,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
+    x: 1920
     y: 73
     width: 250
     height: 576
@@ -384,9 +384,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: b0280000
-      m_LastClickedID: 0
-      m_ExpandedIDs: d4fbffff
+      m_SelectedIDs: 94eefcff
+      m_LastClickedID: -201068
+      m_ExpandedIDs: c8edfcffccedfcff503bfdff82cafeff86cafeffd4fbfffff23500004e3600005236000078360000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -431,10 +431,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 231
+    x: 2172
     y: 73
-    width: 1295
-    height: 636
+    width: 1276
+    height: 576
   m_PersistentViewDataDictionary: {fileID: 0}
 --- !u!114 &15
 MonoBehaviour:
@@ -457,7 +457,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 252
+    x: 2172
     y: 73
     width: 1276
     height: 576
@@ -468,9 +468,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.80999994, y: 0.176, z: 13.417}
+    m_Target: {x: 0.49636614, y: 2.0383997, z: -0.9010071}
     speed: 2
-    m_Value: {x: 0.80999994, y: 0.176, z: 13.417}
+    m_Value: {x: 0.49636614, y: 2.0383997, z: -0.9010071}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -498,13 +498,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.15130831, y: -0.7876723, z: 0.21370822, w: 0.55768}
+    m_Target: {x: 0.07412334, y: -0.38485157, z: 0.03102349, w: 0.91947407}
     speed: 2
-    m_Value: {x: 0.15130831, y: -0.7876723, z: 0.21370822, w: 0.55768}
+    m_Value: {x: 0.07412334, y: -0.38485157, z: 0.03102349, w: 0.91947407}
   m_Size:
-    m_Target: 22
+    m_Target: 7.157301
     speed: 2
-    m_Value: 22
+    m_Value: 7.157301
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -601,7 +601,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
+    x: 1920
     y: 669
     width: 1530
     height: 331
@@ -618,20 +618,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Generators
+    - Assets/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Generators
+  - Assets/Prefabs
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Kiki\Documents\Procedural-Generation
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 98}
-    m_SelectedIDs: 682e0000
-    m_LastClickedID: 11880
-    m_ExpandedIDs: 00000000262c00000e2d0000ca2d0000862e0000ce2e0000843300001234000052350000623d0000643d0000663d0000683d00006a3d00006c3d00006e3d0000703d0000723d0000743d000000ca9a3b
+    scrollPos: {x: 0, y: 446}
+    m_SelectedIDs: 842e0000
+    m_LastClickedID: 11908
+    m_ExpandedIDs: 00000000242c00000c2d0000c82d0000842e0000cc2e0000823300001034000050350000603d0000623d0000643d0000663d0000683d00006a3d00006c3d00006e3d0000703d0000723d0000da440000de440000e2440000e6440000ea440000f6440000f8440000fc44000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -659,7 +659,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000262c00000e2d0000ca2d0000862e0000ce2e0000843300001234000052350000623d0000643d0000663d0000683d00006a3d00006c3d00006e3d0000703d0000723d0000743d000000ca9a3b
+    m_ExpandedIDs: 00000000242c00000c2d0000c82d0000842e0000cc2e0000823300001034000050350000603d0000623d0000643d0000663d0000683d00006a3d00006c3d00006e3d0000703d0000723d0000da440000de440000e2440000e6440000ea440000f6440000f8440000fc44000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -735,7 +735,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
+    x: 1920
     y: 669
     width: 1530
     height: 331
@@ -761,7 +761,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1532
+    x: 3452
     y: 73
     width: 386
     height: 927
