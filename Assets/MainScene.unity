@@ -479,12 +479,12 @@ MonoBehaviour:
   - {fileID: 1605584312417678, guid: 92cd88d9c8e4d5f4db482ee363f53cf5, type: 3}
   - {fileID: 1487804837674840, guid: 5a03fa9e4b4b2774bb065c5244a2b1af, type: 3}
   - {fileID: 1011597646829680, guid: 27d3040ef5b651143aff5d8d970c4117, type: 3}
-  - {fileID: 1605584312417678, guid: 5ca4e31ae920e214fa37ee9b3b6a42d2, type: 3}
-  - {fileID: 1487804837674840, guid: dfadf3bd14f45eb43959b0360c081237, type: 3}
-  - {fileID: 1011597646829680, guid: 1372cf763915d2e459470d169079ed88, type: 3}
-  - {fileID: 1605584312417678, guid: 2f2c19dd18823ad4c9e9d4b42d1ed2c0, type: 3}
-  - {fileID: 1487804837674840, guid: 98120629a3254c349869ab09612b48c0, type: 3}
-  - {fileID: 1011597646829680, guid: 9b3077e5cef5b9c4bae636ff71e8ea85, type: 3}
+  - {fileID: 1605584312417678, guid: 92cd88d9c8e4d5f4db482ee363f53cf5, type: 3}
+  - {fileID: 1487804837674840, guid: 5a03fa9e4b4b2774bb065c5244a2b1af, type: 3}
+  - {fileID: 1011597646829680, guid: 27d3040ef5b651143aff5d8d970c4117, type: 3}
+  - {fileID: 1605584312417678, guid: 92cd88d9c8e4d5f4db482ee363f53cf5, type: 3}
+  - {fileID: 1487804837674840, guid: 5a03fa9e4b4b2774bb065c5244a2b1af, type: 3}
+  - {fileID: 1011597646829680, guid: 27d3040ef5b651143aff5d8d970c4117, type: 3}
   transitionFile: {fileID: 0}
   emissionFile: {fileID: 0}
 --- !u!114 &1378403948
@@ -521,16 +521,6 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
   emissions:
   - {fileID: 8283707744411260975, guid: d7ef9666a31fb1240a2318a4366b6c8c, type: 3}
   - {fileID: 4093343268851660387, guid: bce103d1d3c7f6448b2d92677c845258, type: 3}
@@ -538,7 +528,7 @@ MonoBehaviour:
   - {fileID: 3032934190842237782, guid: 9a3a0173bb0b0c948989d62fae2bfda9, type: 3}
   - {fileID: 2561228854564863694, guid: a95e9e5df23fc5d4fb037cfbd172f467, type: 3}
   - {fileID: 6405409903151369621, guid: 82a5c5ecb13edf440a452f46f66f3997, type: 3}
-  - {fileID: 373363523187363, guid: ede14b2fdf3369c4c9af0c95a5dbe219, type: 3}
+  - {fileID: 4472112645746629510, guid: 61e1fbce6745867429493f5a30be25a8, type: 3}
   - {fileID: 6879881098356113014, guid: 06ec3d5eefcd9e44d9305b9b0535ecd0, type: 3}
   - {fileID: 1665434738283074, guid: 568ccaba17da49e42b082319be1d9f1c, type: 3}
   - {fileID: 608492280718445264, guid: 80bd1634765bb1f4f9dc797599bc95c1, type: 3}
@@ -884,26 +874,6 @@ PrefabInstance:
       propertyPath: m_ForwardFriction.m_Stiffness
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 103744702796212500, guid: a245963ef33b5e142a56359a98acbf43,
-        type: 3}
-      propertyPath: m_ForwardFriction.m_Stiffness
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 103744702796212500, guid: a245963ef33b5e142a56359a98acbf43,
-        type: 3}
-      propertyPath: m_SidewaysFriction.m_Stiffness
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4988675244610370117, guid: a245963ef33b5e142a56359a98acbf43,
-        type: 3}
-      propertyPath: m_ForwardFriction.m_Stiffness
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4988675244610370117, guid: a245963ef33b5e142a56359a98acbf43,
-        type: 3}
-      propertyPath: m_SidewaysFriction.m_Stiffness
-      value: 1.2
-      objectReference: {fileID: 0}
     - target: {fileID: 5379942171221147880, guid: a245963ef33b5e142a56359a98acbf43,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -973,6 +943,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 103744702796212500, guid: a245963ef33b5e142a56359a98acbf43,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 103744702796212500, guid: a245963ef33b5e142a56359a98acbf43,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988675244610370117, guid: a245963ef33b5e142a56359a98acbf43,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988675244610370117, guid: a245963ef33b5e142a56359a98acbf43,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8304775331625693418, guid: a245963ef33b5e142a56359a98acbf43,
         type: 3}

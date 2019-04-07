@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStackable: 1
-  maxObjectStack: 1
+  maxObjectStack: 2
 --- !u!1 &4612314875974785990
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStackable: 1
-  maxObjectStack: 2
+  maxObjectStack: 3
 --- !u!1001 &2927013695156374113
 PrefabInstance:
   m_ObjectHideFlags: 0
