@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CityObjectsGenerator : HMM
 {
-    //TODO: Add more training data
+    //TODO: Make object's independent of one another. CRUCIAL.
     void Start()
     {
         this.Init();
