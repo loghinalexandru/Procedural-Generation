@@ -67,7 +67,7 @@
     <Compile Include="Assets\HMM\EM.cs" />
     <Compile Include="Assets\HMM\HMM.cs" />
     <Compile Include="Assets\HMM\IEstimator.cs" />
-    <Compile Include="Assets\Scripts\CarMovement.cs" />
+    <Compile Include="Assets\Scripts\CarController.cs" />
     <Compile Include="Assets\Scripts\Follow.cs" />
     <Compile Include="Assets\Scripts\Markov.cs" />
     <Compile Include="Assets\Scripts\PlatformBuilder.cs" />

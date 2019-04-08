@@ -312,6 +312,12 @@ WheelCollider:
     type: 3}
   m_PrefabInstance: {fileID: 1928559708}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &738940619 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5379942171222917656, guid: a245963ef33b5e142a56359a98acbf43,
+    type: 3}
+  m_PrefabInstance: {fileID: 1928559708}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &835160001 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8431852438786298594, guid: 0ad2a6209d76b5d4ba9925e86ee5faff,
@@ -413,7 +419,13 @@ MonoBehaviour:
   frontLeftMesh: {fileID: 1658327065}
   backRightMesh: {fileID: 1687141567}
   backLeftMesh: {fileID: 1889691211}
-  torque: 600
+  tailLights: {fileID: 738940619}
+  brakeLightsOn: {fileID: 2100000, guid: 1203557081a14d34685be57a4bc7916f, type: 2}
+  brakeLightsOff: {fileID: 2100000, guid: d1917a35d5ad2344d95e805eb794dd04, type: 2}
+  backLightsOn: {fileID: 2100000, guid: e2bc4aafca11de64c8662f31d3757328, type: 2}
+  backlightsOff: {fileID: 2100000, guid: 27022d0c6860deb4285921802806eb7b, type: 2}
+  motorTorque: 600
+  brakeTorque: 300
   maxAngle: 45
 --- !u!4 &1075181385 stripped
 Transform:
@@ -479,12 +491,12 @@ MonoBehaviour:
   - {fileID: 1605584312417678, guid: 92cd88d9c8e4d5f4db482ee363f53cf5, type: 3}
   - {fileID: 1487804837674840, guid: 5a03fa9e4b4b2774bb065c5244a2b1af, type: 3}
   - {fileID: 1011597646829680, guid: 27d3040ef5b651143aff5d8d970c4117, type: 3}
-  - {fileID: 1605584312417678, guid: 92cd88d9c8e4d5f4db482ee363f53cf5, type: 3}
-  - {fileID: 1487804837674840, guid: 5a03fa9e4b4b2774bb065c5244a2b1af, type: 3}
-  - {fileID: 1011597646829680, guid: 27d3040ef5b651143aff5d8d970c4117, type: 3}
-  - {fileID: 1605584312417678, guid: 92cd88d9c8e4d5f4db482ee363f53cf5, type: 3}
-  - {fileID: 1487804837674840, guid: 5a03fa9e4b4b2774bb065c5244a2b1af, type: 3}
-  - {fileID: 1011597646829680, guid: 27d3040ef5b651143aff5d8d970c4117, type: 3}
+  - {fileID: 1605584312417678, guid: 5ca4e31ae920e214fa37ee9b3b6a42d2, type: 3}
+  - {fileID: 1487804837674840, guid: dfadf3bd14f45eb43959b0360c081237, type: 3}
+  - {fileID: 1011597646829680, guid: 1372cf763915d2e459470d169079ed88, type: 3}
+  - {fileID: 1605584312417678, guid: 2f2c19dd18823ad4c9e9d4b42d1ed2c0, type: 3}
+  - {fileID: 1487804837674840, guid: 98120629a3254c349869ab09612b48c0, type: 3}
+  - {fileID: 1011597646829680, guid: 9b3077e5cef5b9c4bae636ff71e8ea85, type: 3}
   transitionFile: {fileID: 0}
   emissionFile: {fileID: 0}
 --- !u!114 &1378403948
@@ -874,6 +886,11 @@ PrefabInstance:
       propertyPath: m_ForwardFriction.m_Stiffness
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5379942171222917656, guid: a245963ef33b5e142a56359a98acbf43,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: e2bc4aafca11de64c8662f31d3757328, type: 2}
     - target: {fileID: 5379942171221147880, guid: a245963ef33b5e142a56359a98acbf43,
         type: 3}
       propertyPath: m_LocalPosition.x
