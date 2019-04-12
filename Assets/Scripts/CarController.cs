@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class CarController : MonoBehaviour
 {
-
     public WheelCollider frontRight, frontLeft , backRight , backLeft;
     public Transform frontRightMesh, frontLeftMesh, backRightMesh, backLeftMesh;
     public Renderer tailLights;
@@ -13,19 +12,20 @@ public class CarController : MonoBehaviour
     public Material brakeLightsOff;
     public Material backLightsOn;
     public Material backlightsOff;
+    public Material diskBrakes;
     public float motorTorque = 30f;
     public float brakeTorque = 20f;
     public float maxAngle = 45f;
 
+    private Rigidbody body;
     private float currentAngle = 0.0f;
     private float currentTorque = 0.0f;
     private float m_horizontal = 0.0f;
     private float m_vertical = 0.0f;
-    private Rigidbody body;
     private float direction;
+    private float discBrakesColor = 0.0f;
+    private float discBrakesStep = 0.01f;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         tailLights = tailLights.GetComponent<Renderer>();
@@ -46,52 +46,76 @@ public class CarController : MonoBehaviour
         frontRight.steerAngle = currentAngle;
     }
 
-    private void Accelerate()
+    private void setBrakesOff()
+    {
+        this.frontRight.brakeTorque = 0;
+        this.frontLeft.brakeTorque = 0;
+        this.backRight.brakeTorque = 0;
+        this.backLeft.brakeTorque = 0;
+    }
+
+    private void setBrakesOn()
+    {
+        frontRight.motorTorque = 0;
+        frontLeft.motorTorque = 0;
+        this.frontRight.brakeTorque = this.brakeTorque;
+        this.frontLeft.brakeTorque = this.brakeTorque;
+        this.backRight.brakeTorque = this.brakeTorque;
+        this.backLeft.brakeTorque = this.brakeTorque;
+    }
+
+    private void setTailLights(string mode)
     {
         var lights = tailLights.materials;
+        switch (mode)
+        {
+            case "brakesOn":
+                lights[0] = brakeLightsOn;
+                lights[1] = backlightsOff;
+                discBrakesColor = discBrakesColor < 1 ? discBrakesColor + this.discBrakesStep : discBrakesColor;
+                this.diskBrakes.SetColor("_EmissionColor", new Color(this.discBrakesColor , 0, 0) * 3);
+                break;
+            case "allOff":
+                lights[0] = brakeLightsOff;
+                lights[1] = backlightsOff;
+                discBrakesColor = discBrakesColor > 0 ? discBrakesColor - this.discBrakesStep : discBrakesColor;
+                break;
+            case "reverseOn":
+                lights[0] = brakeLightsOff;
+                lights[1] = backLightsOn;
+                discBrakesColor = discBrakesColor > 0 ? discBrakesColor - this.discBrakesStep : discBrakesColor;
+                break;
+        }
+        this.diskBrakes.SetColor("_EmissionColor", new Color(this.discBrakesColor, 0, 0) * 3);
+        this.tailLights.materials = lights;
+    }
+
+    private void Accelerate()
+    {
         if(m_vertical > 0)
         {
-            lights[0] = brakeLightsOff;
-            lights[1] = backlightsOff;
-            frontRight.brakeTorque = 0;
-            frontLeft.brakeTorque = 0;
-            backRight.brakeTorque = 0;
-            backLeft.brakeTorque = 0;
+            setTailLights("allOff");
+            setBrakesOff();
             frontRight.motorTorque = this.motorTorque * m_vertical;
             frontLeft.motorTorque = this.motorTorque * m_vertical;
         }
         else if(m_vertical < 0 && direction > 0)
         {
-            lights[0] = brakeLightsOn;
-            lights[1] = backlightsOff;
-            frontRight.motorTorque = 0;
-            frontLeft.motorTorque = 0;
-            frontRight.brakeTorque = this.brakeTorque;
-            frontLeft.brakeTorque = this.brakeTorque;
-            backRight.brakeTorque = this.brakeTorque;
-            backLeft.brakeTorque = this.brakeTorque;
+            setTailLights("brakesOn");
+            setBrakesOn();
         }
         else if(m_vertical < 0 && direction < 0)
         {
-            lights[0] = brakeLightsOff;
-            lights[1] = backLightsOn;
-            frontRight.brakeTorque = 0;
-            frontLeft.brakeTorque = 0;
-            backRight.brakeTorque = 0;
-            backLeft.brakeTorque = 0;
-            frontRight.motorTorque = (this.motorTorque / 2) * m_vertical;
-            frontLeft.motorTorque = (this.motorTorque / 2)* m_vertical;
+            setTailLights("reverseOn");
+            setBrakesOff();
+            frontRight.motorTorque = (this.motorTorque * 0.75f) * m_vertical;
+            frontLeft.motorTorque = (this.motorTorque *  0.75f)* m_vertical;
         }
         else
         {
-            lights[0] = brakeLightsOff;
-            lights[1] = backlightsOff;
-            frontRight.brakeTorque = 0;
-            frontLeft.brakeTorque = 0;
-            backRight.brakeTorque = 0;
-            backLeft.brakeTorque = 0;
+            setTailLights("allOff");
+            setBrakesOff();
         }
-        tailLights.materials = lights;
     }
 
     private void UpdateWheel(WheelCollider colider , Transform mesh)
@@ -112,7 +136,6 @@ public class CarController : MonoBehaviour
         UpdateWheel(backLeft, backLeftMesh);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         GetInput();

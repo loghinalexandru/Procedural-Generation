@@ -265,7 +265,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0.2280616, g: 0.3418989, b: 0.38679248, a: 1}
-  m_Intensity: 1.5
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -424,6 +424,7 @@ MonoBehaviour:
   brakeLightsOff: {fileID: 2100000, guid: d1917a35d5ad2344d95e805eb794dd04, type: 2}
   backLightsOn: {fileID: 2100000, guid: e2bc4aafca11de64c8662f31d3757328, type: 2}
   backlightsOff: {fileID: 2100000, guid: 27022d0c6860deb4285921802806eb7b, type: 2}
+  diskBrakes: {fileID: 2100000, guid: 359c8f2051f4bd84189e8480813c8ec1, type: 2}
   motorTorque: 600
   brakeTorque: 300
   maxAngle: 45
@@ -570,6 +571,16 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   emissions:
   - {fileID: 5192562672335697683, guid: 224be9fb5602d1f46aff255f88ba70cf, type: 3}
   - {fileID: 3292841765490584807, guid: ab82165c6e26e44429f32b9b9d779b14, type: 3}
@@ -593,6 +604,16 @@ MonoBehaviour:
   maxParalelModels: 10
   stateStartProbabilities:
   - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   - 0
   - 0
   - 0
@@ -996,6 +1017,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9a3b9204c2e469340915c5a75fced166, type: 2}
+    - target: {fileID: 3381418150921977402, guid: a245963ef33b5e142a56359a98acbf43,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452231859595695676, guid: a245963ef33b5e142a56359a98acbf43,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a245963ef33b5e142a56359a98acbf43, type: 3}
 --- !u!1 &1957595758
