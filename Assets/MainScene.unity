@@ -425,7 +425,9 @@ MonoBehaviour:
   backLightsOn: {fileID: 2100000, guid: e2bc4aafca11de64c8662f31d3757328, type: 2}
   backlightsOff: {fileID: 2100000, guid: 27022d0c6860deb4285921802806eb7b, type: 2}
   diskBrakes: {fileID: 2100000, guid: 359c8f2051f4bd84189e8480813c8ec1, type: 2}
-  motorTorque: 600
+  backfireLeft: {fileID: 1822318827}
+  backfireRight: {fileID: 1451158372}
+  motorTorque: 650
   brakeTorque: 300
   maxAngle: 45
 --- !u!4 &1075181385 stripped
@@ -647,6 +649,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &1451158372 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8911608637648824754, guid: a245963ef33b5e142a56359a98acbf43,
+    type: 3}
+  m_PrefabInstance: {fileID: 1928559708}
+  m_PrefabAsset: {fileID: 0}
 --- !u!146 &1466054443 stripped
 WheelCollider:
   m_CorrespondingSourceObject: {fileID: 103744702796212500, guid: a245963ef33b5e142a56359a98acbf43,
@@ -674,6 +682,12 @@ Transform:
 --- !u!146 &1771935597 stripped
 WheelCollider:
   m_CorrespondingSourceObject: {fileID: 4988675244610370117, guid: a245963ef33b5e142a56359a98acbf43,
+    type: 3}
+  m_PrefabInstance: {fileID: 1928559708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1822318827 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6702630171129256211, guid: a245963ef33b5e142a56359a98acbf43,
     type: 3}
   m_PrefabInstance: {fileID: 1928559708}
   m_PrefabAsset: {fileID: 0}
@@ -1026,6 +1040,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661253808726493536, guid: a245963ef33b5e142a56359a98acbf43,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902396998316612681, guid: a245963ef33b5e142a56359a98acbf43,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414201633081878726, guid: a245963ef33b5e142a56359a98acbf43,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a245963ef33b5e142a56359a98acbf43, type: 3}

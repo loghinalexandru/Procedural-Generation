@@ -13,23 +13,27 @@ public class CarController : MonoBehaviour
     public Material backLightsOn;
     public Material backlightsOff;
     public Material diskBrakes;
+    public ParticleSystem backfireLeft;
+    public ParticleSystem backfireRight;
     public float motorTorque = 30f;
     public float brakeTorque = 20f;
     public float maxAngle = 45f;
 
     private Rigidbody body;
     private float currentAngle = 0.0f;
-    private float currentTorque = 0.0f;
     private float m_horizontal = 0.0f;
     private float m_vertical = 0.0f;
     private float direction;
     private float discBrakesColor = 0.0f;
     private float discBrakesStep = 0.01f;
+    private bool isPlayable = false;
+    private bool[] usedGears = { false, false, false, false , false};
 
     void Start()
     {
         tailLights = tailLights.GetComponent<Renderer>();
         body = this.GetComponent<Rigidbody>();
+        BackfirePause();
     }
 
     private void GetInput()
@@ -46,7 +50,7 @@ public class CarController : MonoBehaviour
         frontRight.steerAngle = currentAngle;
     }
 
-    private void setBrakesOff()
+    private void SetBrakesOff()
     {
         this.frontRight.brakeTorque = 0;
         this.frontLeft.brakeTorque = 0;
@@ -54,7 +58,25 @@ public class CarController : MonoBehaviour
         this.backLeft.brakeTorque = 0;
     }
 
-    private void setBrakesOn()
+    private void BackfirePlay()
+    {
+        if (this.isPlayable)
+        {
+            backfireLeft.time = 0;
+            backfireLeft.Play();
+            backfireRight.time = 0;
+            backfireRight.Play();
+            this.isPlayable = false;
+        }
+    }
+
+    private void BackfirePause()
+    {
+        backfireLeft.Pause();
+        backfireRight.Pause();
+    }
+
+    private void SetBrakesOn()
     {
         frontRight.motorTorque = 0;
         frontLeft.motorTorque = 0;
@@ -64,7 +86,7 @@ public class CarController : MonoBehaviour
         this.backLeft.brakeTorque = this.brakeTorque;
     }
 
-    private void setTailLights(string mode)
+    private void SetTailLights(string mode)
     {
         var lights = tailLights.materials;
         switch (mode)
@@ -94,27 +116,28 @@ public class CarController : MonoBehaviour
     {
         if(m_vertical > 0)
         {
-            setTailLights("allOff");
-            setBrakesOff();
+            SetTailLights("allOff");
+            SetBrakesOff();
             frontRight.motorTorque = this.motorTorque * m_vertical;
             frontLeft.motorTorque = this.motorTorque * m_vertical;
         }
         else if(m_vertical < 0 && direction > 0)
         {
-            setTailLights("brakesOn");
-            setBrakesOn();
+            SetTailLights("brakesOn");
+            SetBrakesOn();
+            BackfirePlay();
         }
         else if(m_vertical < 0 && direction < 0)
         {
-            setTailLights("reverseOn");
-            setBrakesOff();
-            frontRight.motorTorque = (this.motorTorque * 0.75f) * m_vertical;
-            frontLeft.motorTorque = (this.motorTorque *  0.75f)* m_vertical;
+            SetTailLights("reverseOn");
+            SetBrakesOff();
+            frontRight.motorTorque = (this.motorTorque * 0.85f) * m_vertical;
+            frontLeft.motorTorque = (this.motorTorque *  0.85f)* m_vertical;
         }
         else
         {
-            setTailLights("allOff");
-            setBrakesOff();
+            SetTailLights("allOff");
+            SetBrakesOff();
         }
     }
 
@@ -127,7 +150,6 @@ public class CarController : MonoBehaviour
         mesh.rotation = rotation;
     }
 
-
     private void AnimateWheels()
     {
         UpdateWheel(frontRight, frontRightMesh);
@@ -136,10 +158,61 @@ public class CarController : MonoBehaviour
         UpdateWheel(backLeft, backLeftMesh);
     }
 
+    private void SetGear()
+    {
+        if(this.direction > 3 && !usedGears[0])
+        {
+            this.isPlayable = true;
+            usedGears[0] = true;
+        }
+        else if(this.direction < 3 && this.direction > 0)
+        {
+            usedGears[0] = false;
+        }
+        if (this.direction > 6 && !usedGears[1])
+        {
+            this.isPlayable = true;
+            usedGears[1] = true;
+        }
+        else if (this.direction < 6)
+        {
+            usedGears[1] = false;
+        }
+        if (this.direction > 10  && !usedGears[2])
+        {
+            this.isPlayable = true;
+            usedGears[2] = true;
+        }
+        else if (this.direction < 10)
+        {
+            usedGears[2] = false;
+        }
+        if (this.direction > 14 && !usedGears[3])
+        {
+            this.isPlayable = true;
+            usedGears[3] = true;
+        }
+        else if (this.direction < 14)
+        {
+            usedGears[3] = false;
+        }
+        if(this.direction > 18 && !usedGears[4])
+        {
+            this.isPlayable = true;
+            usedGears[4] = true;
+        }
+        else if(this.direction < 18)
+        {
+            usedGears[4] = false;
+        }
+        BackfirePlay();
+    }
+
     void FixedUpdate()
     {
         GetInput();
         Steer();
+        SetGear();
         Accelerate();
         AnimateWheels();
     }
