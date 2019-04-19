@@ -206,6 +206,18 @@ public abstract class HMM : MonoBehaviour
         return this.emissions[emissionIndex];
     }
 
+    public int[] NextEmission(int count)
+    {
+        int[] output = new int[count];
+        for(int i = 0; i < count; ++i)
+        {
+            int emissionIndex = MakeEmission(this.currentStateIndex);
+            this.currentStateIndex = MakeTransition(currentStateIndex);
+            output[i] = emissionIndex;
+        }
+        return output;
+    }
+
     public List<int> GameObjectToIndex(List<GameObject> observations)
     {
         List<int> output = new List<int>();
@@ -246,5 +258,6 @@ public abstract class HMM : MonoBehaviour
         this.stateStartProbabilities = new List<double>(startProbabilites);
         this.currentStateIndex = this.SetInitialState();
         Debug.Log(maxLoglikelihood);
+
     }
 }

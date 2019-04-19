@@ -160,49 +160,66 @@ public class CarController : MonoBehaviour
 
     private void SetGear()
     {
+        float randomFactor = Random.Range(0, 1.0f);
+        float threshold = 0.5f;
         if(this.direction > 3 && !usedGears[0])
         {
-            this.isPlayable = true;
+            if(randomFactor > threshold)
+                this.isPlayable = true;
             usedGears[0] = true;
         }
         else if(this.direction < 3 && this.direction > 0)
         {
+            if (usedGears[0] && randomFactor > threshold)
+                this.isPlayable = true;
             usedGears[0] = false;
         }
         if (this.direction > 6 && !usedGears[1])
         {
-            this.isPlayable = true;
+            if (randomFactor > threshold)
+                this.isPlayable = true;
             usedGears[1] = true;
         }
         else if (this.direction < 6)
         {
+            if (usedGears[1] && randomFactor > threshold)
+                this.isPlayable = true;
             usedGears[1] = false;
         }
         if (this.direction > 10  && !usedGears[2])
         {
-            this.isPlayable = true;
+            if (randomFactor > threshold)
+                this.isPlayable = true;
             usedGears[2] = true;
         }
         else if (this.direction < 10)
         {
+            if (usedGears[2] && randomFactor > threshold)
+                this.isPlayable = true;
             usedGears[2] = false;
         }
         if (this.direction > 14 && !usedGears[3])
         {
-            this.isPlayable = true;
+            if (randomFactor > threshold)
+                this.isPlayable = true;
             usedGears[3] = true;
         }
         else if (this.direction < 14)
         {
+            if (usedGears[3] && randomFactor > threshold)
+                this.isPlayable = true;
             usedGears[3] = false;
         }
         if(this.direction > 18 && !usedGears[4])
         {
-            this.isPlayable = true;
+            if (randomFactor > threshold)
+                this.isPlayable = true;
             usedGears[4] = true;
         }
         else if(this.direction < 18)
         {
+            if (usedGears[4] && randomFactor > threshold)
+                this.isPlayable = true;
             usedGears[4] = false;
         }
         BackfirePlay();

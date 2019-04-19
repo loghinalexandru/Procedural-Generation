@@ -468,7 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1aca4540dd42047b74b155f8ce7440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxParalelModels: 10
+  maxParalelModels: 100
   stateStartProbabilities:
   - 0.07215051356905317
   - 0.04636608532900686
@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f06dda5791f3e4c9362a940bee64b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxParalelModels: 10
+  maxParalelModels: 20
   stateStartProbabilities:
   - 1
   - 1
@@ -589,6 +589,7 @@ MonoBehaviour:
   - {fileID: 4400906800633342362, guid: 34506e186c0848c4f9d9847d234c9e58, type: 3}
   - {fileID: 5084567689232303443, guid: 24a40c3c18d540545afd62b22a57ea87, type: 3}
   - {fileID: 6879881098356113014, guid: 06ec3d5eefcd9e44d9305b9b0535ecd0, type: 3}
+  - {fileID: 5418001032772662597, guid: 318a712f6091c4943bd4675b87f7b70f, type: 3}
   transitionFile: {fileID: 0}
   emissionFile: {fileID: 0}
 --- !u!114 &1378403950
@@ -603,7 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1a72504fc53724a80d1005dd5b9129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxParalelModels: 10
+  maxParalelModels: 20
   stateStartProbabilities:
   - 1
   - 0
@@ -633,6 +634,7 @@ MonoBehaviour:
   - {fileID: 3571551706106456594, guid: a94ced82b76ee414a83687da31d567d2, type: 3}
   - {fileID: 167627556409608756, guid: 7a89b935c4dc7e54696a5d6a52f04714, type: 3}
   - {fileID: 6879881098356113014, guid: 06ec3d5eefcd9e44d9305b9b0535ecd0, type: 3}
+  - {fileID: 121094058269465911, guid: 65369c12ced0f784e831ec2d8cb3eaa1, type: 3}
   transitionFile: {fileID: 0}
   emissionFile: {fileID: 0}
 --- !u!4 &1378403951
