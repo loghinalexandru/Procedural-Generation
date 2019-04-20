@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
-
+//TODO: REFACTOR THIS ASAP
 public class PlatformBuilder : MonoBehaviour
 {
     public GameObject currentPlatform;
-    public float platformSize = 20;
-    public int propsPerPlatform = 2;
     public float risingSpeed = 4f;
-    public float fallingSpeed = 1f;
     public float destroyDelay = 10.0f;
-    private PlatformGenerator platformGenerator;
+    private PlatformController controller;
     private CityObjectsGenerator cityObjectsGenerator;
     private CountryObjectsGenerator countryObjectsGenerator;
     private DesertObjectsGenerator desertObjectsGenerator;
@@ -18,12 +15,11 @@ public class PlatformBuilder : MonoBehaviour
 
     void Start()
     {
-        this.platformGenerator = GameObject.FindGameObjectWithTag("Generator").GetComponent<PlatformGenerator>();
+        this.controller = this.GetComponent<PlatformController>();
         this.cityObjectsGenerator = GameObject.FindGameObjectWithTag("Generator").GetComponent<CityObjectsGenerator>();
         this.countryObjectsGenerator = GameObject.FindGameObjectWithTag("Generator").GetComponent<CountryObjectsGenerator>();
         this.desertObjectsGenerator = GameObject.FindGameObjectWithTag("Generator").GetComponent<DesertObjectsGenerator>();
-        this.zOffset = platformGenerator.emissions[0].transform.localScale.z;
-        this.platformSize = this.zOffset;
+        this.zOffset = controller.platformSize;
     }
 
     void Update()
@@ -135,7 +131,7 @@ public class PlatformBuilder : MonoBehaviour
 
     public void InstantiatePlatform()
     {
-        GameObject nextPlatform = BuildPlatform(platformGenerator.NextEmission());
+        GameObject nextPlatform = BuildPlatform(controller.GetNextPlatform());
         if (nextPlatform.name.Contains("Left"))
         {
             this.rotation -= 90;
