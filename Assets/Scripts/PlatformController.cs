@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformController : MonoBehaviour
@@ -7,7 +6,7 @@ public class PlatformController : MonoBehaviour
     public int lowerBound = 20;
     public int upperBound = 60;
     public List<GameObject> transitionPlatforms;
-    public float platformSize {get; set;}
+    public float platformSize { get; set; }
 
     private HMM[] generators;
     private int currentGeneratorIndex = 0;
@@ -26,20 +25,20 @@ public class PlatformController : MonoBehaviour
         generators[0] = generator.GetComponent<CityPlatformGenerator>();
         generators[1] = generator.GetComponent<CountryPlatformGenerator>();
         generators[2] = generator.GetComponent<DesertPlatformGenerator>();
-        this.platformSize = generators[0].emissions[0].transform.localScale.z;
-        this.maxEmissionCount = Random.Range(this.lowerBound, this.upperBound);
+        platformSize = generators[0].emissions[0].transform.localScale.z;
+        maxEmissionCount = Random.Range(lowerBound, upperBound);
     }
 
     public GameObject GetNextPlatform()
     {
         GameObject output;
-        this.currentEmissionCount++;
-        if(currentEmissionCount > maxEmissionCount)
+        currentEmissionCount++;
+        if (currentEmissionCount > maxEmissionCount)
         {
-            output = this.transitionPlatforms[currentGeneratorIndex];
-            this.currentEmissionCount = 0;
-            this.currentGeneratorIndex = (this.currentGeneratorIndex + 1) % this.generators.Length;
-            this.maxEmissionCount = Random.Range(this.lowerBound, this.upperBound);
+            output = transitionPlatforms[currentGeneratorIndex];
+            currentEmissionCount = 0;
+            currentGeneratorIndex = (currentGeneratorIndex + 1) % generators.Length;
+            maxEmissionCount = Random.Range(lowerBound, upperBound);
         }
         else
         {

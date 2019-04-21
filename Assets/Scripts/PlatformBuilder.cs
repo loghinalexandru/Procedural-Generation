@@ -6,73 +6,68 @@ public class PlatformBuilder : MonoBehaviour
     public float risingSpeed = 4f;
     public float destroyDelay = 10.0f;
     private PlatformController controller;
-    private CityObjectsGenerator cityObjectsGenerator;
-    private CountryObjectsGenerator countryObjectsGenerator;
-    private DesertObjectsGenerator desertObjectsGenerator;
+    private HMM[] propGenerators;
     private float xOffset = 0;
     private int rotation = 0;
     private float zOffset = 0;
 
     void Start()
     {
-        this.controller = this.GetComponent<PlatformController>();
-        this.cityObjectsGenerator = GameObject.FindGameObjectWithTag("Generator").GetComponent<CityObjectsGenerator>();
-        this.countryObjectsGenerator = GameObject.FindGameObjectWithTag("Generator").GetComponent<CountryObjectsGenerator>();
-        this.desertObjectsGenerator = GameObject.FindGameObjectWithTag("Generator").GetComponent<DesertObjectsGenerator>();
-        this.zOffset = controller.platformSize;
+        propGenerators = new HMM[3];
+        controller = GetComponent<PlatformController>();
+        propGenerators[0] = GameObject.FindGameObjectWithTag("Generator").GetComponent<CityObjectsGenerator>();
+        propGenerators[1] = GameObject.FindGameObjectWithTag("Generator").GetComponent<CountryObjectsGenerator>();
+        propGenerators[2] = GameObject.FindGameObjectWithTag("Generator").GetComponent<DesertObjectsGenerator>();
+        zOffset = controller.platformSize;
     }
 
     void Update()
     {
-        this.RisePlatform();
+        RisePlatform();
     }
 
     private void SetOffset()
     {
-        this.rotation = this.rotation % 360;
-        float aux = Mathf.Abs(this.xOffset);
-        this.xOffset = Mathf.Abs(this.zOffset);
-        this.zOffset = aux;
-        if (this.rotation == -90 || this.rotation == 180 || this.rotation == -180 || this.rotation == 270)
+        rotation = rotation % 360;
+        float aux = Mathf.Abs(xOffset);
+        xOffset = Mathf.Abs(zOffset);
+        zOffset = aux;
+        if (rotation == -90 || rotation == 180 || rotation == -180 || rotation == 270)
         {
-            this.xOffset = -this.xOffset;
-            this.zOffset = -this.zOffset;
+            xOffset = -xOffset;
+            zOffset = -zOffset;
         }
     }
 
     private void RisePlatform()
     {
-        if (this.currentPlatform.transform.position.y < 0)
+        if (currentPlatform.transform.position.y < 0)
         {
             Vector3 lerpValue;
-            lerpValue = Vector3.Lerp(this.currentPlatform.transform.position, this.currentPlatform.transform.position + Vector3.up * risingSpeed, 1f * Time.deltaTime);
+            lerpValue = Vector3.Lerp(currentPlatform.transform.position, currentPlatform.transform.position + Vector3.up * risingSpeed, 1f * Time.deltaTime);
             if (lerpValue.y > 0)
             {
-                this.currentPlatform.transform.position = new Vector3(this.currentPlatform.transform.position.x, 0, this.currentPlatform.transform.position.z);
+                currentPlatform.transform.position = new Vector3(currentPlatform.transform.position.x, 0, currentPlatform.transform.position.z);
             }
             else
             {
-                this.currentPlatform.transform.position = lerpValue;
+                currentPlatform.transform.position = lerpValue;
             }
         }
     }
     //TODO: Call destroy after a buffer of platforms spawned instead of time passed
     private void DestroyCurrentPlatform()
     {
-        Destroy(this.currentPlatform, this.destroyDelay);
+        Destroy(currentPlatform, destroyDelay);
     }
 
     private HMM ChoosePropGenerator(string sectionName)
     {
         if (sectionName.Contains("Desert"))
-        {
-            return this.desertObjectsGenerator;
-        }
+            return propGenerators[2];
         if (sectionName.Contains("Country"))
-        {
-            return this.countryObjectsGenerator;
-        }
-        return cityObjectsGenerator;
+            return propGenerators[1];
+        return propGenerators[0];
     }
 
     private void InstantiateProp(HMM generator, Transform spawnPosition, SpawnSettings spawn, int objectCount)
@@ -112,7 +107,7 @@ public class PlatformBuilder : MonoBehaviour
     //TODO: Make a transition platform with road sign info panel
     public GameObject BuildPlatform(GameObject state)
     {
-        GameObject nextPlatform = Instantiate(state, new Vector3(this.currentPlatform.transform.position.x + this.xOffset, -15, this.currentPlatform.transform.position.z + this.zOffset), Quaternion.Euler(0, 0, 0));
+        GameObject nextPlatform = Instantiate(state, new Vector3(currentPlatform.transform.position.x + xOffset, -15, currentPlatform.transform.position.z + zOffset), Quaternion.Euler(0, 0, 0));
         HMM propGenerator = ChoosePropGenerator(nextPlatform.name);
         Transform spawnPoints = nextPlatform.transform.Find("SpawnPoints");
         foreach (Transform spawn in spawnPoints)
@@ -125,7 +120,7 @@ public class PlatformBuilder : MonoBehaviour
                 InstantiateProp(propGenerator, spawn, spawnSettings, i);
             }
         }
-        nextPlatform.transform.rotation = Quaternion.Euler(0, this.rotation, 0);
+        nextPlatform.transform.rotation = Quaternion.Euler(0, rotation, 0);
         return nextPlatform;
     }
 
@@ -134,15 +129,15 @@ public class PlatformBuilder : MonoBehaviour
         GameObject nextPlatform = BuildPlatform(controller.GetNextPlatform());
         if (nextPlatform.name.Contains("Left"))
         {
-            this.rotation -= 90;
-            this.SetOffset();
+            rotation -= 90;
+            SetOffset();
         }
         if (nextPlatform.name.Contains("Right"))
         {
-            this.rotation += 90;
-            this.SetOffset();
+            rotation += 90;
+            SetOffset();
         }
         DestroyCurrentPlatform();
-        this.currentPlatform = nextPlatform;
+        currentPlatform = nextPlatform;
     }
 }

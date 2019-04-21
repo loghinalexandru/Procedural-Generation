@@ -427,8 +427,8 @@ MonoBehaviour:
   diskBrakes: {fileID: 2100000, guid: 359c8f2051f4bd84189e8480813c8ec1, type: 2}
   backfireLeft: {fileID: 1822318827}
   backfireRight: {fileID: 1451158372}
-  motorTorque: 650
-  brakeTorque: 300
+  motorTorque: 700
+  brakeTorque: 350
   maxAngle: 45
 --- !u!4 &1075181385 stripped
 Transform:
@@ -1063,6 +1063,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mass
       value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304775331625693418, guid: a245963ef33b5e142a56359a98acbf43,
+        type: 3}
+      propertyPath: m_Drag
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 5379942171222917634, guid: a245963ef33b5e142a56359a98acbf43,
         type: 3}
