@@ -72,32 +72,38 @@
     <Compile Include="Assets\HMM\HMM.cs" />
     <Compile Include="Assets\HMM\IEstimator.cs" />
     <Compile Include="Assets\Scripts\CarController.cs" />
+    <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\Follow.cs" />
     <Compile Include="Assets\Scripts\Markov.cs" />
     <Compile Include="Assets\Scripts\PlatformBuilder.cs" />
     <Compile Include="Assets\Scripts\PlatformController.cs" />
     <Compile Include="Assets\Scripts\PlatfromTrigger.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\PoliceLights.cs" />
     <Compile Include="Assets\Scripts\SkidMarks.cs" />
     <Compile Include="Assets\Scripts\SpawnSettings.cs" />
+    <Compile Include="Assets\VolumetricLights\Assets\Scripts\VolumetricLight.cs" />
+    <Compile Include="Assets\VolumetricLights\Assets\Scripts\VolumetricLightRenderer.cs" />
+    <Compile Include="Assets\VolumetricLights\Assets\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsBase.cs" />
+    <Compile Include="Assets\VolumetricLights\Assets\Standard Assets\Effects\ImageEffects\Scripts\Tonemapping.cs" />
     <None Include="Assets\Probabilities\EM_transition.txt" />
     <None Include="Assets\Probabilities\EM_cityPropsEmission.txt" />
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Basic.shader" />
     <None Include="Assets\Probabilities\EM_cityPropsTransition.txt" />
     <None Include="Assets\Probabilities\emission.txt" />
+    <None Include="Assets\VolumetricLights\Assets\Shaders\BilateralBlur.shader" />
     <None Include="Assets\Packages\MathNet.Numerics.4.7.0\lib\net461\MathNet.Numerics.xml" />
     <None Include="Assets\Probabilities\HHMM.txt" />
+    <None Include="Assets\VolumetricLights\Assets\Shaders\BlitAdd.shader" />
     <None Include="Assets\Probabilities\transition.txt" />
     <None Include="Assets\NuGet\LICENSE.txt" />
+    <None Include="Assets\VolumetricLights\Assets\Shaders\VolumetricLight.shader" />
     <None Include="Assets\Probabilities\emission_alternative.txt" />
+    <None Include="Assets\VolumetricLights\Assets\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
     <None Include="Assets\Probabilities\EM_emission.txt" />
-    <None Include="Assets\Shaders\Pearlescent.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Kiki/Documents/Procedural-Generation/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.multiplayer-hlapi.Editor">
-      <HintPath>C:/Users/Kiki/Documents/Procedural-Generation/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>C:/Users/Kiki/Documents/Procedural-Generation/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
@@ -126,9 +132,6 @@
     <Reference Include="Unity.Postprocessing.Editor">
       <HintPath>C:/Users/Kiki/Documents/Procedural-Generation/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="com.unity.multiplayer-weaver.Editor">
-      <HintPath>C:/Users/Kiki/Documents/Procedural-Generation/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
       <HintPath>C:/Users/Kiki/Documents/Procedural-Generation/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
@@ -153,14 +156,8 @@
     <Reference Include="Unity.TextMeshPro">
       <HintPath>C:/Users/Kiki/Documents/Procedural-Generation/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/Kiki/Documents/Procedural-Generation/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
       <HintPath>C:/Users/Kiki/Documents/Procedural-Generation/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-      <HintPath>C:/Users/Kiki/Documents/Procedural-Generation/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -347,15 +344,6 @@
     </Reference>
     <Reference Include="MathNet.Numerics">
       <HintPath>C:/Users/Kiki/Documents/Procedural-Generation/Assets/Packages/MathNet.Numerics.4.7.0/lib/net461/MathNet.Numerics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/Kiki/Documents/Procedural-Generation/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/Kiki/Documents/Procedural-Generation/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/Kiki/Documents/Procedural-Generation/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

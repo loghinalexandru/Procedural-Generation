@@ -6,7 +6,8 @@ public class CarController : MonoBehaviour
     public WheelCollider frontRight, frontLeft, backRight, backLeft;
     public Transform frontRightMesh, frontLeftMesh, backRightMesh, backLeftMesh;
     public Renderer tailLights;
-    public Material brakeLightsOn, brakeLightsOff, backLightsOn, backlightsOff, diskBrakes;
+    public Material brakeLightsOn, brakeLightsOff, backLightsOn, backlightsOff, diskBrakes , carMaterial;
+    public ReflectionProbe probe;
     public ParticleSystem backfireLeft, backfireRight;
     public float motorTorque = 30f;
     public float brakeTorque = 20f;
@@ -174,8 +175,14 @@ public class CarController : MonoBehaviour
         }
     }
 
+    private void SetReflection()
+    {
+        carMaterial.SetTexture("_Cube", this.probe.texture);
+    }
+
     void FixedUpdate()
     {
+        SetReflection();
         GetInput();
         Steer();
         SetGear();

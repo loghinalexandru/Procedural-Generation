@@ -9,7 +9,7 @@ public class CityPlatformGenerator : HMM
         this.Init();
         this.estimator = new EM(this.stateStartProbabilities.Count, this.emissions.Count);
         this.ParameterInference(new List<int> {
-            0,1,2,2,2,2,2,2,2,2,2,2,0,1,0,2
+            0,1,2,2,2,2,2,2,2,2,2,2,2,1,0,2
         });
     }
 }

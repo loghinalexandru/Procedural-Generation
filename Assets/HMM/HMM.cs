@@ -258,6 +258,5 @@ public abstract class HMM : MonoBehaviour
         this.stateStartProbabilities = new List<double>(startProbabilites);
         this.currentStateIndex = this.SetInitialState();
         Debug.Log(maxLoglikelihood);
-
     }
 }

@@ -4,7 +4,7 @@ public class PlatformBuilder : MonoBehaviour
 {
     public GameObject currentPlatform;
     public float risingSpeed = 4f;
-    public float destroyDelay = 10.0f;
+    public float destroyDelay = 5.0f;
     private PlatformController controller;
     private HMM[] propGenerators;
     private float xOffset = 0;

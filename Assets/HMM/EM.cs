@@ -82,7 +82,6 @@ public class EM : IEstimator
         return output;
     }
 
-    //TODO: Solve floating point precision lost
     public double GetLikelihood(List<int> observations, Matrix<double> transitionMatrix, Matrix<double> emissionMatrix)
     {
         if (observations.Count < 0)
@@ -98,7 +97,7 @@ public class EM : IEstimator
         }
         return System.Math.Log(currentValues.Sum());
     }
-    //TODO: SOLVE RANDOM NAN IN LIKELIHOOD , IT'S FROM System.Math.Log();
+
     public double GetLikelihoodV2(Matrix<double> occurence, Matrix<double> transition, Matrix<double> emission, Matrix<double> cBar)
     {
         double likelihood = 0;
@@ -122,8 +121,6 @@ public class EM : IEstimator
         return likelihood;
     }
 
-
-    //TODO: Refactor this and add Matlab conditions for convergence
     public double train(List<int> observations, double[,] transitionProbabilities, double[,] emissionProbabilities, List<double> pi)
     {
         this.SetEmissionMatrix(emissionProbabilities);
