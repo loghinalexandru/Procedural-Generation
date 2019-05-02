@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\CarController.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\Follow.cs" />
+    <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Markov.cs" />
     <Compile Include="Assets\Scripts\PlatformBuilder.cs" />
     <Compile Include="Assets\Scripts\PlatformController.cs" />

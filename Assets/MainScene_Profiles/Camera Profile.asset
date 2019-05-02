@@ -1384,7 +1384,7 @@ MonoBehaviour:
     value: 1
   shutterAngle:
     overrideState: 1
-    value: 25
+    value: 10
   sampleCount:
     overrideState: 1
     value: 10
@@ -1436,7 +1436,7 @@ MonoBehaviour:
     value: 0.25
   quality:
     overrideState: 1
-    value: 4
+    value: 3
 --- !u!114 &114325148731113990
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1475,7 +1475,7 @@ MonoBehaviour:
     overrideState: 1
     value: {r: 1, g: 1, b: 1, a: 1}
   fastMode:
-    overrideState: 1
+    overrideState: 0
     value: 0
   dirtTexture:
     overrideState: 1

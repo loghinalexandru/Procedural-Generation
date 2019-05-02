@@ -7,6 +7,8 @@ public abstract class HMM : MonoBehaviour
 {
     private double[,] transitionProbabilities;
     private double[,] emissionProbabilities;
+    private double[,] transitionCumulativeProbabilities;
+    private double[,] emissionCumulativeProbabilities;
     private int currentStateIndex = 0;
     public int maxParalelModels = 10;
     public IEstimator estimator { get; set; }
@@ -22,6 +24,13 @@ public abstract class HMM : MonoBehaviour
         this.transitionProbabilities = new double[this.stateStartProbabilities.Count, this.stateStartProbabilities.Count];
         this.currentStateIndex = this.SetInitialState();
         this.SetProbabilities();
+        this.SetCumulativeDistributions();
+    }
+
+    private void SetCumulativeDistributions()
+    {
+        this.emissionCumulativeProbabilities = GetCumulativeDistribution(this.emissionProbabilities);
+        this.transitionCumulativeProbabilities = GetCumulativeDistribution(this.transitionProbabilities);
     }
 
     private void SetProbabilities()
@@ -37,15 +46,31 @@ public abstract class HMM : MonoBehaviour
         }
     }
 
+    private double[,] GetCumulativeDistribution(double[,] matrix)
+    {
+        double[,] output = new double[matrix.GetLength(0) , matrix.GetLength(1)];
+        for(int i = 0; i < matrix.GetLength(0); ++i)
+        {
+            double sum = 0.0f;
+            for(int j = 0; j < matrix.GetLength(1); j++)
+            {
+                sum += matrix[i, j];
+                output[i, j] = sum;
+            }
+        }
+        return output;
+    }
+
     private void SetFileTransitionProbabilities()
     {
         string[] text = this.transitionFile.text.Split('\n');
         for (int i = 0; i < text.Length; ++i)
         {
-            string[] probabilities = text[i].Trim().Split(' ');
+            double[] probabilities = System.Array.ConvertAll(text[i].Trim().Split(' '), double.Parse);
+            System.Array.Sort(probabilities);
             for (int j = 0; j < probabilities.Length; ++j)
             {
-                this.transitionProbabilities[i, j] = double.Parse(probabilities[j]);
+                this.transitionProbabilities[i, j] = probabilities[j];
             }
         }
     }
@@ -55,10 +80,11 @@ public abstract class HMM : MonoBehaviour
         string[] text = this.emissionFile.text.Split('\n');
         for (int i = 0; i < text.Length; ++i)
         {
-            string[] probabilities = text[i].Trim().Split(' ');
+            double[] probabilities = System.Array.ConvertAll(text[i].Trim().Split(' '), double.Parse);
+            System.Array.Sort(probabilities);
             for (int j = 0; j < probabilities.Length; ++j)
             {
-                this.emissionProbabilities[i, j] = double.Parse(probabilities[j]);
+                this.emissionProbabilities[i, j] = probabilities[j];
             }
         }
     }
@@ -95,7 +121,7 @@ public abstract class HMM : MonoBehaviour
         }
     }
 
-    private void Normalize(double[,] target, List<double> divisors)
+    private void Normalize(double[,] target, double[] divisors)
     {
         for (int i = 0; i < target.GetLength(0); ++i)
         {
@@ -105,41 +131,39 @@ public abstract class HMM : MonoBehaviour
             }
         }
     }
-    //TODO: Refactor this function
-    public void SetRandomProbabilities()
+
+    private void SetRandomMatrix(double[,] matrix)
+    {
+        double[] divisors = new double[matrix.GetLength(0)];
+        double rowMax = 0.0f;
+        for (int i = 0; i < matrix.GetLength(0); ++i)
+        {
+            rowMax = 0;
+            for (int j = 0; j < matrix.GetLength(1); ++j)
+            {
+                matrix[i, j] = Random.Range(0.0f, 100.0f);
+                rowMax += matrix[i, j];
+            }
+            divisors[i] = rowMax;
+        }
+        Normalize(matrix, divisors);
+    }
+
+    private void SetRandomStart()
     {
         double rowMax = 0;
-        List<double> divisors = new List<double>();
         for (int i = 0; i < this.stateStartProbabilities.Count; ++i)
         {
-            rowMax = 0;
-            for (int j = 0; j < this.stateStartProbabilities.Count; ++j)
-            {
-                this.transitionProbabilities[i, j] = Random.Range(0.0f, 10.0f);
-                rowMax += this.transitionProbabilities[i, j];
-            }
-            divisors.Add(rowMax);
-        }
-        Normalize(this.transitionProbabilities, divisors);
-        divisors.Clear();
-        for (int i = 0; i < this.stateStartProbabilities.Count; ++i)
-        {
-            rowMax = 0;
-            for (int j = 0; j < this.emissions.Count; ++j)
-            {
-                this.emissionProbabilities[i, j] = Random.Range(0.0f, 10.0f);
-                rowMax += this.emissionProbabilities[i, j];
-            }
-            divisors.Add(rowMax);
-        }
-        Normalize(this.emissionProbabilities, divisors);
-        rowMax = 0;
-        for (int i = 0; i < this.stateStartProbabilities.Count; ++i)
-        {
-            this.stateStartProbabilities[i] = Random.Range(0.0f, 10.0f);
+            this.stateStartProbabilities[i] = Random.Range(0.0f, 100.0f);
             rowMax += this.stateStartProbabilities[i];
         }
         stateStartProbabilities = stateStartProbabilities.Select(entry => entry = entry / rowMax).ToList();
+    }
+    public void SetRandomProbabilities()
+    {
+        SetRandomStart();
+        SetRandomMatrix(this.transitionProbabilities);
+        SetRandomMatrix(this.emissionProbabilities);
     }
 
     private int SetInitialState()
@@ -161,42 +185,35 @@ public abstract class HMM : MonoBehaviour
         return index;
     }
 
-    private int MakeTransition(int state)
+    private int BinarySearch(int state , double target , double[,] matrix)
     {
-        int index = -1;
-        double start = 0.0f;
-        double end = 0.0f;
-        double randomValue = Random.value;
-        for (int j = 0; j < this.stateStartProbabilities.Count; ++j)
+        int left = 0;
+        int right = matrix.GetLength(1) - 1;
+        while (left <= right)
         {
-            start = end;
-            end += this.transitionProbabilities[state, j];
-            if (start <= randomValue && randomValue <= end)
+            int midpoint = (left + right) / 2;
+            if(target <= matrix[state , midpoint])
             {
-                index = j;
-                break;
+                if (midpoint == 0 || (midpoint > 0 && target > matrix[state, midpoint - 1]))
+                    return midpoint;
+                right = midpoint - 1;
+            }
+            else
+            {
+                left = midpoint + 1;
             }
         }
-        return index;
+        return -1;
+    }
+
+    private int MakeTransition(int state)
+    {
+        return BinarySearch(state, Random.value, transitionCumulativeProbabilities);
     }
 
     private int MakeEmission(int state)
     {
-        int index = -1;
-        double start = 0.0f;
-        double end = 0.0f;
-        double randomValue = Random.value;
-        for (int j = 0; j < this.emissions.Count; ++j)
-        {
-            start = end;
-            end += this.emissionProbabilities[state, j];
-            if (start <= randomValue && randomValue <= end)
-            {
-                index = j;
-                break;
-            }
-        }
-        return index;
+        return BinarySearch(state, Random.value, emissionCumulativeProbabilities);
     }
 
     public GameObject NextEmission()
@@ -249,7 +266,7 @@ public abstract class HMM : MonoBehaviour
                 maxLoglikelihood = likelihood;
                 bestEmission = estimator.GetEmissionMatrix();
                 bestTransition = estimator.GetTransitionMatrix();
-                startProbabilites = this.stateStartProbabilities.ToArray();
+                startProbabilites = estimator.GetStartProbabilities();
             }
             this.SetRandomProbabilities();
         }
@@ -257,6 +274,7 @@ public abstract class HMM : MonoBehaviour
         this.transitionProbabilities = bestTransition;
         this.stateStartProbabilities = new List<double>(startProbabilites);
         this.currentStateIndex = this.SetInitialState();
+        this.SetCumulativeDistributions();
         Debug.Log(maxLoglikelihood);
     }
 }

@@ -9,4 +9,5 @@ public interface IEstimator
     double train(List<int> observations, double[,] transitionProbabilities, double[,] emissionProbabilities, List<double> pi);
     double[,] GetEmissionMatrix();
     double[,] GetTransitionMatrix();
+    double[] GetStartProbabilities();
 }

@@ -28,7 +28,6 @@ public class PoliceLights : MonoBehaviour
     {
         blue.SetColor("_EmissionColor", Color.blue);
         red.SetColor("_EmissionColor", Color.red * intensity);
-
     }
 
     private void SetBlue()
