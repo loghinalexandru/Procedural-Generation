@@ -11,6 +11,9 @@ ScriptsOnlyBuild:
     - EnemyAI
     - Follow
     - GameController
+    - MenuController
+    - OnClick
+    - OnClickMenu
     - PlatformBuilder
     - PlatformController
     - PlatfromTrigger
@@ -34,20 +37,24 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.PostProcessing.PostProcessVolume
     - UnityEngine.Rendering.PostProcessing.ScreenSpaceReflections
     - UnityEngine.Rendering.PostProcessing.Vignette
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
     - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateEditor
     - UnityEditor.Graphs.AnimationStateMachine.StateNode
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
@@ -98,70 +105,88 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
+    - Class: 109
+      Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9384}
+      Script: {instanceID: 9416}
     - Class: 114
-      Script: {instanceID: 9426}
+      Script: {instanceID: 9458}
     - Class: 114
-      Script: {instanceID: 9434}
+      Script: {instanceID: 9466}
     - Class: 114
-      Script: {instanceID: 9446}
+      Script: {instanceID: 9478}
     - Class: 114
-      Script: {instanceID: 9524}
+      Script: {instanceID: 9556}
     - Class: 114
-      Script: {instanceID: 9540}
+      Script: {instanceID: 9572}
     - Class: 114
-      Script: {instanceID: 9642}
+      Script: {instanceID: 9674}
     - Class: 114
-      Script: {instanceID: 9706}
+      Script: {instanceID: 9736}
     - Class: 114
-      Script: {instanceID: 9712}
+      Script: {instanceID: 9738}
     - Class: 114
-      Script: {instanceID: 9718}
+      Script: {instanceID: 9744}
     - Class: 114
-      Script: {instanceID: 9726}
+      Script: {instanceID: 9750}
     - Class: 114
-      Script: {instanceID: 9762}
+      Script: {instanceID: 9758}
     - Class: 114
-      Script: {instanceID: 9764}
+      Script: {instanceID: 9794}
     - Class: 114
-      Script: {instanceID: 9934}
+      Script: {instanceID: 9796}
     - Class: 114
-      Script: {instanceID: 9980}
+      Script: {instanceID: 9966}
     - Class: 114
-      Script: {instanceID: 10232}
+      Script: {instanceID: 10012}
     - Class: 114
-      Script: {instanceID: 10358}
+      Script: {instanceID: 10264}
     - Class: 114
-      Script: {instanceID: 10554}
+      Script: {instanceID: 10390}
     - Class: 114
-      Script: {instanceID: 10694}
+      Script: {instanceID: 10392}
     - Class: 114
-      Script: {instanceID: 10784}
+      Script: {instanceID: 10522}
     - Class: 114
-      Script: {instanceID: 11028}
+      Script: {instanceID: 10588}
     - Class: 114
-      Script: {instanceID: 11140}
+      Script: {instanceID: 10728}
     - Class: 114
-      Script: {instanceID: 11242}
+      Script: {instanceID: 10818}
     - Class: 114
-      Script: {instanceID: 11458}
+      Script: {instanceID: 10892}
     - Class: 114
-      Script: {instanceID: 11524}
+      Script: {instanceID: 11064}
     - Class: 114
-      Script: {instanceID: 11730}
+      Script: {instanceID: 11072}
     - Class: 114
-      Script: {instanceID: 11776}
+      Script: {instanceID: 11086}
     - Class: 114
-      Script: {instanceID: 11820}
+      Script: {instanceID: 11176}
     - Class: 114
-      Script: {instanceID: 11882}
+      Script: {instanceID: 11278}
     - Class: 114
-      Script: {instanceID: 11958}
+      Script: {instanceID: 11494}
     - Class: 114
-      Script: {instanceID: 11962}
+      Script: {instanceID: 11560}
     - Class: 114
-      Script: {instanceID: 37996}
+      Script: {instanceID: 11692}
+    - Class: 114
+      Script: {instanceID: 11766}
+    - Class: 114
+      Script: {instanceID: 11812}
+    - Class: 114
+      Script: {instanceID: 11856}
+    - Class: 114
+      Script: {instanceID: 11918}
+    - Class: 114
+      Script: {instanceID: 11994}
+    - Class: 114
+      Script: {instanceID: 11998}
+    - Class: 114
+      Script: {instanceID: 30736}
+    - Class: 114
+      Script: {instanceID: 56964}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -813,6 +838,12 @@ ScriptsOnlyBuild:
     className: LightweightRenderPipelineAsset
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: OnClick
+  - hash:
+      serializedVersion: 2
       Hash: 7c6b361d03a5288437d7dd178984efbb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -871,6 +902,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering
     className: VolumeProfile
+  - hash:
+      serializedVersion: 2
+      Hash: 855ef3a5ad4870cf87823a882da38a4e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameController
   - hash:
       serializedVersion: 2
       Hash: f050e4ebd311386367bb1906f9218b01
@@ -1107,10 +1144,16 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: 1903506318b2d0526f39353bc1c60bb5
+      Hash: 35f3c79918551a7298b428c9f2c6aed5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: GameController
+    className: MenuController
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: OnClickMenu
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainScene.unity
