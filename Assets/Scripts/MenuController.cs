@@ -1,24 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
     public Animator[] controllers;
     public EnemyAI enemyScript;
     public CarController playerScript;
-    public Camera camera;
+    public Camera mainCamera;
     public Rigidbody player;
     public Rigidbody AI;
     public Transform cameraPosition;
+    public GameObject bars;
 
     private Follow cameraScript;
     private int currentIndex = 0;
     private bool pressed = false;
+    private bool cameraArrived = false;
+    private bool gameStart = false;
 
     void Start()
     {
-        cameraScript = camera.GetComponent<Follow>();
+        cameraScript = mainCamera.GetComponent<Follow>();
     }
     private void SetSelectedIndex(int index)
     {
@@ -42,8 +43,17 @@ public class MenuController : MonoBehaviour
 
     public void SnapCamera()
     {
-        camera.transform.position = cameraPosition.position;
-        camera.transform.rotation = cameraPosition.rotation;
+        if (mainCamera.transform.position == cameraPosition.position)
+        {
+            cameraArrived = true;
+            EnableScripts();
+            return;
+        }
+        if (cameraArrived == false && gameStart == true)
+        {
+            mainCamera.transform.position = Vector3.MoveTowards(mainCamera.transform.position, cameraPosition.position, 0.2f);
+            mainCamera.transform.rotation = Quaternion.RotateTowards(mainCamera.transform.rotation, cameraPosition.rotation, 0.4f);
+        }
     }
 
     private void ResetIndex(int index)
@@ -53,18 +63,25 @@ public class MenuController : MonoBehaviour
 
     public void OnGameStart()
     {
-        SnapCamera();
-        this.player.constraints = RigidbodyConstraints.None;
-        this.AI.constraints = RigidbodyConstraints.None;
-        this.enemyScript.enabled = true;
-        this.playerScript.enabled = true;
-        this.cameraScript.enabled = true;
-        this.enabled = false;
+        gameStart = true;
+        player.constraints = RigidbodyConstraints.None;
+        AI.constraints = RigidbodyConstraints.None;
+        player.velocity = Vector3.forward;
+        AI.velocity = Vector3.forward;
+        bars.SetActive(true);
+    }
+
+    public void EnableScripts()
+    {
+        enemyScript.enabled = true;
+        playerScript.enabled = true;
+        cameraScript.enabled = true;
+        gameObject.SetActive(false);
     }
     private void CheckInput()
     {
-        ResetIndex(this.currentIndex);
-        if(Input.GetAxis("Vertical") != 0)
+        ResetIndex(currentIndex);
+        if (Input.GetAxis("Vertical") != 0)
         {
             if (!pressed)
             {
@@ -80,18 +97,19 @@ public class MenuController : MonoBehaviour
                 pressed = true;
             }
         }
-        else if(Input.GetAxis("Vertical") == 0)
+        else if (Input.GetAxis("Vertical") == 0)
         {
             pressed = false;
         }
-        if(Input.GetAxis("Submit") != 0)
+        if (Input.GetAxis("Submit") != 0)
         {
-            SetClickedIndex(this.currentIndex);
+            SetClickedIndex(currentIndex);
         }
     }
     void Update()
     {
         CheckInput();
+        SnapCamera();
     }
 
 }

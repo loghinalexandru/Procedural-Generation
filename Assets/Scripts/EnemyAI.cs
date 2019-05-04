@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     public float brakingRate = 0.3f;
     public Material tailLights;
 
-    private float baseSpeed = 7.0f;
+    private float baseSpeed = 3.0f;
 
     private void SetBrakesOn()
     {

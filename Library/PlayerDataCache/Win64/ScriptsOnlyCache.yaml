@@ -49,6 +49,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
     - UnityEditor.Graphs.AnimationStateMachine.StateNode
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
@@ -178,15 +179,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11856}
     - Class: 114
-      Script: {instanceID: 11918}
+      Script: {instanceID: 11902}
     - Class: 114
-      Script: {instanceID: 11994}
+      Script: {instanceID: 11920}
+    - Class: 114
+      Script: {instanceID: 11958}
     - Class: 114
       Script: {instanceID: 11998}
     - Class: 114
-      Script: {instanceID: 30736}
-    - Class: 114
-      Script: {instanceID: 56964}
+      Script: {instanceID: 12002}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -1108,6 +1109,12 @@ ScriptsOnlyBuild:
     className: TMP_SubMesh
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: OnClickMenu
+  - hash:
+      serializedVersion: 2
       Hash: 8f8cb0c7e283e4a11730fab7c6c9cf01
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1126,6 +1133,12 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
+      Hash: c1f7910d0a4414f59c089025fe556028
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MenuController
+  - hash:
+      serializedVersion: 2
       Hash: 7c6b361d03a5288437d7dd178984efbb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1142,18 +1155,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 35f3c79918551a7298b428c9f2c6aed5
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MenuController
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: OnClickMenu
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainScene.unity
