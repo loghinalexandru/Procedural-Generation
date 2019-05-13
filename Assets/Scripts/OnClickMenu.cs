@@ -15,6 +15,7 @@ public class OnClickMenu : StateMachineBehaviour
                 controller.OnGameStart();
                 break;
             case "Credits":
+                controller.OnCredits();
                 break;
             case "Exit":
                 controller.OnGameExit();

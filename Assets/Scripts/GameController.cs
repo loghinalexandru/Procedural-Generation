@@ -12,7 +12,6 @@ public class GameController : MonoBehaviour
     private Follow cameraScript;
     private EnemyAI enemyScript;
     private bool gameOver = false;
-    private bool pressed = false;
     private int currentIndex = 0;
 
     void Start()
@@ -24,7 +23,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.transform.position.y < -2)
+        if (player.transform.position.y < 0)
         {
             cameraScript.enabled = false;
             enemyScript.enabled = false;
