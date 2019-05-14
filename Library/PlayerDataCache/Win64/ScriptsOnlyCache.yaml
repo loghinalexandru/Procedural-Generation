@@ -45,11 +45,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateMachineInspector
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -910,7 +907,7 @@ ScriptsOnlyBuild:
     className: VolumeProfile
   - hash:
       serializedVersion: 2
-      Hash: 855ef3a5ad4870cf87823a882da38a4e
+      Hash: d690f1f1af2d311ac5b1ea3af8809724
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -1138,7 +1135,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 770b1e80b0057adc5a05fa434a71960a
+      Hash: bfa2ac51b658fb3188ef6dff971a0825
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuController

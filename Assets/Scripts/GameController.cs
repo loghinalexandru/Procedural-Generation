@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
 
     public GameObject player;
     public GameObject enemy;
+    public GameObject camera;
     public GameObject gameOverScreen;
     public Animator[] controllers;
 
@@ -13,14 +13,33 @@ public class GameController : MonoBehaviour
     private EnemyAI enemyScript;
     private bool gameOver = false;
     private int currentIndex = 0;
+    private bool pressed = false;
+    private AudioSource inGameMusic;
 
     void Start()
     {
         gameOverScreen.SetActive(false);
-        cameraScript = GetComponent<Follow>();
+        cameraScript = camera.GetComponent<Follow>();
         enemyScript = enemy.GetComponent<EnemyAI>();
+        inGameMusic = GetComponent<AudioSource>();
     }
-    // Update is called once per frame
+    private void FreezeRender()
+    {
+        Time.timeScale = 1.0f - Time.timeScale;
+    }
+
+    private void FreezeSound()
+    {
+        if (this.inGameMusic.isPlaying)
+        {
+            this.inGameMusic.Pause();
+        }
+        else
+        {
+            this.inGameMusic.UnPause();
+        }
+    }
+
     void Update()
     {
         if (player.transform.position.y < 0)
@@ -30,7 +49,21 @@ public class GameController : MonoBehaviour
             gameOverScreen.SetActive(true);
             gameOver = true;
         }
+        if (Input.GetAxisRaw("Cancel") != 0)
+        {
+            if (!pressed)
+            {
+                FreezeSound();
+                FreezeRender();
+                pressed = true;
+            }
+        }
+        else
+        {
+            pressed = false;
+        }
         CheckWastedScreen();
+        SoundEffects.FadeIn(inGameMusic, 10.0f);
     }
 
     private void ResetIndex(int index)

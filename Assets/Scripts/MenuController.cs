@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+
+//TODO: REFACTOR THIS
 public class MenuController : MonoBehaviour
 {
     public Animator[] controllers;
@@ -11,6 +13,7 @@ public class MenuController : MonoBehaviour
     public Transform cameraPosition;
     public GameObject bars;
     public GameObject credits;
+    public GameObject gameController;
 
     private Follow cameraScript;
     private int currentIndex = 0;
@@ -19,11 +22,11 @@ public class MenuController : MonoBehaviour
     private bool gameStart = false;
     private bool creditsStart = false;
     private static bool retry = false;
-    private AudioSource[] soundEffects;
+    private AudioSource[] menuSounds;
 
     void Start()
     {
-        soundEffects = this.GetComponents<AudioSource>();
+        menuSounds = this.GetComponents<AudioSource>();
         cameraScript = mainCamera.GetComponent<Follow>();
         if(retry == true)
         {
@@ -35,7 +38,7 @@ public class MenuController : MonoBehaviour
 
     private void SetSelectedIndex(int index)
     {
-        soundEffects[1].PlayDelayed(0.0f);
+        menuSounds[1].PlayDelayed(0.0f);
         for (int i = 0; i < controllers.Length; ++i)
         {
             if (i == index)
@@ -70,7 +73,7 @@ public class MenuController : MonoBehaviour
         if (mainCamera.transform.position == cameraPosition.position)
         {
             cameraArrived = true;
-            EnableScripts();
+            EnableComponents();
             return;
         }
         if (cameraArrived == false && gameStart == true)
@@ -90,33 +93,10 @@ public class MenuController : MonoBehaviour
         gameObject.transform.localScale = Vector3.zero;
     }
 
-    private void SoundFadeIn(AudioSource audio , float time)
-    {
-        if(audio.enabled == true && audio.isPlaying == false)
-        {
-            audio.Play();
-        }
-        if(audio.volume < 1.0f)
-        {
-            audio.volume += Time.deltaTime / (time + 1);
-        }
-    }
-
-    private void SoundFadeOut(AudioSource audio , float time)
-    {
-        if (audio.volume > 0)
-        {
-            audio.volume -= Time.deltaTime / (time + 1);
-        }
-        if(audio.volume == 0)
-        {
-            audio.enabled = false;
-        }
-    }
-
     public void OnGameStart()
     {
         gameStart = true;
+        gameController.SetActive(true);
         player.constraints = RigidbodyConstraints.None;
         AI.constraints = RigidbodyConstraints.None;
         player.velocity = Vector3.forward * 3;
@@ -124,12 +104,12 @@ public class MenuController : MonoBehaviour
         bars.SetActive(true);
     }
 
-    public void EnableScripts()
+    public void EnableComponents()
     {
         enemyScript.enabled = true;
         playerScript.enabled = true;
         cameraScript.enabled = true;
-        soundEffects[1].enabled = false;
+        menuSounds[1].enabled = false;
         HideMainMenu();
     }
 
@@ -137,7 +117,6 @@ public class MenuController : MonoBehaviour
     {
         this.creditsStart = false;
         this.credits.SetActive(false);
-        this.credits.transform.position = new Vector3(this.credits.transform.position.x, -2000, this.credits.transform.position.z);
     }
     private void CheckInput()
     {
@@ -182,12 +161,11 @@ public class MenuController : MonoBehaviour
     {
         if (!gameStart)
         {
-            SoundFadeIn(soundEffects[0], 10.0f);
+            SoundEffects.FadeIn(menuSounds[0], 10.0f);
         }
         else
         {
-            SoundFadeOut(soundEffects[0], 3.0f);
-            SoundFadeIn(soundEffects[2], 5.0f);
+            SoundEffects.FadeOut(menuSounds[0], 4.0f);
         }
         SnapCamera();
         CheckInput();
