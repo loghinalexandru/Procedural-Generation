@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\OnClick.cs" />
     <Compile Include="Assets\Scripts\OnClickMenu.cs" />
+    <Compile Include="Assets\Scripts\OnClickPause.cs" />
     <Compile Include="Assets\Scripts\PlatformBuilder.cs" />
     <Compile Include="Assets\Scripts\PlatformController.cs" />
     <Compile Include="Assets\Scripts\PlatfromTrigger.cs" />

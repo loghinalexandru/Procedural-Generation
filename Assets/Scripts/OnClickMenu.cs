@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class OnClickMenu : StateMachineBehaviour
 {
-    private MenuController controller;
-
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        controller = GameObject.FindGameObjectWithTag("MenuController").GetComponent<MenuController>();
+        MenuController controller = GameObject.FindGameObjectWithTag("MenuController").GetComponent<MenuController>();
         switch (animator.name)
         {
             case "Play":

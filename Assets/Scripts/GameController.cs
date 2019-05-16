@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
+using System;
 
 public class GameController : MonoBehaviour
 {
-
     public GameObject player;
     public GameObject enemy;
     public GameObject camera;
     public GameObject gameOverScreen;
-    public Animator[] controllers;
+    public GameObject pauseScreen;
+    public Animator[] wastedScreenControllers;
+    public Animator[] pauseScreenControllers;
 
     private Follow cameraScript;
     private EnemyAI enemyScript;
     private bool gameOver = false;
     private int currentIndex = 0;
     private bool pressed = false;
+    private bool gamePaused = false;
     private AudioSource inGameMusic;
 
     void Start()
@@ -23,12 +26,13 @@ public class GameController : MonoBehaviour
         enemyScript = enemy.GetComponent<EnemyAI>();
         inGameMusic = GetComponent<AudioSource>();
     }
-    private void FreezeRender()
+
+    private void ToggleRender()
     {
         Time.timeScale = 1.0f - Time.timeScale;
     }
 
-    private void FreezeSound()
+    private void ToggleSound()
     {
         if (this.inGameMusic.isPlaying)
         {
@@ -37,6 +41,47 @@ public class GameController : MonoBehaviour
         else
         {
             this.inGameMusic.UnPause();
+        }
+    }
+
+    private void TogglePauseMenu()
+    {
+        if (!this.pauseScreen.activeSelf)
+        {
+            this.pauseScreen.SetActive(true);
+        }
+        else
+        {
+            this.pauseScreen.SetActive(false);
+        }
+    }
+
+    private void SetPausedState()
+    {
+        gamePaused = gamePaused == true ? false : true;
+    }
+
+    public void TogglePause()
+    {
+        ToggleSound();
+        ToggleRender();
+        TogglePauseMenu();
+        SetPausedState();
+    }
+
+    public void CheckPauseButton()
+    {
+        if (Input.GetAxisRaw("Cancel") != 0)
+        {
+            if (!pressed)
+            {
+                TogglePause();
+                pressed = true;
+            }
+        }
+        else
+        {
+            pressed = false;
         }
     }
 
@@ -49,28 +94,18 @@ public class GameController : MonoBehaviour
             gameOverScreen.SetActive(true);
             gameOver = true;
         }
-        if (Input.GetAxisRaw("Cancel") != 0)
-        {
-            if (!pressed)
-            {
-                FreezeSound();
-                FreezeRender();
-                pressed = true;
-            }
-        }
-        else
-        {
-            pressed = false;
-        }
         CheckWastedScreen();
+        CheckPauseButton();
+        CheckPauseScreen();
         SoundEffects.FadeIn(inGameMusic, 10.0f);
     }
 
-    private void ResetIndex(int index)
+    private void ResetIndex(Animator[] controllers , int index)
     {
         controllers[index].SetBool("clicked", false);
     }
-    private void SetSelectedIndex(int index)
+
+    private void SetSelectedIndex(Animator[] controllers , int index)
     {
         for (int i = 0; i < controllers.Length; ++i)
         {
@@ -81,7 +116,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void SetClickedIndex(int index)
+    private void SetClickedIndex(Animator[] controllers , int index)
     {
         controllers[index].SetBool("clicked", true);
     }
@@ -90,7 +125,7 @@ public class GameController : MonoBehaviour
     {
         if (gameOver)
         {
-            ResetIndex(currentIndex);
+            ResetIndex(this.wastedScreenControllers , currentIndex);
             if (Input.GetAxis("Horizontal") > 0)
             {
                 currentIndex = currentIndex < 1 ? currentIndex + 1 : currentIndex;
@@ -99,11 +134,28 @@ public class GameController : MonoBehaviour
             {
                 currentIndex = currentIndex > 0 ? currentIndex - 1 : currentIndex;
             }
-            SetSelectedIndex(currentIndex);
+            SetSelectedIndex(this.wastedScreenControllers , currentIndex);
             if (Input.GetAxis("Submit") > 0)
-                SetClickedIndex(currentIndex);
+                SetClickedIndex(this.wastedScreenControllers , currentIndex);
         }
     }
 
-
+    private void CheckPauseScreen()
+    {
+        if (gamePaused)
+        {
+            ResetIndex(this.pauseScreenControllers , this.currentIndex);
+            if (Input.GetAxisRaw("Vertical") < 0)
+            {
+                currentIndex = currentIndex < 1 ? currentIndex + 1 : currentIndex;
+            }
+            else if (Input.GetAxisRaw("Vertical") > 0)
+            {
+                currentIndex = currentIndex > 0 ? currentIndex - 1 : currentIndex;
+            }
+            SetSelectedIndex(this.pauseScreenControllers , currentIndex);
+            if (Input.GetAxisRaw("Submit") > 0)
+                SetClickedIndex(this.pauseScreenControllers , currentIndex);
+        }
+    }
 }
