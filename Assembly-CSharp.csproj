@@ -85,6 +85,8 @@
     <Compile Include="Assets\Scripts\PlatfromTrigger.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\PoliceLights.cs" />
+    <Compile Include="Assets\Scripts\ProximityCollider.cs" />
+    <Compile Include="Assets\Scripts\ProximityTrigger.cs" />
     <Compile Include="Assets\Scripts\SkidMarks.cs" />
     <Compile Include="Assets\Scripts\SoundEffects.cs" />
     <Compile Include="Assets\Scripts\SpawnSettings.cs" />

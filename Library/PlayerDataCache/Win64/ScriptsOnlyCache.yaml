@@ -19,6 +19,7 @@ ScriptsOnlyBuild:
     - PlatformController
     - PlatfromTrigger
     - PoliceLights
+    - ProximityTrigger
     - SpawnSettings
     - VolumetricLight
     - VolumetricLightRenderer
@@ -46,10 +47,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -195,6 +194,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12002}
     - Class: 114
       Script: {instanceID: 12006}
+    - Class: 114
+      Script: {instanceID: 18736}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -912,7 +913,7 @@ ScriptsOnlyBuild:
     className: VolumeProfile
   - hash:
       serializedVersion: 2
-      Hash: b2d84a915754484c485d071d1f6ab01a
+      Hash: e6c271fd21428cd44ebb66d99d7bf3fd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -1168,6 +1169,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: dd927f7a201e01a7ef3985107749a84e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ProximityTrigger
+  - hash:
+      serializedVersion: 2
+      Hash: 9232e461e2ce4f47964ce1c28b42f335
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ProximityCollider
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainScene.unity
