@@ -91,23 +91,23 @@ public class EM : IEstimator
         return output;
     }
 
-    public double GetLikelihood(List<int> observations, Matrix<double> transitionMatrix, Matrix<double> emissionMatrix)
-    {
-        if (observations.Count < 0)
-            throw new System.Exception("Empty observations list!");
-        Vector<double> previousValues = Vector<double>.Build.Dense(this.stateCount);
-        Vector<double> currentValues = Vector<double>.Build.Dense(this.stateCount);
-        currentValues = this.drawProbabilities.PointwiseMultiply(emissionMatrix.Column(observations[0]));
-        for (int i = 1; i < observations.Count; ++i)
-        {
-            currentValues.CopyTo(previousValues);
-            for (int j = 0; j < this.stateCount; ++j)
-                currentValues[j] = previousValues.PointwiseMultiply(transitionMatrix.Column(j)).Sum() * emissionMatrix[j, observations[i]];
-        }
-        return System.Math.Log(currentValues.Sum());
-    }
+    //public double GetLikelihood(List<int> observations, Matrix<double> transitionMatrix, Matrix<double> emissionMatrix)
+    //{
+    //    if (observations.Count < 0)
+    //        throw new System.Exception("Empty observations list!");
+    //    Vector<double> previousValues = Vector<double>.Build.Dense(this.stateCount);
+    //    Vector<double> currentValues = Vector<double>.Build.Dense(this.stateCount);
+    //    currentValues = this.drawProbabilities.PointwiseMultiply(emissionMatrix.Column(observations[0]));
+    //    for (int i = 1; i < observations.Count; ++i)
+    //    {
+    //        currentValues.CopyTo(previousValues);
+    //        for (int j = 0; j < this.stateCount; ++j)
+    //            currentValues[j] = previousValues.PointwiseMultiply(transitionMatrix.Column(j)).Sum() * emissionMatrix[j, observations[i]];
+    //    }
+    //    return System.Math.Log(currentValues.Sum());
+    //}
 
-    public double GetLikelihoodV2(Matrix<double> occurence, Matrix<double> transition, Matrix<double> emission, Matrix<double> cBar)
+    public double GetLikelihood(Matrix<double> occurence, Matrix<double> transition, Matrix<double> emission, Matrix<double> cBar)
     {
         double likelihood = 0;
         for (int i = 0; i < this.emissionCount; ++i)
@@ -130,7 +130,7 @@ public class EM : IEstimator
         return likelihood;
     }
 
-    public double train(List<int> observations, double[,] transitionProbabilities, double[,] emissionProbabilities, List<double> pi)
+    public double Train(List<int> observations, double[,] transitionProbabilities, double[,] emissionProbabilities, List<double> pi)
     {
         this.SetEmissionMatrix(emissionProbabilities);
         this.SetTransitionMatrix(transitionProbabilities);
@@ -160,7 +160,7 @@ public class EM : IEstimator
             previousJoinDistribution = jointDistribution;
             //Debug.Log(GetLikelihoodV2(occurenceMatrix, this.transitionMatrix, this.emissionMatrix.Transpose(), this.emissionMatrix.Multiply(this.transitionMatrix).Multiply(this.emissionMatrix.Transpose())));
         }
-        likelihood = GetLikelihoodV2(occurenceMatrix, this.transitionMatrix, this.emissionMatrix.Transpose(), this.emissionMatrix.Multiply(this.transitionMatrix).Multiply(this.emissionMatrix.Transpose()));
+        likelihood = GetLikelihood(occurenceMatrix, this.transitionMatrix, this.emissionMatrix.Transpose(), this.emissionMatrix.Multiply(this.transitionMatrix).Multiply(this.emissionMatrix.Transpose()));
         this.transitionMatrix = Normalize(this.transitionMatrix, this.transitionMatrix.RowSums(), "row");
         this.emissionMatrix = this.emissionMatrix.Transpose();
         return likelihood;

@@ -118,6 +118,7 @@ public class MenuController : MonoBehaviour
         this.creditsStart = false;
         this.credits.SetActive(false);
     }
+
     private void CheckInput()
     {
         if (creditsStart)

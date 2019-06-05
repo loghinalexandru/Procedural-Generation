@@ -245,9 +245,10 @@ public abstract class HMM : MonoBehaviour
         return output;
     }
 
+    //TODO:Make this usuable
     public void ParameterInference(List<GameObject> observations)
     {
-        estimator.train(GameObjectToIndex(observations), this.transitionProbabilities, this.emissionProbabilities, this.stateStartProbabilities);
+        estimator.Train(GameObjectToIndex(observations), this.transitionProbabilities, this.emissionProbabilities, this.stateStartProbabilities);
         this.emissionProbabilities = estimator.GetEmissionMatrix();
         this.transitionProbabilities = estimator.GetTransitionMatrix();
     }
@@ -260,7 +261,7 @@ public abstract class HMM : MonoBehaviour
         double maxLoglikelihood = double.MinValue;
         for (int i = 0; i < this.maxParalelModels; ++i)
         {
-            double likelihood = estimator.train(observations, this.transitionProbabilities, this.emissionProbabilities, this.stateStartProbabilities);
+            double likelihood = estimator.Train(observations, this.transitionProbabilities, this.emissionProbabilities, this.stateStartProbabilities);
             if (maxLoglikelihood < likelihood)
             {
                 maxLoglikelihood = likelihood;

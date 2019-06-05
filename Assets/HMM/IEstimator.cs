@@ -6,7 +6,7 @@ public interface IEstimator
 {
     int maxIterations { get; set; }
     double epsilon { get; set; }
-    double train(List<int> observations, double[,] transitionProbabilities, double[,] emissionProbabilities, List<double> pi);
+    double Train(List<int> observations, double[,] transitionProbabilities, double[,] emissionProbabilities, List<double> pi);
     double[,] GetEmissionMatrix();
     double[,] GetTransitionMatrix();
     double[] GetStartProbabilities();
