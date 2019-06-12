@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using MathNet.Numerics.LinearAlgebra;
+using UnityEngine;
 
 //TODO: Warning when iteration spits NaN after training because of division by zero
 
@@ -75,6 +77,25 @@ public class EM : IEstimator
         }
     }
 
+    private void saveLog(List<double> value , string path)
+    {
+        System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+        customCulture.NumberFormat.NumberDecimalSeparator = ".";
+
+        System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+
+        using (StreamWriter outputFile = new StreamWriter(Path.Combine(Application.dataPath + Path.GetDirectoryName(path), Path.GetFileName(path)),true))
+        {
+            for(int i = 0; i < value.Count; ++i)
+            {
+                outputFile.Write(System.Convert.ToDecimal(value[i]) + ",");
+            }
+            outputFile.WriteLine();
+            outputFile.WriteLine();
+            outputFile.WriteLine();
+        }
+    }
+
     private Matrix<double> Normalize(Matrix<double> target, Vector<double> divisors, string mode)
     {
         Matrix<double> output = Matrix<double>.Build.DenseOfMatrix(target);
@@ -142,6 +163,7 @@ public class EM : IEstimator
         Matrix<double> emissionDelta;
         Matrix<double> transitionDelta;
         Matrix<double> occurenceMatrix = this.GetOccurenceMatrix(observations);
+        List<double> logs = new List<double>();
         this.SetMatrixBar();
         this.emissionMatrix = this.emissionMatrix.Transpose();
         previousEmission = previousEmission.Transpose();
@@ -158,11 +180,13 @@ public class EM : IEstimator
             previousEmission = emissionMatrix;
             previousTransition = transitionMatrix;
             previousJoinDistribution = jointDistribution;
-            //Debug.Log(GetLikelihoodV2(occurenceMatrix, this.transitionMatrix, this.emissionMatrix.Transpose(), this.emissionMatrix.Multiply(this.transitionMatrix).Multiply(this.emissionMatrix.Transpose())));
+            //logs.Add(GetLikelihood(occurenceMatrix, this.transitionMatrix, this.emissionMatrix.Transpose(), this.emissionMatrix.Multiply(this.transitionMatrix).Multiply(this.emissionMatrix.Transpose())));
+            //Debug.Log(GetLikelihood(occurenceMatrix, this.transitionMatrix, this.emissionMatrix.Transpose(), this.emissionMatrix.Multiply(this.transitionMatrix).Multiply(this.emissionMatrix.Transpose())));
         }
         likelihood = GetLikelihood(occurenceMatrix, this.transitionMatrix, this.emissionMatrix.Transpose(), this.emissionMatrix.Multiply(this.transitionMatrix).Multiply(this.emissionMatrix.Transpose()));
         this.transitionMatrix = Normalize(this.transitionMatrix, this.transitionMatrix.RowSums(), "row");
         this.emissionMatrix = this.emissionMatrix.Transpose();
+        //saveLog(logs, "/Resources/logs.txt");
         return likelihood;
     }
 }

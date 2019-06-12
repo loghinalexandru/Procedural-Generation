@@ -10,24 +10,28 @@ public class GameController : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject pauseScreen;
     public GameObject bustedScreen;
+    public GameObject gameUI;
     public Animator[] wastedScreenControllers;
     public Animator[] pauseScreenControllers;
+    public bool gamePaused = false;
 
     private Follow cameraScript;
     private EnemyAI enemyScript;
     private bool gameOver = false;
+    private Vector3 initialPosition;
     private int currentIndex = 0;
     private bool interfaceOverlap = false;
     private bool pressed = false;
-    private bool gamePaused = false;
     private AudioSource[] gameSounds;
 
     void Start()
     {
         gameOverScreen.SetActive(false);
+        gameUI.SetActive(true);
         cameraScript = camera.GetComponent<Follow>();
         enemyScript = enemy.GetComponent<EnemyAI>();
         gameSounds = GetComponents<AudioSource>();
+        this.initialPosition = player.transform.position;
     }
 
     private void ToggleRender()
@@ -44,6 +48,28 @@ public class GameController : MonoBehaviour
         else
         {
             this.gameSounds[0].UnPause();
+        }
+    }
+
+    //Get traveled distance in km
+    private double GetDistanceTraveled()
+    {
+        return Vector3.Distance(initialPosition, player.transform.position) / 1000;
+    }
+
+    private void UpdateGameUI()
+    {
+        if (!gameOver)
+        {
+            if (gamePaused)
+            {
+                gameUI.GetComponentsInChildren<UnityEngine.UI.Text>()[0].text = "\u25B6";
+            }
+            else
+            {
+                gameUI.GetComponentsInChildren<UnityEngine.UI.Text>()[0].text = "| |";
+                gameUI.GetComponentsInChildren<UnityEngine.UI.Text>()[1].text = GetDistanceTraveled().ToString("0.##") + " Km";
+            }
         }
     }
 
@@ -116,6 +142,7 @@ public class GameController : MonoBehaviour
         CheckWastedScreen();
         CheckPauseButton();
         CheckPauseScreen();
+        UpdateGameUI();
         SoundEffects.FadeIn(gameSounds[0], 10.0f);
     }
 

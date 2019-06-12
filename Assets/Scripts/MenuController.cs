@@ -76,7 +76,7 @@ public class MenuController : MonoBehaviour
             EnableComponents();
             return;
         }
-        if (cameraArrived == false && gameStart == true)
+        if (cameraArrived == false && gameStart == true && gameController && gameController.GetComponent<GameController>().gamePaused == false)
         {
             mainCamera.transform.position = Vector3.MoveTowards(mainCamera.transform.position, cameraPosition.position, 0.2f);
             mainCamera.transform.rotation = Quaternion.RotateTowards(mainCamera.transform.rotation, cameraPosition.rotation, 0.4f);
