@@ -3,8 +3,6 @@ using System.IO;
 using MathNet.Numerics.LinearAlgebra;
 using UnityEngine;
 
-//TODO: Warning when iteration spits NaN after training because of division by zero
-
 public class EM : IEstimator
 {
     private Matrix<double> transitionMatrix;
@@ -23,21 +21,21 @@ public class EM : IEstimator
 
     public double[,] GetTransitionMatrix()
     { 
-        for(int i = 0; i < transitionMatrix.RowCount; ++i)
-            MathNet.Numerics.Sorting.Sort(transitionMatrix.Row(i));
+        //for(int i = 0; i < transitionMatrix.RowCount; ++i)
+        //    MathNet.Numerics.Sorting.Sort(transitionMatrix.Row(i));
         return transitionMatrix.ToArray();
     }
 
     public double[,] GetEmissionMatrix()
     {
-        for (int i = 0; i < emissionMatrix.RowCount; ++i)
-            MathNet.Numerics.Sorting.Sort(emissionMatrix.Row(i));
+        //for (int i = 0; i < emissionMatrix.RowCount; ++i)
+        //    MathNet.Numerics.Sorting.Sort(emissionMatrix.Row(i));
         return emissionMatrix.ToArray();
     }
 
     public double[] GetStartProbabilities()
     {
-        MathNet.Numerics.Sorting.Sort(drawProbabilities);
+        //MathNet.Numerics.Sorting.Sort(drawProbabilities);
         return drawProbabilities.ToArray();
     }
 

@@ -7382,7 +7382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52f2f6917e1e4c458ba3ee8ecb9e3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownTime: 1
   bustTime: 5
   bustedUI: {fileID: 1176848379}
   timerUI: {fileID: 2027922813}
@@ -15966,8 +15965,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d6f540d68934e4db3332b21ef54226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowerBound: 20
-  upperBound: 30
+  lowerBound: 10
+  upperBound: 15
   transitionPlatforms:
   - {fileID: 1011597646829680, guid: 72bd52dc88de52044a697e2099cbed95, type: 3}
   - {fileID: 1011597646829680, guid: 43a07b638c0512446bc57368ac3660e9, type: 3}
@@ -16171,7 +16170,7 @@ PrefabInstance:
     - target: {fileID: 5379942171221147880, guid: a245963ef33b5e142a56359a98acbf43,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.24
+      value: 0.487
       objectReference: {fileID: 0}
     - target: {fileID: 5379942171221147880, guid: a245963ef33b5e142a56359a98acbf43,
         type: 3}

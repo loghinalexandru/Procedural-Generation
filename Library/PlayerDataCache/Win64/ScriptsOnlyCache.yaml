@@ -157,45 +157,45 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10728}
     - Class: 114
-      Script: {instanceID: 10818}
+      Script: {instanceID: 10820}
     - Class: 114
-      Script: {instanceID: 10892}
+      Script: {instanceID: 10894}
     - Class: 114
-      Script: {instanceID: 11064}
+      Script: {instanceID: 10936}
     - Class: 114
-      Script: {instanceID: 11072}
+      Script: {instanceID: 11066}
     - Class: 114
-      Script: {instanceID: 11086}
+      Script: {instanceID: 11074}
     - Class: 114
-      Script: {instanceID: 11176}
+      Script: {instanceID: 11088}
     - Class: 114
-      Script: {instanceID: 11278}
+      Script: {instanceID: 11178}
     - Class: 114
-      Script: {instanceID: 11404}
+      Script: {instanceID: 11280}
     - Class: 114
-      Script: {instanceID: 11498}
+      Script: {instanceID: 11406}
     - Class: 114
-      Script: {instanceID: 11564}
+      Script: {instanceID: 11500}
     - Class: 114
-      Script: {instanceID: 11696}
+      Script: {instanceID: 11566}
     - Class: 114
-      Script: {instanceID: 11770}
+      Script: {instanceID: 11698}
     - Class: 114
-      Script: {instanceID: 11816}
+      Script: {instanceID: 11772}
     - Class: 114
-      Script: {instanceID: 11860}
+      Script: {instanceID: 11818}
     - Class: 114
-      Script: {instanceID: 11906}
+      Script: {instanceID: 11862}
     - Class: 114
-      Script: {instanceID: 11924}
+      Script: {instanceID: 11908}
     - Class: 114
-      Script: {instanceID: 11962}
+      Script: {instanceID: 11926}
     - Class: 114
-      Script: {instanceID: 12002}
+      Script: {instanceID: 11964}
     - Class: 114
-      Script: {instanceID: 12006}
+      Script: {instanceID: 12004}
     - Class: 114
-      Script: {instanceID: 18736}
+      Script: {instanceID: 12008}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -889,6 +889,12 @@ ScriptsOnlyBuild:
     className: AutoExposure
   - hash:
       serializedVersion: 2
+      Hash: 9232e461e2ce4f47964ce1c28b42f335
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ProximityCollider
+  - hash:
+      serializedVersion: 2
       Hash: 50c443b12ccc0b475183318b5088bcc5
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
@@ -913,7 +919,7 @@ ScriptsOnlyBuild:
     className: VolumeProfile
   - hash:
       serializedVersion: 2
-      Hash: e6c271fd21428cd44ebb66d99d7bf3fd
+      Hash: 6140a5ea3011ca83b92ad52f6517918a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -925,10 +931,10 @@ ScriptsOnlyBuild:
     className: LWRPAdditionalLightData
   - hash:
       serializedVersion: 2
-      Hash: 4c2c35cb4e7d7c140467daed637234f0
+      Hash: c8dad38fd9cc9d96350e3f9f25fbcbdd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Markov
+    className: ProximityTrigger
   - hash:
       serializedVersion: 2
       Hash: 3f8d7b92a6be3c715e55d5cfa7cc8384
@@ -1169,18 +1175,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: dd927f7a201e01a7ef3985107749a84e
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ProximityTrigger
-  - hash:
-      serializedVersion: 2
-      Hash: 9232e461e2ce4f47964ce1c28b42f335
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ProximityCollider
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainScene.unity

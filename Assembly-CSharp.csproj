@@ -105,7 +105,9 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\VolumetricLights\Assets\Shaders\BilateralBlur.shader" />
     <None Include="Assets\Packages\MathNet.Numerics.4.7.0\lib\net461\MathNet.Numerics.xml" />
+    <None Include="Assets\Resources\CityPlatformTransition.txt" />
     <None Include="Assets\Probabilities\HHMM.txt" />
+    <None Include="Assets\Resources\CityPlatformEmission.txt" />
     <None Include="Assets\VolumetricLights\Assets\Shaders\BlitAdd.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />

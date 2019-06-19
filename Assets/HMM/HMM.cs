@@ -22,9 +22,9 @@ public abstract class HMM : MonoBehaviour
     {
         this.emissionProbabilities = new double[this.stateStartProbabilities.Count, this.emissions.Count];
         this.transitionProbabilities = new double[this.stateStartProbabilities.Count, this.stateStartProbabilities.Count];
-        this.currentStateIndex = this.SetInitialState();
         this.SetProbabilities();
         this.SetCumulativeDistributions();
+        this.currentStateIndex = this.SetInitialState();
     }
 
     private void SetCumulativeDistributions()
@@ -43,6 +43,7 @@ public abstract class HMM : MonoBehaviour
         {
             this.SetFileEmissionProbabilities();
             this.SetFileTransitionProbabilities();
+            this.SetRandomStart();
         }
     }
 
@@ -67,7 +68,6 @@ public abstract class HMM : MonoBehaviour
         for (int i = 0; i < text.Length; ++i)
         {
             double[] probabilities = System.Array.ConvertAll(text[i].Trim().Split(' '), double.Parse);
-            System.Array.Sort(probabilities);
             for (int j = 0; j < probabilities.Length; ++j)
             {
                 this.transitionProbabilities[i, j] = probabilities[j];
@@ -81,7 +81,6 @@ public abstract class HMM : MonoBehaviour
         for (int i = 0; i < text.Length; ++i)
         {
             double[] probabilities = System.Array.ConvertAll(text[i].Trim().Split(' '), double.Parse);
-            System.Array.Sort(probabilities);
             for (int j = 0; j < probabilities.Length; ++j)
             {
                 this.emissionProbabilities[i, j] = probabilities[j];
@@ -245,12 +244,9 @@ public abstract class HMM : MonoBehaviour
         return output;
     }
 
-    //TODO:Make this usuable
     public void ParameterInference(List<GameObject> observations)
     {
-        estimator.Train(GameObjectToIndex(observations), this.transitionProbabilities, this.emissionProbabilities, this.stateStartProbabilities);
-        this.emissionProbabilities = estimator.GetEmissionMatrix();
-        this.transitionProbabilities = estimator.GetTransitionMatrix();
+        ParameterInference(GameObjectToIndex(observations));
     }
 
     public void ParameterInference(List<int> observations)
