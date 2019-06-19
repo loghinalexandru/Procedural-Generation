@@ -8,9 +8,12 @@ public class DesertPlatformGenerator : HMM
     void Start()
     {
         this.Init();
-        this.estimator = new EM(this.stateStartProbabilities.Count, this.emissions.Count);
-        this.ParameterInference(new List<int> {
-            0,1,2,1,0,2,1,0,1,2,2,0,1,0,2,1,0,1
-        });
+        //this.estimator = new EM(this.stateStartProbabilities.Count, this.emissions.Count);
+        //this.ParameterInference(new List<int> {
+        //    0,1,2,1,0,2,1,0,1,2,2,0,1,0,2,1,0,1
+        //});
+        //this.SaveEmissionProbabilities("/Resources/DesertPlatformEmission.txt");
+        //this.SaveTransitionProbabilities("/Resources/DesertPlatformTransition.txt");
+
     }
 }
