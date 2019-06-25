@@ -89,6 +89,8 @@
     <Compile Include="Assets\Scripts\SkidMarks.cs" />
     <Compile Include="Assets\Scripts\SoundEffects.cs" />
     <Compile Include="Assets\Scripts\SpawnSettings.cs" />
+    <Compile Include="Assets\VolumetricLights - Copy\Assets\Scripts\VolumetricLight.cs" />
+    <Compile Include="Assets\VolumetricLights - Copy\Assets\Scripts\VolumetricLightRenderer.cs" />
     <Compile Include="Assets\VolumetricLights\Assets\Scripts\VolumetricLight.cs" />
     <Compile Include="Assets\VolumetricLights\Assets\Scripts\VolumetricLightRenderer.cs" />
     <None Include="Assets\Resources\CountryPlatformEmission.txt" />
@@ -96,10 +98,10 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Resources\CityPropsTransition.txt" />
-    <None Include="Assets\VolumetricLights\Assets\Shaders\BlitAdd.shader" />
+    <None Include="Assets\VolumetricLights - Copy\Assets\Shaders\BlitAdd.shader" />
     <None Include="Assets\Probabilities\EM_transition.txt" />
     <None Include="Assets\Resources\DesertPlatformTransition.txt" />
-    <None Include="Assets\VolumetricLights\Assets\Shaders\BilateralBlur.shader" />
+    <None Include="Assets\VolumetricLights - Copy\Assets\Shaders\BilateralBlur.shader" />
     <None Include="Assets\Probabilities\EM_cityPropsEmission.txt" />
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
@@ -108,10 +110,12 @@
     <None Include="Assets\Probabilities\emission.txt" />
     <None Include="Assets\Resources\CountryPropsEmission.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\VolumetricLights\Assets\Shaders\BilateralBlur.shader" />
     <None Include="Assets\Packages\MathNet.Numerics.4.7.0\lib\net461\MathNet.Numerics.xml" />
     <None Include="Assets\Resources\CityPlatformTransition.txt" />
     <None Include="Assets\Probabilities\HHMM.txt" />
     <None Include="Assets\Resources\CityPlatformEmission.txt" />
+    <None Include="Assets\VolumetricLights\Assets\Shaders\BlitAdd.shader" />
     <None Include="Assets\Resources\CountryPropsTransition.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -121,10 +125,11 @@
     <None Include="Assets\NuGet\LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\VolumetricLights\Assets\Shaders\VolumetricLight.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Resources\CountryPlatformTransition.txt" />
     <None Include="Assets\Resources\DesertPropsEmission.txt" />
-    <None Include="Assets\VolumetricLights\Assets\Shaders\VolumetricLight.shader" />
+    <None Include="Assets\VolumetricLights - Copy\Assets\Shaders\VolumetricLight.shader" />
     <None Include="Assets\Probabilities\emission_alternative.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Resources\DesertPropsTransition.txt" />
