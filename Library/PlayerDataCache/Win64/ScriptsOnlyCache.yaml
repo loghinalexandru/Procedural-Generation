@@ -113,89 +113,89 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9416}
+      Script: {instanceID: 9422}
     - Class: 114
-      Script: {instanceID: 9458}
+      Script: {instanceID: 9464}
     - Class: 114
-      Script: {instanceID: 9466}
+      Script: {instanceID: 9472}
     - Class: 114
-      Script: {instanceID: 9478}
+      Script: {instanceID: 9484}
     - Class: 114
-      Script: {instanceID: 9556}
+      Script: {instanceID: 9562}
     - Class: 114
-      Script: {instanceID: 9572}
+      Script: {instanceID: 9578}
     - Class: 114
-      Script: {instanceID: 9674}
+      Script: {instanceID: 9678}
     - Class: 114
-      Script: {instanceID: 9736}
+      Script: {instanceID: 9740}
     - Class: 114
-      Script: {instanceID: 9738}
+      Script: {instanceID: 9742}
     - Class: 114
-      Script: {instanceID: 9744}
+      Script: {instanceID: 9748}
     - Class: 114
-      Script: {instanceID: 9750}
+      Script: {instanceID: 9754}
     - Class: 114
-      Script: {instanceID: 9758}
+      Script: {instanceID: 9762}
     - Class: 114
-      Script: {instanceID: 9794}
+      Script: {instanceID: 9798}
     - Class: 114
-      Script: {instanceID: 9796}
+      Script: {instanceID: 9800}
     - Class: 114
-      Script: {instanceID: 9966}
+      Script: {instanceID: 9970}
     - Class: 114
-      Script: {instanceID: 10012}
+      Script: {instanceID: 10016}
     - Class: 114
-      Script: {instanceID: 10264}
+      Script: {instanceID: 10116}
     - Class: 114
-      Script: {instanceID: 10390}
+      Script: {instanceID: 10396}
     - Class: 114
-      Script: {instanceID: 10392}
+      Script: {instanceID: 10398}
     - Class: 114
-      Script: {instanceID: 10522}
+      Script: {instanceID: 10528}
     - Class: 114
-      Script: {instanceID: 10588}
+      Script: {instanceID: 10594}
     - Class: 114
-      Script: {instanceID: 10728}
+      Script: {instanceID: 10734}
     - Class: 114
-      Script: {instanceID: 10820}
+      Script: {instanceID: 10826}
     - Class: 114
-      Script: {instanceID: 10894}
+      Script: {instanceID: 10900}
     - Class: 114
-      Script: {instanceID: 10936}
+      Script: {instanceID: 10942}
     - Class: 114
-      Script: {instanceID: 11066}
+      Script: {instanceID: 11072}
     - Class: 114
-      Script: {instanceID: 11074}
+      Script: {instanceID: 11080}
     - Class: 114
-      Script: {instanceID: 11088}
+      Script: {instanceID: 11094}
     - Class: 114
-      Script: {instanceID: 11178}
+      Script: {instanceID: 11184}
     - Class: 114
-      Script: {instanceID: 11280}
+      Script: {instanceID: 11266}
     - Class: 114
-      Script: {instanceID: 11406}
+      Script: {instanceID: 11288}
     - Class: 114
-      Script: {instanceID: 11500}
+      Script: {instanceID: 11414}
     - Class: 114
-      Script: {instanceID: 11566}
+      Script: {instanceID: 11574}
     - Class: 114
-      Script: {instanceID: 11698}
+      Script: {instanceID: 11706}
     - Class: 114
-      Script: {instanceID: 11772}
+      Script: {instanceID: 11780}
     - Class: 114
-      Script: {instanceID: 11818}
+      Script: {instanceID: 11824}
     - Class: 114
-      Script: {instanceID: 11862}
+      Script: {instanceID: 11868}
     - Class: 114
-      Script: {instanceID: 11908}
+      Script: {instanceID: 11914}
     - Class: 114
-      Script: {instanceID: 11926}
+      Script: {instanceID: 11932}
     - Class: 114
-      Script: {instanceID: 11964}
-    - Class: 114
-      Script: {instanceID: 12004}
+      Script: {instanceID: 11968}
     - Class: 114
       Script: {instanceID: 12008}
+    - Class: 114
+      Script: {instanceID: 12012}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -757,6 +757,12 @@ ScriptsOnlyBuild:
     className: AnimationTrack
   - hash:
       serializedVersion: 2
+      Hash: 60036151943f2ca1467bc533d425fc0d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: VolumetricLightRenderer
+  - hash:
+      serializedVersion: 2
       Hash: 00274a21279f5cb831ce20f895049e38
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -785,12 +791,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Lightweight.Runtime.dll
     namespaceName: UnityEngine.Rendering.LWRP
     className: LWRPAdditionalCameraData
-  - hash:
-      serializedVersion: 2
-      Hash: 0dcb29924b9c9648c3f40ab03944c962
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: VolumetricLight
   - hash:
       serializedVersion: 2
       Hash: d251bf88db6c95a6b1aa0b69298da9ef
@@ -1027,6 +1027,12 @@ ScriptsOnlyBuild:
     className: LightweightRenderPipelineEditorResources
   - hash:
       serializedVersion: 2
+      Hash: 0dcb29924b9c9648c3f40ab03944c962
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: VolumetricLight
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1049,12 +1055,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: OnClickPause
-  - hash:
-      serializedVersion: 2
-      Hash: 60036151943f2ca1467bc533d425fc0d
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: VolumetricLightRenderer
   - hash:
       serializedVersion: 2
       Hash: c0001de105f95a910d607e3cc60758bc
@@ -1085,12 +1085,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CountryPlatformGenerator
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: UnityStandardAssets.ImageEffects
-    className: PostEffectsBase
   - hash:
       serializedVersion: 2
       Hash: d5630f96bd5a6a6eed7e1754c3fb8703
@@ -1139,12 +1133,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PoliceLights
-  - hash:
-      serializedVersion: 2
-      Hash: 83dffc789cd416ac4ef1fc44f3423e35
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: UnityStandardAssets.ImageEffects
-    className: Tonemapping
   - hash:
       serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744

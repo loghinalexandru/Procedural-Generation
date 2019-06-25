@@ -134,7 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8086104764852215420}
   - component: {fileID: 1073485370643760002}
-  - component: {fileID: 3322553975306934129}
+  - component: {fileID: 833724265615829200}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -216,7 +216,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &3322553975306934129
+--- !u!114 &833724265615829200
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,20 +225,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8799818863423785071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dafc90245bfe9e2408e358f71deace2a, type: 3}
+  m_Script: {fileID: 11500000, guid: dc606a8b59e681140abc36542ec82629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SampleCount: 8
-  ScatteringCoef: 1
-  ExtinctionCoef: 0.01
-  SkyboxExtinctionCoef: 0.9
-  MieG: 0.1
-  HeightFog: 0
-  HeightScale: 0.1
+  SampleCount: 12
+  ScatteringCoef: 0.902
+  ExtinctionCoef: 0.0162
+  SkyboxExtinctionCoef: 0.492
+  MieG: 0
+  HeightFog: 1
+  HeightScale: 0
   GroundLevel: 0
-  Noise: 0
-  NoiseScale: 0.015
-  NoiseIntensity: 1
+  Noise: 1
+  NoiseScale: 0.2
+  NoiseIntensity: 5
   NoiseIntensityOffset: 0.3
-  NoiseVelocity: {x: 3, y: 3}
+  NoiseVelocity: {x: 0.1, y: 0.1}
   MaxRayLength: 400
