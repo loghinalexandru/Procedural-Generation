@@ -13372,8 +13372,8 @@ MonoBehaviour:
   - {fileID: 1605584312417678, guid: 92cd88d9c8e4d5f4db482ee363f53cf5, type: 3}
   - {fileID: 1487804837674840, guid: 5a03fa9e4b4b2774bb065c5244a2b1af, type: 3}
   - {fileID: 1011597646829680, guid: 27d3040ef5b651143aff5d8d970c4117, type: 3}
-  transitionFile: {fileID: 4900000, guid: f9590ba6b277a46499c1862763a64e98, type: 3}
-  emissionFile: {fileID: 4900000, guid: 114edd18fa06d7c40aa92eea927bed15, type: 3}
+  transitionFile: {fileID: 0}
+  emissionFile: {fileID: 0}
 --- !u!1 &1405173584
 GameObject:
   m_ObjectHideFlags: 0
